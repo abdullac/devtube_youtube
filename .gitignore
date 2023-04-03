@@ -50,3 +50,7 @@ app.*.map.json
 /linux/
 /ios/
 /android/
+
+
+# keys
+/lib/core/services/keys/
