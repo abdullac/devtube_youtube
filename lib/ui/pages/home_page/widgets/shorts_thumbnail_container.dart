@@ -10,6 +10,7 @@ class ShortsThumbnailContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      /// before, you must call videosDataListBloc for ollect hannelId
       // BlocProvider.of<HomeBloc>(context).add(const GetShortsDataList());
     });
     return BlocBuilder<HomeBloc, HomeState>(

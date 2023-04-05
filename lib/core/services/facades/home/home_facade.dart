@@ -7,4 +7,6 @@ abstract class HomeFacade {
   Future<ShortsData?> getShortsData();
   Future<VideosData?> getVideosData();
   Future<List<VideosData?>?> getVideosDataList();
+  Future<List<ShortsData?>?> getShortsDataList();
+
 }

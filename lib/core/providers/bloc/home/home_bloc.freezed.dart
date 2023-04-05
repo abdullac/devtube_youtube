@@ -284,7 +284,7 @@ mixin _$HomeState {
   String? get thumbnailUrl => throw _privateConstructorUsedError;
   ShortsData? get shortsData => throw _privateConstructorUsedError;
   VideosData? get videosData => throw _privateConstructorUsedError;
-  List<ShortsData>? get shortsDataList => throw _privateConstructorUsedError;
+  List<ShortsData?>? get shortsDataList => throw _privateConstructorUsedError;
   List<VideosData?>? get videosDataList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -303,7 +303,7 @@ abstract class $HomeStateCopyWith<$Res> {
       String? thumbnailUrl,
       ShortsData? shortsData,
       VideosData? videosData,
-      List<ShortsData>? shortsDataList,
+      List<ShortsData?>? shortsDataList,
       List<VideosData?>? videosDataList});
 
   $ShortsDataCopyWith<$Res>? get shortsData;
@@ -355,7 +355,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       shortsDataList: freezed == shortsDataList
           ? _value.shortsDataList
           : shortsDataList // ignore: cast_nullable_to_non_nullable
-              as List<ShortsData>?,
+              as List<ShortsData?>?,
       videosDataList: freezed == videosDataList
           ? _value.videosDataList
           : videosDataList // ignore: cast_nullable_to_non_nullable
@@ -401,7 +401,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       String? thumbnailUrl,
       ShortsData? shortsData,
       VideosData? videosData,
-      List<ShortsData>? shortsDataList,
+      List<ShortsData?>? shortsDataList,
       List<VideosData?>? videosDataList});
 
   @override
@@ -453,7 +453,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
       shortsDataList: freezed == shortsDataList
           ? _value._shortsDataList
           : shortsDataList // ignore: cast_nullable_to_non_nullable
-              as List<ShortsData>?,
+              as List<ShortsData?>?,
       videosDataList: freezed == videosDataList
           ? _value._videosDataList
           : videosDataList // ignore: cast_nullable_to_non_nullable
@@ -471,7 +471,7 @@ class _$_HomeState implements _HomeState {
       required this.thumbnailUrl,
       required this.shortsData,
       required this.videosData,
-      required final List<ShortsData>? shortsDataList,
+      required final List<ShortsData?>? shortsDataList,
       required final List<VideosData?>? videosDataList})
       : _shortsDataList = shortsDataList,
         _videosDataList = videosDataList;
@@ -486,9 +486,9 @@ class _$_HomeState implements _HomeState {
   final ShortsData? shortsData;
   @override
   final VideosData? videosData;
-  final List<ShortsData>? _shortsDataList;
+  final List<ShortsData?>? _shortsDataList;
   @override
-  List<ShortsData>? get shortsDataList {
+  List<ShortsData?>? get shortsDataList {
     final value = _shortsDataList;
     if (value == null) return null;
     if (_shortsDataList is EqualUnmodifiableListView) return _shortsDataList;
@@ -556,7 +556,7 @@ abstract class _HomeState implements HomeState {
       required final String? thumbnailUrl,
       required final ShortsData? shortsData,
       required final VideosData? videosData,
-      required final List<ShortsData>? shortsDataList,
+      required final List<ShortsData?>? shortsDataList,
       required final List<VideosData?>? videosDataList}) = _$_HomeState;
 
   @override
@@ -570,7 +570,7 @@ abstract class _HomeState implements HomeState {
   @override
   VideosData? get videosData;
   @override
-  List<ShortsData>? get shortsDataList;
+  List<ShortsData?>? get shortsDataList;
   @override
   List<VideosData?>? get videosDataList;
   @override

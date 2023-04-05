@@ -21,11 +21,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         shortsData: null,
       ));
 
+      final getShortsDataList = await homeFacade.getShortsDataList();
       final getShortsData = await homeFacade.getShortsData();
       emit(state.copyWith(
         isLoading: false,
         isError: false,
         shortsData: getShortsData,
+        shortsDataList: getShortsDataList,
       ));
     });
 
@@ -37,8 +39,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         videosDataList: [],
       ));
 
-      final getVideosData = await homeFacade.getVideosData();
       final getVideosDataList = await homeFacade.getVideosDataList();
+      final getVideosData = await homeFacade.getVideosData();
       emit(state.copyWith(
         isLoading: false,
         isError: false,

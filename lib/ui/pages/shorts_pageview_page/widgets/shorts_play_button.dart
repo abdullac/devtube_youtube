@@ -1,9 +1,8 @@
-import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_play_iconbutton.dart';
 import 'package:flutter/material.dart';
 
-class ShortsPlayIconButton extends StatelessWidget {
-  const ShortsPlayIconButton({
+class ShortsPlayButton extends StatelessWidget {
+  const ShortsPlayButton({
     super.key,
   });
 
@@ -13,7 +12,7 @@ class ShortsPlayIconButton extends StatelessWidget {
       alignment: Alignment.center,
       child: VideoPlayIconButton(
         iconButtonPressed: () {
-          // short play button
+          // play button pressed
           print("play button pressed");
         },
       ),

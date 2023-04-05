@@ -1,5 +1,5 @@
 import 'package:devtube_sample/main.dart';
-import 'package:devtube_sample/ui/pages/home_page/widgets/video_play_iconbutton.dart';
+import 'package:devtube_sample/ui/shared/widgets/video_play_iconbutton.dart';
 import 'package:flutter/material.dart';
 
 // class VideoThumbnailContainer extends StatelessWidget {
@@ -78,6 +78,7 @@ class VideoThumbnailContainer extends StatelessWidget {
   final double height;
   final dynamic blocState;
   final String thumbnailUrl;
+  final void Function() iconButtonPressed;
 
   const VideoThumbnailContainer({
     super.key,
@@ -85,6 +86,7 @@ class VideoThumbnailContainer extends StatelessWidget {
     required this.height,
     required this.blocState,
     required this.thumbnailUrl,
+    required this.iconButtonPressed,
   });
 
   @override
@@ -112,7 +114,12 @@ class VideoThumbnailContainer extends StatelessWidget {
                   ),
                   fit: BoxFit.cover),
             ),
-            child: const VideoPlayIconButton(),
+            child: VideoPlayIconButton(
+              iconButtonPressed: () {
+                // play button pressed
+                iconButtonPressed();
+              },
+            ),
           );
   }
 }

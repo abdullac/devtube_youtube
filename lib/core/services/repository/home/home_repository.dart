@@ -18,21 +18,38 @@ class HomeRepository implements HomeFacade {
   Future<ShortsData?> getShortsData() async {
     try {
       await setUrlChannelId();
+      final listOfShortsData = await getShortsDataList();
+      final int shortsDataListLength = listOfShortsData!.length;
+      final int randomNumber = Random().nextInt(shortsDataListLength);
+      ShortsData convertToShortsData = (listOfShortsData[randomNumber]!);
+      return convertToShortsData;
+    } catch (e) {
+      printing("getShortsData cache e $e");
+      return null;
+    }
+  }
+
+  /// getShortsDataList
+  @override
+  Future<List<ShortsData?>?> getShortsDataList() async {
+    List<ShortsData?>? listOfShortsData = [];
+    try {
+      await setUrlChannelId();
       final response =
           await Dio(BaseOptions()).get(Url.shortsBaseUrl + Url.channelId);
       if (response.statusCode == 200 || response.statusCode == 201) {
         final shortsDataList = (response.data["items"][0]["shorts"]);
-        final int shortsDataListLength = (shortsDataList as List).length;
-        final int randomNumber = Random().nextInt(shortsDataListLength);
-        ShortsData convertToShortsData =
-            ShortsData.fromJson(shortsDataList[randomNumber]);
-        return convertToShortsData;
+        shortsDataList as List;
+        shortsDataList.forEach((element) {
+          listOfShortsData.add(ShortsData.fromJson(element));
+        });
+        return listOfShortsData;
       } else {
-        printing("getShortsData statusCode is not 200/201");
+        printing("getShortsDataList statusCode is not 200/201");
         return null;
       }
     } catch (e) {
-      printing("getShortsData cache e $e");
+      printing("getShortsDatalist cache e $e");
       return null;
     }
   }
@@ -41,28 +58,20 @@ class HomeRepository implements HomeFacade {
   @override
   Future<VideosData?> getVideosData() async {
     try {
-      // final response =
-      //     await Dio(BaseOptions()).get(Url.baseUrl + Url.videosEndPoint);
-      // if (response.statusCode == 200 || response.statusCode == 201) {
-      //   final videosDataList = (response.data["items"]);
       final videosDataList = await getVideosDataList();
       if (videosDataList != null) {
-        // makeChannelIdList(videosDataList);
         final int videosDataListLength = (videosDataList).length;
         final int randomNumber = Random().nextInt(videosDataListLength);
         if ((videosDataList[randomNumber]) != null) {
-          VideosData convertToVideosData =
-              // VideosData.fromJson(videosDataList[randomNumber]);
-              (videosDataList[randomNumber]!);
-        return convertToVideosData;
-        }else{
-          printing( "getVideosData videosData Empty");
+          VideosData convertToVideosData = (videosDataList[randomNumber]!);
+          return convertToVideosData;
+        } else {
+          printing("getVideosData videosData Empty");
           return null;
         }
-      }
-      else {
-      printing("getVideosData videosData List null");
-      return null;
+      } else {
+        printing("getVideosData videosData List null");
+        return null;
       }
     } catch (e) {
       printing("getVideosData cache e $e");
@@ -73,7 +82,7 @@ class HomeRepository implements HomeFacade {
   /// getVideosDataList
   @override
   Future<List<VideosData?>?> getVideosDataList() async {
-    List<VideosData> videsDataList = [];
+    List<VideosData> listOfVidesDataList = [];
     try {
       final response =
           await Dio(BaseOptions()).get(Url.baseUrl + Url.videosEndPoint);
@@ -82,9 +91,9 @@ class HomeRepository implements HomeFacade {
         makeChannelIdList(videosDataList);
         videosDataList as List;
         for (var element in videosDataList) {
-          videsDataList.add(VideosData.fromJson(element));
+          listOfVidesDataList.add(VideosData.fromJson(element));
         }
-        return videsDataList;
+        return listOfVidesDataList;
       } else {
         printing("getVideosDataList statusCode is not 200/201");
         return null;

@@ -15,7 +15,7 @@ class IconButtonWidget extends StatelessWidget {
       color: Colors.black.withOpacity(0.75),
       onPressed: () {
         // search icon button
-        iconButtonPressed;
+        iconButtonPressed();
       },
       icon: Icon(icon),
       style: ButtonStyle(

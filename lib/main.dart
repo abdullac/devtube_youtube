@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'ui/pages/home_page/shorts_pageview_page/page_short_pageview.dart';
+import 'ui/pages/shorts_pageview_page/page_short_pageview.dart';
 import 'ui/pages/videos_listview_page/page_videos_listview.dart';
 
 List<String> channelIdList = [];
@@ -54,7 +54,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
+      // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
     });
     // return const PageHome();
     // return const PageVideosListview();

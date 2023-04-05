@@ -65,19 +65,27 @@ class PageHome extends StatelessWidget {
                       // ),
                       BlocBuilder<HomeBloc, HomeState>(
                         builder: (context, state) {
-                          return VideoThumbnailContainer(
+                          return Container(
                             width: width,
-                            height: height,
-                            blocState: state,
-                            thumbnailUrl: state.videosData == null
-                                ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
-                                : state.videosData!.videoDetails == null
-                                    ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
-                                    : state.videosData!.videoDetails!
-                                            .thumbnails!.isEmpty
-                                        ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
-                                        : state.videosData!.videoDetails!
-                                            .thumbnails!["high"]["url"],
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: VideoThumbnailContainer(
+                              width: width,
+                              height: height,
+                              blocState: state,
+                              thumbnailUrl: state.videosData == null
+                                  ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
+                                  : state.videosData!.videoDetails == null
+                                      ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
+                                      : state.videosData!.videoDetails!
+                                              .thumbnails!.isEmpty
+                                          ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
+                                          : state.videosData!.videoDetails!
+                                              .thumbnails!["high"]["url"],
+                              iconButtonPressed: () {
+                                // play button pressed
+                                print("play button pressed");
+                              },
+                            ),
                           );
                         },
                       ),
@@ -86,9 +94,9 @@ class PageHome extends StatelessWidget {
                 );
               },
             ),
-            Container(
-              color: Colors.blueGrey.withOpacity(0.5),
-            ),
+            // Container(
+            //   color: Colors.blueGrey.withOpacity(0.5),
+            // ),
             /////////
             ///   Video List View
             ////////
