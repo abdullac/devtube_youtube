@@ -82,7 +82,7 @@ class VideoCard extends StatelessWidget {
       ],
     );
 
-    // VideoThumbnailContainer(
+    // VideoThumbnailContainer( 
     //   width: width,
     //   height: height,
     //   blocState: blocState,

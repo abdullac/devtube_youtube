@@ -4,7 +4,7 @@ import 'package:devtube_sample/core/models/home/shorts/shorts_data.dart';
 import 'package:devtube_sample/core/models/home/videos/videos_data.dart';
 import 'package:devtube_sample/core/providers/logics/make_channel_id_list.dart';
 import 'package:devtube_sample/core/providers/logics/set_url_channel_id.dart';
-import 'package:devtube_sample/core/services/facades/home/home_facade.dart';
+import 'package:devtube_sample/core/services/i_facades/home/home_facade.dart';
 import 'package:devtube_sample/core/services/links/uri.dart';
 import 'package:devtube_sample/main.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';

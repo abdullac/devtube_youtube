@@ -10,9 +10,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart' as _i5;
-import 'package:devtube_sample/core/services/facades/home/home_facade.dart'
+import 'package:devtube_sample/core/services/i_facades/home/home_facade.dart'
     as _i3;
-import 'package:devtube_sample/core/services/repository/home/home_repository.dart'
+import 'package:devtube_sample/core/services/i_repository/home/home_repository.dart'
     as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;

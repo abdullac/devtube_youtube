@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:devtube_sample/core/services/facades/home/home_facade.dart';
-import 'package:devtube_sample/core/services/repository/home/home_repository.dart';
+import 'package:devtube_sample/core/services/i_facades/home/home_facade.dart';
+import 'package:devtube_sample/core/services/i_repository/home/home_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 

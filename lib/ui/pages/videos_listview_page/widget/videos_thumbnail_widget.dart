@@ -1,3 +1,4 @@
+import 'package:devtube_sample/ui/pages/video_player_page/page_vieo_player.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_thumbnail_container.dart';
 import 'package:flutter/material.dart';
 
@@ -30,10 +31,14 @@ class VideosThumbnailWidget extends StatelessWidget {
           iconButtonPressed: () {
             // play button pressed
             print("play button pressed");
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => PageVideoPlayer(
+                  videoId:
+                      blocState.videosDataList![index]?.videoId),
+            ));
           },
         ),
       ),
     );
   }
 }
-
