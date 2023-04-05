@@ -1,6 +1,9 @@
-import 'package:devtube_sample/core/services/keys/api_key.dart';
+import 'dart:math';
 
-class Api {
+import 'package:devtube_sample/core/services/keys/api_key.dart';
+import 'package:devtube_sample/main.dart';
+
+class Url {
   static const String baseUrl = "https://www.googleapis.com/youtube/v3/";
   static const String videosEndPoint =
       "videos?part=snippet&chart=mostPopular&key=$apiKey";
@@ -13,9 +16,9 @@ class Api {
       "videos?part=snippet&chart=mostPopular&videoCategoryId=$techScienceCategoryId&key=$apiKey";
   static String searchByCategoryIdEntPoint =
       "search?part=snippet&q=$serchQuery&type=video&videoCategoryId=$techScienceCategoryId&key=$apiKey";
-  static String channelId = "UCX6OQ3DkcsbYNE6H8uQQuVA";
-  static String shortsFullUrl =
-      "https://yt.lemnoslife.com/channels?part=shorts&id=$channelId";
+  static String channelId = "";
+  static String shortsBaseUrl =
+      "https://yt.lemnoslife.com/channels?part=shorts&id=";
 }
 
 
@@ -29,3 +32,5 @@ class Api {
 // 28 Science & Technology
 
 // shorts "https://yt.lemnoslife.com/channels?part=shorts&id=UCX6OQ3DkcsbYNE6H8uQQuVA" channelId
+
+//  static String channelId = "UCX6OQ3DkcsbYNE6H8uQQuVA";

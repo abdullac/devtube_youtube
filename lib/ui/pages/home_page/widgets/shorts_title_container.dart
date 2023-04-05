@@ -1,4 +1,6 @@
+import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShortsTitleContainer extends StatelessWidget {
   const ShortsTitleContainer({
@@ -15,15 +17,18 @@ class ShortsTitleContainer extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: height * 15 / 100,
+        height: height * 12 / 100,
         width: width,
         color: Colors.purple.withOpacity(0.5),
-        child: const Text(
-          "Gopwe0orpwe rporwepirpwoei  poriwp oirpwoe weipoeirp priwpo  rpwieporiwpoeppoweirpp wepopiwri  weporiw poirwpoeir riwerpo ",
-          overflow: TextOverflow.fade,
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            return Text(
+              state.shortsData?.title??"No shorts title provided",
+              overflow: TextOverflow.fade,
+            );
+          },
         ),
       ),
     );
   }
 }
-

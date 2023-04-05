@@ -18,39 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getShortsList,
-    required TResult Function() getVideosListList,
+    required TResult Function() getShortsDataList,
+    required TResult Function() getVideosDataList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getShortsList,
-    TResult? Function()? getVideosListList,
+    TResult? Function()? getShortsDataList,
+    TResult? Function()? getVideosDataList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getShortsList,
-    TResult Function()? getVideosListList,
+    TResult Function()? getShortsDataList,
+    TResult Function()? getVideosDataList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetShortsList value) getShortsList,
-    required TResult Function(GetVideosListList value) getVideosListList,
+    required TResult Function(GetShortsDataList value) getShortsDataList,
+    required TResult Function(GetVideosDataList value) getVideosDataList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetShortsList value)? getShortsList,
-    TResult? Function(GetVideosListList value)? getVideosListList,
+    TResult? Function(GetShortsDataList value)? getShortsDataList,
+    TResult? Function(GetVideosDataList value)? getVideosDataList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetShortsList value)? getShortsList,
-    TResult Function(GetVideosListList value)? getVideosListList,
+    TResult Function(GetShortsDataList value)? getShortsDataList,
+    TResult Function(GetVideosDataList value)? getVideosDataList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,35 +74,35 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 }
 
 /// @nodoc
-abstract class _$$GetShortsListCopyWith<$Res> {
-  factory _$$GetShortsListCopyWith(
-          _$GetShortsList value, $Res Function(_$GetShortsList) then) =
-      __$$GetShortsListCopyWithImpl<$Res>;
+abstract class _$$GetShortsDataListCopyWith<$Res> {
+  factory _$$GetShortsDataListCopyWith(
+          _$GetShortsDataList value, $Res Function(_$GetShortsDataList) then) =
+      __$$GetShortsDataListCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetShortsListCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$GetShortsList>
-    implements _$$GetShortsListCopyWith<$Res> {
-  __$$GetShortsListCopyWithImpl(
-      _$GetShortsList _value, $Res Function(_$GetShortsList) _then)
+class __$$GetShortsDataListCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetShortsDataList>
+    implements _$$GetShortsDataListCopyWith<$Res> {
+  __$$GetShortsDataListCopyWithImpl(
+      _$GetShortsDataList _value, $Res Function(_$GetShortsDataList) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GetShortsList implements GetShortsList {
-  const _$GetShortsList();
+class _$GetShortsDataList implements GetShortsDataList {
+  const _$GetShortsDataList();
 
   @override
   String toString() {
-    return 'HomeEvent.getShortsList()';
+    return 'HomeEvent.getShortsDataList()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetShortsList);
+        (other.runtimeType == runtimeType && other is _$GetShortsDataList);
   }
 
   @override
@@ -111,30 +111,30 @@ class _$GetShortsList implements GetShortsList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getShortsList,
-    required TResult Function() getVideosListList,
+    required TResult Function() getShortsDataList,
+    required TResult Function() getVideosDataList,
   }) {
-    return getShortsList();
+    return getShortsDataList();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getShortsList,
-    TResult? Function()? getVideosListList,
+    TResult? Function()? getShortsDataList,
+    TResult? Function()? getVideosDataList,
   }) {
-    return getShortsList?.call();
+    return getShortsDataList?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getShortsList,
-    TResult Function()? getVideosListList,
+    TResult Function()? getShortsDataList,
+    TResult Function()? getVideosDataList,
     required TResult orElse(),
   }) {
-    if (getShortsList != null) {
-      return getShortsList();
+    if (getShortsDataList != null) {
+      return getShortsDataList();
     }
     return orElse();
   }
@@ -142,69 +142,69 @@ class _$GetShortsList implements GetShortsList {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetShortsList value) getShortsList,
-    required TResult Function(GetVideosListList value) getVideosListList,
+    required TResult Function(GetShortsDataList value) getShortsDataList,
+    required TResult Function(GetVideosDataList value) getVideosDataList,
   }) {
-    return getShortsList(this);
+    return getShortsDataList(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetShortsList value)? getShortsList,
-    TResult? Function(GetVideosListList value)? getVideosListList,
+    TResult? Function(GetShortsDataList value)? getShortsDataList,
+    TResult? Function(GetVideosDataList value)? getVideosDataList,
   }) {
-    return getShortsList?.call(this);
+    return getShortsDataList?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetShortsList value)? getShortsList,
-    TResult Function(GetVideosListList value)? getVideosListList,
+    TResult Function(GetShortsDataList value)? getShortsDataList,
+    TResult Function(GetVideosDataList value)? getVideosDataList,
     required TResult orElse(),
   }) {
-    if (getShortsList != null) {
-      return getShortsList(this);
+    if (getShortsDataList != null) {
+      return getShortsDataList(this);
     }
     return orElse();
   }
 }
 
-abstract class GetShortsList implements HomeEvent {
-  const factory GetShortsList() = _$GetShortsList;
+abstract class GetShortsDataList implements HomeEvent {
+  const factory GetShortsDataList() = _$GetShortsDataList;
 }
 
 /// @nodoc
-abstract class _$$GetVideosListListCopyWith<$Res> {
-  factory _$$GetVideosListListCopyWith(
-          _$GetVideosListList value, $Res Function(_$GetVideosListList) then) =
-      __$$GetVideosListListCopyWithImpl<$Res>;
+abstract class _$$GetVideosDataListCopyWith<$Res> {
+  factory _$$GetVideosDataListCopyWith(
+          _$GetVideosDataList value, $Res Function(_$GetVideosDataList) then) =
+      __$$GetVideosDataListCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetVideosListListCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$GetVideosListList>
-    implements _$$GetVideosListListCopyWith<$Res> {
-  __$$GetVideosListListCopyWithImpl(
-      _$GetVideosListList _value, $Res Function(_$GetVideosListList) _then)
+class __$$GetVideosDataListCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetVideosDataList>
+    implements _$$GetVideosDataListCopyWith<$Res> {
+  __$$GetVideosDataListCopyWithImpl(
+      _$GetVideosDataList _value, $Res Function(_$GetVideosDataList) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GetVideosListList implements GetVideosListList {
-  const _$GetVideosListList();
+class _$GetVideosDataList implements GetVideosDataList {
+  const _$GetVideosDataList();
 
   @override
   String toString() {
-    return 'HomeEvent.getVideosListList()';
+    return 'HomeEvent.getVideosDataList()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetVideosListList);
+        (other.runtimeType == runtimeType && other is _$GetVideosDataList);
   }
 
   @override
@@ -213,30 +213,30 @@ class _$GetVideosListList implements GetVideosListList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getShortsList,
-    required TResult Function() getVideosListList,
+    required TResult Function() getShortsDataList,
+    required TResult Function() getVideosDataList,
   }) {
-    return getVideosListList();
+    return getVideosDataList();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getShortsList,
-    TResult? Function()? getVideosListList,
+    TResult? Function()? getShortsDataList,
+    TResult? Function()? getVideosDataList,
   }) {
-    return getVideosListList?.call();
+    return getVideosDataList?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getShortsList,
-    TResult Function()? getVideosListList,
+    TResult Function()? getShortsDataList,
+    TResult Function()? getVideosDataList,
     required TResult orElse(),
   }) {
-    if (getVideosListList != null) {
-      return getVideosListList();
+    if (getVideosDataList != null) {
+      return getVideosDataList();
     }
     return orElse();
   }
@@ -244,44 +244,48 @@ class _$GetVideosListList implements GetVideosListList {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetShortsList value) getShortsList,
-    required TResult Function(GetVideosListList value) getVideosListList,
+    required TResult Function(GetShortsDataList value) getShortsDataList,
+    required TResult Function(GetVideosDataList value) getVideosDataList,
   }) {
-    return getVideosListList(this);
+    return getVideosDataList(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetShortsList value)? getShortsList,
-    TResult? Function(GetVideosListList value)? getVideosListList,
+    TResult? Function(GetShortsDataList value)? getShortsDataList,
+    TResult? Function(GetVideosDataList value)? getVideosDataList,
   }) {
-    return getVideosListList?.call(this);
+    return getVideosDataList?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetShortsList value)? getShortsList,
-    TResult Function(GetVideosListList value)? getVideosListList,
+    TResult Function(GetShortsDataList value)? getShortsDataList,
+    TResult Function(GetVideosDataList value)? getVideosDataList,
     required TResult orElse(),
   }) {
-    if (getVideosListList != null) {
-      return getVideosListList(this);
+    if (getVideosDataList != null) {
+      return getVideosDataList(this);
     }
     return orElse();
   }
 }
 
-abstract class GetVideosListList implements HomeEvent {
-  const factory GetVideosListList() = _$GetVideosListList;
+abstract class GetVideosDataList implements HomeEvent {
+  const factory GetVideosDataList() = _$GetVideosDataList;
 }
 
 /// @nodoc
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
-  List<ShortsData> get youtubeData => throw _privateConstructorUsedError;
+  String? get thumbnailUrl => throw _privateConstructorUsedError;
+  ShortsData? get shortsData => throw _privateConstructorUsedError;
+  VideosData? get videosData => throw _privateConstructorUsedError;
+  List<ShortsData>? get shortsDataList => throw _privateConstructorUsedError;
+  List<VideosData?>? get videosDataList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -293,7 +297,17 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isLoading, bool isError, List<ShortsData> youtubeData});
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      String? thumbnailUrl,
+      ShortsData? shortsData,
+      VideosData? videosData,
+      List<ShortsData>? shortsDataList,
+      List<VideosData?>? videosDataList});
+
+  $ShortsDataCopyWith<$Res>? get shortsData;
+  $VideosDataCopyWith<$Res>? get videosData;
 }
 
 /// @nodoc
@@ -311,7 +325,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $Res call({
     Object? isLoading = null,
     Object? isError = null,
-    Object? youtubeData = null,
+    Object? thumbnailUrl = freezed,
+    Object? shortsData = freezed,
+    Object? videosData = freezed,
+    Object? shortsDataList = freezed,
+    Object? videosDataList = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -322,11 +340,51 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
-      youtubeData: null == youtubeData
-          ? _value.youtubeData
-          : youtubeData // ignore: cast_nullable_to_non_nullable
-              as List<ShortsData>,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shortsData: freezed == shortsData
+          ? _value.shortsData
+          : shortsData // ignore: cast_nullable_to_non_nullable
+              as ShortsData?,
+      videosData: freezed == videosData
+          ? _value.videosData
+          : videosData // ignore: cast_nullable_to_non_nullable
+              as VideosData?,
+      shortsDataList: freezed == shortsDataList
+          ? _value.shortsDataList
+          : shortsDataList // ignore: cast_nullable_to_non_nullable
+              as List<ShortsData>?,
+      videosDataList: freezed == videosDataList
+          ? _value.videosDataList
+          : videosDataList // ignore: cast_nullable_to_non_nullable
+              as List<VideosData?>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShortsDataCopyWith<$Res>? get shortsData {
+    if (_value.shortsData == null) {
+      return null;
+    }
+
+    return $ShortsDataCopyWith<$Res>(_value.shortsData!, (value) {
+      return _then(_value.copyWith(shortsData: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VideosDataCopyWith<$Res>? get videosData {
+    if (_value.videosData == null) {
+      return null;
+    }
+
+    return $VideosDataCopyWith<$Res>(_value.videosData!, (value) {
+      return _then(_value.copyWith(videosData: value) as $Val);
+    });
   }
 }
 
@@ -337,7 +395,19 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool isError, List<ShortsData> youtubeData});
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      String? thumbnailUrl,
+      ShortsData? shortsData,
+      VideosData? videosData,
+      List<ShortsData>? shortsDataList,
+      List<VideosData?>? videosDataList});
+
+  @override
+  $ShortsDataCopyWith<$Res>? get shortsData;
+  @override
+  $VideosDataCopyWith<$Res>? get videosData;
 }
 
 /// @nodoc
@@ -353,7 +423,11 @@ class __$$_HomeStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isError = null,
-    Object? youtubeData = null,
+    Object? thumbnailUrl = freezed,
+    Object? shortsData = freezed,
+    Object? videosData = freezed,
+    Object? shortsDataList = freezed,
+    Object? videosDataList = freezed,
   }) {
     return _then(_$_HomeState(
       isLoading: null == isLoading
@@ -364,10 +438,26 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
-      youtubeData: null == youtubeData
-          ? _value._youtubeData
-          : youtubeData // ignore: cast_nullable_to_non_nullable
-              as List<ShortsData>,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shortsData: freezed == shortsData
+          ? _value.shortsData
+          : shortsData // ignore: cast_nullable_to_non_nullable
+              as ShortsData?,
+      videosData: freezed == videosData
+          ? _value.videosData
+          : videosData // ignore: cast_nullable_to_non_nullable
+              as VideosData?,
+      shortsDataList: freezed == shortsDataList
+          ? _value._shortsDataList
+          : shortsDataList // ignore: cast_nullable_to_non_nullable
+              as List<ShortsData>?,
+      videosDataList: freezed == videosDataList
+          ? _value._videosDataList
+          : videosDataList // ignore: cast_nullable_to_non_nullable
+              as List<VideosData?>?,
     ));
   }
 }
@@ -378,24 +468,47 @@ class _$_HomeState implements _HomeState {
   const _$_HomeState(
       {required this.isLoading,
       required this.isError,
-      required final List<ShortsData> youtubeData})
-      : _youtubeData = youtubeData;
+      required this.thumbnailUrl,
+      required this.shortsData,
+      required this.videosData,
+      required final List<ShortsData>? shortsDataList,
+      required final List<VideosData?>? videosDataList})
+      : _shortsDataList = shortsDataList,
+        _videosDataList = videosDataList;
 
   @override
   final bool isLoading;
   @override
   final bool isError;
-  final List<ShortsData> _youtubeData;
   @override
-  List<ShortsData> get youtubeData {
-    if (_youtubeData is EqualUnmodifiableListView) return _youtubeData;
+  final String? thumbnailUrl;
+  @override
+  final ShortsData? shortsData;
+  @override
+  final VideosData? videosData;
+  final List<ShortsData>? _shortsDataList;
+  @override
+  List<ShortsData>? get shortsDataList {
+    final value = _shortsDataList;
+    if (value == null) return null;
+    if (_shortsDataList is EqualUnmodifiableListView) return _shortsDataList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_youtubeData);
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<VideosData?>? _videosDataList;
+  @override
+  List<VideosData?>? get videosDataList {
+    final value = _videosDataList;
+    if (value == null) return null;
+    if (_videosDataList is EqualUnmodifiableListView) return _videosDataList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, isError: $isError, youtubeData: $youtubeData)';
+    return 'HomeState(isLoading: $isLoading, isError: $isError, thumbnailUrl: $thumbnailUrl, shortsData: $shortsData, videosData: $videosData, shortsDataList: $shortsDataList, videosDataList: $videosDataList)';
   }
 
   @override
@@ -406,13 +519,28 @@ class _$_HomeState implements _HomeState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
+            (identical(other.thumbnailUrl, thumbnailUrl) ||
+                other.thumbnailUrl == thumbnailUrl) &&
+            (identical(other.shortsData, shortsData) ||
+                other.shortsData == shortsData) &&
+            (identical(other.videosData, videosData) ||
+                other.videosData == videosData) &&
             const DeepCollectionEquality()
-                .equals(other._youtubeData, _youtubeData));
+                .equals(other._shortsDataList, _shortsDataList) &&
+            const DeepCollectionEquality()
+                .equals(other._videosDataList, _videosDataList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError,
-      const DeepCollectionEquality().hash(_youtubeData));
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      isError,
+      thumbnailUrl,
+      shortsData,
+      videosData,
+      const DeepCollectionEquality().hash(_shortsDataList),
+      const DeepCollectionEquality().hash(_videosDataList));
 
   @JsonKey(ignore: true)
   @override
@@ -425,14 +553,26 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {required final bool isLoading,
       required final bool isError,
-      required final List<ShortsData> youtubeData}) = _$_HomeState;
+      required final String? thumbnailUrl,
+      required final ShortsData? shortsData,
+      required final VideosData? videosData,
+      required final List<ShortsData>? shortsDataList,
+      required final List<VideosData?>? videosDataList}) = _$_HomeState;
 
   @override
   bool get isLoading;
   @override
   bool get isError;
   @override
-  List<ShortsData> get youtubeData;
+  String? get thumbnailUrl;
+  @override
+  ShortsData? get shortsData;
+  @override
+  VideosData? get videosData;
+  @override
+  List<ShortsData>? get shortsDataList;
+  @override
+  List<VideosData?>? get videosDataList;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
