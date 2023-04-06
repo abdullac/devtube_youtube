@@ -1,5 +1,6 @@
 import 'package:devtube_sample/core/providers/bloc/api/api_bloc_bloc.dart';
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
+import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
 import 'package:devtube_sample/core/providers/di/injectable.dart';
 import 'package:devtube_sample/core/services/i_facades/home/home_facade.dart';
 import 'package:devtube_sample/core/services/i_repository/home/home_repository.dart';
@@ -14,6 +15,7 @@ import 'ui/pages/video_player_page/page_vieo_player.dart';
 import 'ui/pages/videos_listview_page/page_videos_listview.dart';
 
 List<String> channelIdList = [];
+
 enum ScreenPage {
   home,
   videoListView,
@@ -32,9 +34,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => getIt<HomeBloc>(), 
-        )
+        BlocProvider(create: (context) => getIt<HomeBloc>()),
+        // BlocProvider(create: (context) => ShortsVideoPlayerBloc()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -55,11 +56,11 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
+      // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
     });
     // return const PageHome();
-    return const PageVideosListview();
-    // return const PageShortPageview();
+    // return const PageVideosListview();
+    return const PageShortPageview();
     // return PageVideoPlayer(videoId: "Tp_YZNqNBhw",);
   }
 }

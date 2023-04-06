@@ -27,27 +27,28 @@ class PageVideoPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     // controller.cueVideoById(videoId: "Tp_YZNqNBhw");
     // controller.cueVideoById(videoId: videoId);
     controller = YoutubePlayerController.fromVideoId(
-    videoId: videoId,
-    autoPlay: true,
-    params: const YoutubePlayerParams(
-      showFullscreenButton: true,
-      strictRelatedVideos: true,
-    ),
-  );
+      videoId: videoId,
+      autoPlay: true,
+      params: const YoutubePlayerParams(
+        showFullscreenButton: true,
+        strictRelatedVideos: true,
+      ),
+    );
     return YoutubePlayerScaffold(
       controller: controller,
       // aspectRatio: 9 / 16,
-      autoFullScreen: true,
+      aspectRatio: screenSize.width / (screenSize.height-100),
       builder: (context, player) {
         return Scaffold(
           body: SafeArea(
             child: Column(
               children: [
                 player,
-                const Text('Youtube Player'),
+                // const Text('Youtube Player'),
               ],
             ),
           ),
