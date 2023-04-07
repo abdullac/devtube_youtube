@@ -6,7 +6,7 @@ import 'package:devtube_sample/main.dart';
 class Url {
   static const String baseUrl = "https://www.googleapis.com/youtube/v3/";
   static const String videosEndPoint =
-      "videos?part=snippet&chart=mostPopular&key=$apiKey";
+      "videos?part=snippet&chart=mostPopular&maxResults=30&key=$apiKey";
   static String serchQuery = "";
   // static String searchEndPoint =
   //     "search?part=snippet&q=$serchQuery&key=$apiKey";
@@ -24,7 +24,7 @@ class Url {
 
 
 
-
+// &maxResults=30
 
 
 /// videoCategoryId

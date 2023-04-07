@@ -42,25 +42,25 @@ class SearchVideosResultItem extends StatelessWidget {
                 ? const Center(
                     child: Text("Not available this video thumbnail"),
                   )
-                : Container(
-                    height: size.height * 40 / 100,
-                    margin: const EdgeInsets.symmetric(vertical: 5),
-                    child: VideoCard(
-                      width: double.infinity,
-                      height: double.infinity,
-                      isShadows: true,
-                      index: modifidIndex,
-                      blocState: blocState,
-                      thumbnailUrl: blocState.searchResultDataList[index]
-                          .resultDetails.thumbnailMap["high"]["url"],
-                      // thumbnailUrl: imageHorizontal,
-                      videoId: blocState
-                          .searchResultDataList[index].resultDataId.videoId,
-                      // videoId: "aaaaaaaaaa",
-                      videoTitle: blocState
-                          .searchResultDataList[index].resultDetails.title,
-                      // videoTitle: imageTitle,
-                    ),
-                  );
+                : Padding(
+                  padding: const EdgeInsets.all(7.0),
+                  child: VideoCard(
+                    width: double.infinity,
+                    // height: double.infinity,
+                    height: size.height,
+                    isShadows: true,
+                    index: modifidIndex,
+                    blocState: blocState,
+                    thumbnailUrl: blocState.searchResultDataList[index]
+                        .resultDetails.thumbnailMap["high"]["url"],
+                    // thumbnailUrl: imageHorizontal,
+                    videoId: blocState
+                        .searchResultDataList[index].resultDataId.videoId,
+                    // videoId: "aaaaaaaaaa",
+                    videoTitle: blocState
+                        .searchResultDataList[index].resultDetails.title,
+                    // videoTitle: imageTitle,
+                  ),
+                );
   }
 }

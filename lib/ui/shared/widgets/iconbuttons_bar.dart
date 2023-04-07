@@ -72,9 +72,7 @@ class IconButtonsBar extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        color: backgroundColor != null
-            ? Colors.cyan.withOpacity(0.5)
-            : Colors.transparent,
+        color: backgroundColor?? Colors.transparent,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
       child: Row(

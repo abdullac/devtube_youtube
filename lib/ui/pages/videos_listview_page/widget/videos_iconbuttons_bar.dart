@@ -3,26 +3,41 @@ import 'package:devtube_sample/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 class VideosIconButtonsBar extends StatelessWidget {
+  final Size size;
   const VideosIconButtonsBar({
     super.key,
+    required this.size,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      flex: 1,
-      child: Container(
-        padding: const EdgeInsets.all(5),
+    return Container(
+      padding: const EdgeInsets.all(5),
+      width: size.width,
+      height: 60,
+      // color: Colors.grey.shade700,
+      child: const IconButtonsBar(
+        height: 0,
         width: double.infinity,
-        height: 60,
-        color: Colors.grey.shade700,
-        child: const IconButtonsBar(
-          height: 0,
-          width: double.infinity,
-          iconButtonsBarType: IconButtonsBarType.actionButtons,
-        ),
+        iconButtonsBarType: IconButtonsBarType.actionButtons,
       ),
     );
   }
 }
 
+
+
+// Flexible(
+//       flex: 1,
+//       child: Container(
+//         padding: const EdgeInsets.all(5),
+//         width: double.infinity,
+//         height: 60,
+//         color: Colors.grey.shade700,
+//         child: const IconButtonsBar(
+//           height: 0,
+//           width: double.infinity,
+//           iconButtonsBarType: IconButtonsBarType.actionButtons,
+//         ),
+//       ),
+//     );

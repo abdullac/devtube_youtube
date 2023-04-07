@@ -51,20 +51,33 @@ class VideoCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          VideosThumbnailWidget(
-            width: width,
-            height: height,
-            blocState: blocState,
-            thumbnailUrl: thumbnailUrl,
-            videoId: videoId,
-            // index: index,
+          SizedBox(
+            height: height*32/100,
+            child: Stack(
+              children: [
+                VideosThumbnailWidget(
+                  width: width,
+                  height: height,
+                  blocState: blocState,
+                  thumbnailUrl: thumbnailUrl,
+                  videoId: videoId,
+                  // index: index,
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: VideosIconButtonsBar(
+                    size: Size(width, height),
+                  ),
+                ),
+              ],
+            ),
           ),
           VideosTitleWidget(
             // blocState: blocState,
             index: index,
             videoTitle: videoTitle,
           ),
-          const VideosIconButtonsBar(),
+          // const VideosIconButtonsBar(),
         ],
       ),
     );
@@ -85,3 +98,28 @@ class VideoCard extends StatelessWidget {
           // thumbnailUrl: blocState
           //     .videosDataList![index]?.videoDetails?.thumbnails!["high"]["url"],
           // videoId: blocState.videosDataList![index]?.videoId,
+
+
+
+
+    //////
+    ///
+    /// child: Column(
+      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //   children: [
+      //     VideosThumbnailWidget(
+      //       width: width,
+      //       height: height,
+      //       blocState: blocState,
+      //       thumbnailUrl: thumbnailUrl,
+      //       videoId: videoId,
+      //       // index: index,
+      //     ),
+      //     VideosTitleWidget(
+      //       // blocState: blocState,
+      //       index: index,
+      //       videoTitle: videoTitle,
+      //     ),
+      //     const VideosIconButtonsBar(),
+      //   ],
+      // ),
