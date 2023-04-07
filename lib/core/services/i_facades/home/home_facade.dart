@@ -6,7 +6,7 @@ abstract class HomeFacade {
   // Future<dynamic> dioGet();
   Future<ShortsData?> getShortsData();
   Future<VideosData?> getVideosData();
-  Future<List<VideosData?>?> getVideosDataList();
-  Future<List<ShortsData?>?> getShortsDataList();
+  Future<List<VideosData?>> getVideosDataList();
+  Future<List<ShortsData?>> getShortsDataList();
 
 }

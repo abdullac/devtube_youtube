@@ -10,6 +10,10 @@ class PageSearchResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // BlocProvider.of<SearchBloc>(context).add(
+      //     Search(searchWord: SearchResultsAppBar.searchEditingController.text));
+    });
     Size screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -18,15 +22,24 @@ class PageSearchResults extends StatelessWidget {
             child: SearchResultsAppBar()),
         body: BlocBuilder<SearchBloc, SearchState>(
           builder: (context, state) {
-            return ListView.builder(
-              // itemCount: state.searchResultDataList.length,
-              itemCount: 10,
-              itemBuilder: (context, index) => SearchResultItem(
-                index: index,
-                size: screenSize,
-                blocState: state,
-              ),
-            );
+            return state.isLoading == true
+                ? const Center(
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : state.searchResultDataList.isEmpty
+                    ? Center(
+                        child: Text(
+                            "Not availabe results for '${state.searchedWord}'"),
+                      )
+                    : ListView.builder(
+                        itemCount: state.searchResultDataList.length,
+                        // itemCount: 10,
+                        itemBuilder: (context, index) => SearchResultItem(
+                          index: index,
+                          size: screenSize,
+                          blocState: state,
+                        ),
+                      );
           },
         ),
       ),
@@ -55,7 +68,9 @@ class SearchResultItem extends StatelessWidget {
             blocState: blocState,
           )
         : SearchShortsResultsListView(
+            index: index,
             size: size,
+            blocState: blocState,
           );
   }
 }

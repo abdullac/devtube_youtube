@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ShortsThumbnailContainer extends StatelessWidget {
   final double width;
   final double height;
-  final dynamic blocState;
-  final String thumbnailUrl;
+  // final dynamic blocState;
+  final String? thumbnailUrl;
   final bool? isShadowsRadius;
   const ShortsThumbnailContainer({
     super.key,
     required this.width,
     required this.height,
-    required this.blocState,
+    // required this.blocState,
     required this.thumbnailUrl,
     this.isShadowsRadius,
   });
@@ -42,11 +42,13 @@ class ShortsThumbnailContainer extends StatelessWidget {
               ]
             : null,
         color: Colors.blue,
-        image: DecorationImage(
-            image: NetworkImage(
-              thumbnailUrl,
-            ),
-            fit: BoxFit.cover),
+        image: thumbnailUrl == null
+            ? null
+            : DecorationImage(
+                image: NetworkImage(
+                  thumbnailUrl!,
+                ),
+                fit: BoxFit.cover),
       ),
     );
   }

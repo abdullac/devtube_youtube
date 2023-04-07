@@ -12,7 +12,7 @@ class VideosTitleWidget extends StatelessWidget {
 
   // final dynamic blocState;
   final int index;
-  final String videoTitle;
+  final String? videoTitle;
   final Color? textColor;
   final Color? backgroundColor;
 
@@ -26,7 +26,7 @@ class VideosTitleWidget extends StatelessWidget {
         // color: Colors.teal.shade700,
         color: backgroundColor,
         child: Text(
-          videoTitle,
+          videoTitle?? "title not availabe",
           // blocState.videosDataList![index]!.videoDetails!.title,
           // "gdfgd g fdgdd ffgf fhfghfghfghhfhfhfghh gfh hfghffhhfh hgfh",
           overflow: TextOverflow.fade,

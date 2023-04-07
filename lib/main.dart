@@ -20,6 +20,7 @@ String imageTitle = "tuturtu utureut uurt ututurtu utureut uurt uu errteru errte
 String imageHorizontal = "https://newtaipei.travel/content/images/attractions/25814/480x360_attractions-image-i6v-hs0zjeejmuwgb6os1w.jpg";
 String imageVertical = "https://cdn.wallpapersafari.com/54/64/BJv2UZ.jpg";
 
+/// "https://www.youtube.com/shorts/hKwrn5-7FjQ"  youtube shorts
 List<String> channelIdList = [];
 
 enum ScreenPage {
@@ -69,7 +70,7 @@ class MainPage extends StatelessWidget {
     // return const PageVideosListview();
     // return const PageShortsPageview();
     // return PageVideoPlayer(videoId: "Tp_YZNqNBhw",);
-    return PageSearchResults();
+    return const PageSearchResults();
   }
 }
 
@@ -108,3 +109,34 @@ class MainPage extends StatelessWidget {
 //     dioFacade.dioGet();
 //   }
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////
+///
+
+
+
+    // // You can get IDs from PlaylistItems or Search API
+    // const IDs = ["videoID1", "videoID2", "videoID3"];
+
+    // // Get the analytics data of selected videos based on their IDs
+    // const { data: analyticsData } = await youtubeAnalytics.reports.query({
+    //   ids: "channel==MINE",
+    //   startDate: "2019-01-01",
+    //   // Today's date
+    //   endDate: new Date().toISOString().split("T")[0],
+    //   metrics: "views",
+    //   dimensions: "video,creatorContentType",
+    //   filters: `video==${IDs.join(",")}`,
+    //   access_token,
+    // });

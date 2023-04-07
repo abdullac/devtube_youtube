@@ -2,6 +2,7 @@ import 'package:devtube_sample/core/models/search/search_results/searh_result_mo
 import 'package:devtube_sample/core/services/i_facades/search/search_facade.dart';
 import 'package:devtube_sample/core/services/keys/api_key.dart';
 import 'package:devtube_sample/core/services/links/uri.dart';
+import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,13 +10,13 @@ import 'package:injectable/injectable.dart';
 class SearchRepository implements SearchFacade {
   @override
   Future<List<SearchResultData?>> searchListResult(String searchQuery) async {
-    String searchEndPoint = "search?part=snippet&q=$searchQuery&key=$apiKey";
+    String searchEndPoint = "search?part=snippet&maxResults=30&q=$searchQuery&key=$apiKey";
     // Url.serchQuery = searchQuery;
     List<SearchResultData> listOfSearchReasultData = [];
     try {
       Response response =
           await Dio(BaseOptions()).get(Url.baseUrl + searchEndPoint);
-      print("search-1 ${Url.baseUrl + searchEndPoint}");
+      printing("search-1 ${Url.baseUrl + searchEndPoint}");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         List searchResultdataList = response.data["items"] as List;
@@ -24,16 +25,49 @@ class SearchRepository implements SearchFacade {
         }
         return listOfSearchReasultData;
       } else {
-        print("searchListResult bad resp/requ");
+        printing("searchListResult bad resp/requ");
         return [];
       }
-    
-    } on DioError catch (e){
-        print(e.response);
-        return [];
+    } on DioError catch (e) {
+      printing(e.response);
+      return [];
+    } catch (e) {
+      printing("SearchRepository catch ${e}");
+      return [];
     }
-     catch (e) {
-      print("SearchRepository catch ${e}");
+  }
+
+  @override
+  Future<List<SearchResultData?>> searchShortsListResult(
+      String searchQuery) async {
+    // searchQuery = "$searchQuery #Shorts";
+    // searchQuery = "$searchQuery Shorts";
+    searchQuery = "$searchQuery%20%23shorts";
+    // String searchEndPoint = "search?part=snippet&q=$searchQuery&key=$apiKey";
+    String searchEndPoint =
+        "search?part=snippet&maxResults=30&q=$searchQuery&key=$apiKey";
+    // Url.serchQuery = searchQuery;
+    List<SearchResultData> listOfSearchReasultData = [];
+    try {
+      Response response =
+          await Dio(BaseOptions()).get(Url.baseUrl + searchEndPoint);
+      printing("search-1 ${Url.baseUrl + searchEndPoint}");
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        List searchResultdataList = response.data["items"] as List;
+        for (var element in searchResultdataList) {
+          listOfSearchReasultData.add(SearchResultData.fromJson(element));
+        }
+        return listOfSearchReasultData;
+      } else {
+        printing("searchListResult bad resp/requ");
+        return [];
+      }
+    } on DioError catch (e) {
+      printing(e.response);
+      return [];
+    } catch (e) {
+      printing("SearchRepository catch ${e}");
       return [];
     }
   }

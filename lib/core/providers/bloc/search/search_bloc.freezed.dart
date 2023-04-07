@@ -224,6 +224,8 @@ mixin _$SearchState {
       throw _privateConstructorUsedError; // required SearchResultData? searchResultData,
   List<SearchResultData?> get searchResultDataList =>
       throw _privateConstructorUsedError;
+  List<SearchResultData?> get searchShortsListResults =>
+      throw _privateConstructorUsedError;
   String? get searchedWord => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -241,6 +243,7 @@ abstract class $SearchStateCopyWith<$Res> {
       {bool isLoading,
       bool isError,
       List<SearchResultData?> searchResultDataList,
+      List<SearchResultData?> searchShortsListResults,
       String? searchedWord});
 }
 
@@ -260,6 +263,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? isLoading = null,
     Object? isError = null,
     Object? searchResultDataList = null,
+    Object? searchShortsListResults = null,
     Object? searchedWord = freezed,
   }) {
     return _then(_value.copyWith(
@@ -274,6 +278,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
       searchResultDataList: null == searchResultDataList
           ? _value.searchResultDataList
           : searchResultDataList // ignore: cast_nullable_to_non_nullable
+              as List<SearchResultData?>,
+      searchShortsListResults: null == searchShortsListResults
+          ? _value.searchShortsListResults
+          : searchShortsListResults // ignore: cast_nullable_to_non_nullable
               as List<SearchResultData?>,
       searchedWord: freezed == searchedWord
           ? _value.searchedWord
@@ -295,6 +303,7 @@ abstract class _$$_SearchStateCopyWith<$Res>
       {bool isLoading,
       bool isError,
       List<SearchResultData?> searchResultDataList,
+      List<SearchResultData?> searchShortsListResults,
       String? searchedWord});
 }
 
@@ -312,6 +321,7 @@ class __$$_SearchStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isError = null,
     Object? searchResultDataList = null,
+    Object? searchShortsListResults = null,
     Object? searchedWord = freezed,
   }) {
     return _then(_$_SearchState(
@@ -326,6 +336,10 @@ class __$$_SearchStateCopyWithImpl<$Res>
       searchResultDataList: null == searchResultDataList
           ? _value._searchResultDataList
           : searchResultDataList // ignore: cast_nullable_to_non_nullable
+              as List<SearchResultData?>,
+      searchShortsListResults: null == searchShortsListResults
+          ? _value._searchShortsListResults
+          : searchShortsListResults // ignore: cast_nullable_to_non_nullable
               as List<SearchResultData?>,
       searchedWord: freezed == searchedWord
           ? _value.searchedWord
@@ -342,8 +356,10 @@ class _$_SearchState implements _SearchState {
       {required this.isLoading,
       required this.isError,
       required final List<SearchResultData?> searchResultDataList,
+      required final List<SearchResultData?> searchShortsListResults,
       required this.searchedWord})
-      : _searchResultDataList = searchResultDataList;
+      : _searchResultDataList = searchResultDataList,
+        _searchShortsListResults = searchShortsListResults;
 
   @override
   final bool isLoading;
@@ -360,12 +376,21 @@ class _$_SearchState implements _SearchState {
     return EqualUnmodifiableListView(_searchResultDataList);
   }
 
+  final List<SearchResultData?> _searchShortsListResults;
+  @override
+  List<SearchResultData?> get searchShortsListResults {
+    if (_searchShortsListResults is EqualUnmodifiableListView)
+      return _searchShortsListResults;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchShortsListResults);
+  }
+
   @override
   final String? searchedWord;
 
   @override
   String toString() {
-    return 'SearchState(isLoading: $isLoading, isError: $isError, searchResultDataList: $searchResultDataList, searchedWord: $searchedWord)';
+    return 'SearchState(isLoading: $isLoading, isError: $isError, searchResultDataList: $searchResultDataList, searchShortsListResults: $searchShortsListResults, searchedWord: $searchedWord)';
   }
 
   @override
@@ -378,13 +403,20 @@ class _$_SearchState implements _SearchState {
             (identical(other.isError, isError) || other.isError == isError) &&
             const DeepCollectionEquality()
                 .equals(other._searchResultDataList, _searchResultDataList) &&
+            const DeepCollectionEquality().equals(
+                other._searchShortsListResults, _searchShortsListResults) &&
             (identical(other.searchedWord, searchedWord) ||
                 other.searchedWord == searchedWord));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError,
-      const DeepCollectionEquality().hash(_searchResultDataList), searchedWord);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      isError,
+      const DeepCollectionEquality().hash(_searchResultDataList),
+      const DeepCollectionEquality().hash(_searchShortsListResults),
+      searchedWord);
 
   @JsonKey(ignore: true)
   @override
@@ -398,6 +430,7 @@ abstract class _SearchState implements SearchState {
       {required final bool isLoading,
       required final bool isError,
       required final List<SearchResultData?> searchResultDataList,
+      required final List<SearchResultData?> searchShortsListResults,
       required final String? searchedWord}) = _$_SearchState;
 
   @override
@@ -406,6 +439,8 @@ abstract class _SearchState implements SearchState {
   bool get isError;
   @override // required SearchResultData? searchResultData,
   List<SearchResultData?> get searchResultDataList;
+  @override
+  List<SearchResultData?> get searchShortsListResults;
   @override
   String? get searchedWord;
   @override

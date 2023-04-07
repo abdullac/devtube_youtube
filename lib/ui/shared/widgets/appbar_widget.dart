@@ -1,4 +1,5 @@
 import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
+import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -17,6 +18,7 @@ class AppBarWidget extends StatelessWidget {
           icon: Icons.settings,
           iconButtonPressed: () {
             // voleum icon button
+            printing("settings button presed");
           },
         ),
       ],

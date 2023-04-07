@@ -11,7 +11,7 @@ Future<void> setUrlChannelId() async {
     } else if (index == 3 && channelIdList.length <= 1) {
       channelIdList.add("UCX6OQ3DkcsbYNE6H8uQQuVA");
     }
-    await Future.delayed(const Duration(milliseconds: 800));
+    await Future.delayed(const Duration(milliseconds: 1000));
   }
   Url.channelId = channelIdList[Random().nextInt(channelIdList.length)];
 }

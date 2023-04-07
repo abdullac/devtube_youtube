@@ -22,8 +22,8 @@ class ShortsTitleContainer extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(5.0),
               child: Text(
-                // state.shortsData?.title ?? "No shorts title provided",
-                "ffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsfffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsf ",
+                state.shortsData?.title ?? "No shorts title provided",
+                // "ffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsfffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsf ",
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.85),
                   shadows: const [

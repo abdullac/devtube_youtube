@@ -77,7 +77,7 @@ class VideoThumbnailContainer extends StatelessWidget {
   final double width;
   final double height;
   final dynamic blocState;
-  final String thumbnailUrl;
+  final String? thumbnailUrl;
   final void Function() playButtonPressed;
   final bool? isShadowsRadius;
   final double? iconSize;
@@ -125,20 +125,24 @@ class VideoThumbnailContainer extends StatelessWidget {
                       ),
                     ]
                   : null,
-              image: DecorationImage(
-                  image: NetworkImage(
-                    // imageUrl,
-                    thumbnailUrl,
+              image: thumbnailUrl == null
+                  ? null
+                  : DecorationImage(
+                      image: NetworkImage(
+                        // imageUrl,
+                        thumbnailUrl!,
+                      ),
+                      fit: BoxFit.cover),
+            ),
+            child: thumbnailUrl == null
+                ? const Text("Not available this Video Thumbnail")
+                : VideoPlayIconButton(
+                    iconSize: iconSize,
+                    iconButtonPressed: () {
+                      // play button pressed
+                      playButtonPressed();
+                    },
                   ),
-                  fit: BoxFit.cover),
-            ),
-            child: VideoPlayIconButton(
-              iconSize: iconSize,
-              iconButtonPressed: () {
-                // play button pressed
-                playButtonPressed();
-              },
-            ),
           );
   }
 }

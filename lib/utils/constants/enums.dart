@@ -4,3 +4,11 @@ enum IconButtonsBarType {
   utilButtons,
   actionAndIconButtons,
 }
+
+
+enum ScreenShadeRotate {
+  left,
+  top,
+  right,
+  bottom,
+}

@@ -1,5 +1,6 @@
 import 'package:devtube_sample/ui/pages/video_player_page/page_vieo_player.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_thumbnail_container.dart';
+import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 
 class VideosThumbnailWidget extends StatelessWidget {
@@ -15,9 +16,9 @@ class VideosThumbnailWidget extends StatelessWidget {
 
   final double width;
   final double height;
-  final String thumbnailUrl;
+  final String? thumbnailUrl;
   final dynamic blocState;
-  final String videoId;
+  final String? videoId;
   // final int index;
 
   @override
@@ -25,7 +26,7 @@ class VideosThumbnailWidget extends StatelessWidget {
     return Flexible(
       flex: 3,
       child: Container(
-        color: Colors.teal,
+        color: Colors.grey.shade800,
         child: VideoThumbnailContainer(
           width: width,
           height: height,
@@ -34,11 +35,15 @@ class VideosThumbnailWidget extends StatelessWidget {
           playButtonPressed: () {
             // play button pressed
             print("play button pressed");
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => PageVideoPlayer(
-                videoId: videoId,
-              ),
-            ));
+            if (videoId != null) {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => PageVideoPlayer(
+                  videoId: videoId!,
+                ),
+              ));
+            } else {
+              printing("Video id is null");
+            }
           },
         ),
       ),

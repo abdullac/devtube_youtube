@@ -19,10 +19,15 @@ class HomeRepository implements HomeFacade {
     try {
       await setUrlChannelId();
       final listOfShortsData = await getShortsDataList();
-      final int shortsDataListLength = listOfShortsData!.length;
-      final int randomNumber = Random().nextInt(shortsDataListLength);
-      ShortsData convertToShortsData = (listOfShortsData[randomNumber]!);
-      return convertToShortsData;
+      if (listOfShortsData != null) {
+        final int shortsDataListLength = listOfShortsData.length;
+        final int randomNumber = Random().nextInt(shortsDataListLength);
+        ShortsData convertToShortsData = (listOfShortsData[randomNumber]!);
+        return convertToShortsData;
+      } else {
+        printing("getShortsDataList null");
+        return null;
+      }
     } catch (e) {
       printing("getShortsData cache e $e");
       return null;
@@ -31,7 +36,7 @@ class HomeRepository implements HomeFacade {
 
   /// getShortsDataList
   @override
-  Future<List<ShortsData?>?> getShortsDataList() async {
+  Future<List<ShortsData?>> getShortsDataList() async {
     List<ShortsData?>? listOfShortsData = [];
     try {
       await setUrlChannelId();
@@ -46,11 +51,11 @@ class HomeRepository implements HomeFacade {
         return listOfShortsData;
       } else {
         printing("getShortsDataList statusCode is not 200/201");
-        return null;
+        return [];
       }
     } catch (e) {
       printing("getShortsDatalist cache e $e");
-      return null;
+      return [];
     }
   }
 
@@ -60,7 +65,7 @@ class HomeRepository implements HomeFacade {
     try {
       final videosDataList = await getVideosDataList();
       if (videosDataList != null) {
-        final int videosDataListLength = (videosDataList).length;
+        final int videosDataListLength = videosDataList.length;
         final int randomNumber = Random().nextInt(videosDataListLength);
         if ((videosDataList[randomNumber]) != null) {
           VideosData convertToVideosData = (videosDataList[randomNumber]!);
@@ -81,7 +86,7 @@ class HomeRepository implements HomeFacade {
 
   /// getVideosDataList
   @override
-  Future<List<VideosData?>?> getVideosDataList() async {
+  Future<List<VideosData?>> getVideosDataList() async {
     List<VideosData> listOfVidesDataList = [];
     try {
       final response =
@@ -96,11 +101,11 @@ class HomeRepository implements HomeFacade {
         return listOfVidesDataList;
       } else {
         printing("getVideosDataList statusCode is not 200/201");
-        return null;
+        return [];
       }
     } catch (e) {
       printing("getVideosDataList cache e $e");
-      return null;
+      return [];
     }
   }
 }

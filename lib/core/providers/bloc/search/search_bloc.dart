@@ -18,14 +18,18 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         isError: false,
         // searchResultData: null,
         searchResultDataList: [],
+        searchShortsListResults: [],
         searchedWord: event.searchWord,
       ));
-      // List<SearchResultData?> searchListResults =
-      //     await searchFacade.searchListResult(event.searchWord);
+      List<SearchResultData?> searchListResults =
+          await searchFacade.searchListResult(event.searchWord);
+      List<SearchResultData?> searchShortsListResults =
+          await searchFacade.searchShortsListResult(event.searchWord);
       emit(state.copyWith(
         isLoading: false,
         isError: false,
-        // searchResultDataList: searchListResults,
+        searchResultDataList: searchListResults,
+        searchShortsListResults: searchShortsListResults,
         searchedWord: event.searchWord,
       ));
     });

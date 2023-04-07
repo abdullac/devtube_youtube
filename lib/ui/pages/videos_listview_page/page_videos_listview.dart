@@ -41,30 +41,50 @@ class PageVideosListview extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : ListView.builder(
-                    padding: const EdgeInsets.only(top: 0),
-                    // itemCount: state.videosDataList!.length,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: VideoCard(
-                          width: screenSize.width,
-                          height: screenSize.height,
-                          isShadows: true,
-                          blocState: state,
-                          index: index,
-                          // thumbnailUrl: state.videosDataList![index]
-                          //     ?.videoDetails?.thumbnails!["high"]["url"],
-                          thumbnailUrl: imageHorizontal,
-                          // videoId: state.videosDataList![index]!.videoId!,
-                          videoId: "fgdfgdgdg",
-                          // videoTitle: state.videosDataList![index]!.videoDetails!.title!,
-                          videoTitle: imageTitle,
-                        ),
+                : state.videosDataList == null
+                    ? const Center(
+                        child: Text("Not available Video Items"),
+                      )
+                    : ListView.builder(
+                        padding: const EdgeInsets.only(top: 0),
+                        itemCount: state.videosDataList!.length,
+                        // itemCount: 10,
+                        itemBuilder: (context, index) {
+                          return state.videosDataList![index] == null
+                              ? const Center(
+                                  child: Text("Not available this Video Data"),
+                                )
+                              : state.videosDataList![index]!.videoDetails ==
+                                      null
+                                  ? const Center(
+                                      child: Text(
+                                          "Not available this Video Details"),
+                                    )
+                                  : Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: VideoCard(
+                                        width: screenSize.width,
+                                        height: screenSize.height,
+                                        isShadows: true,
+                                        blocState: state,
+                                        index: index,
+                                        thumbnailUrl: state
+                                            .videosDataList![index]
+                                            ?.videoDetails
+                                            ?.thumbnails!["high"]["url"],
+                                        // thumbnailUrl: imageHorizontal,
+                                        videoId: state
+                                            .videosDataList![index]!.videoId!,
+                                        // videoId: "fgdfgdgdg",
+                                        videoTitle: state
+                                            .videosDataList![index]!
+                                            .videoDetails!
+                                            .title!,
+                                        // videoTitle: imageTitle,
+                                      ),
+                                    );
+                        },
                       );
-                    },
-                  );
           },
         ),
       ),

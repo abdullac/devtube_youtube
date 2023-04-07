@@ -20,7 +20,7 @@ class ShortsThumbnailHome extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             isShadowsRadius: true,
-            blocState: state,
+            // blocState: state,
             thumbnailUrl: state.shortsData == null
                 ? "https://i.ytimg.com/vi/Y0cBiGUuB1Y/frame0.jpg"
                 : state.shortsData!.thumbnailUrlList == null

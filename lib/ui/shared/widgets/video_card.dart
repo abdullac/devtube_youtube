@@ -8,9 +8,9 @@ class VideoCard extends StatelessWidget {
   final double height;
   final dynamic blocState;
   final int index;
-  final String thumbnailUrl;
-  final String videoId;
-  final String videoTitle;
+  final String? thumbnailUrl;
+  final String? videoId;
+  final String? videoTitle;
   final bool? isShadows;
   const VideoCard({
     super.key,
@@ -30,7 +30,7 @@ class VideoCard extends StatelessWidget {
       width: width,
       height: height * 40 / 100,
       decoration: BoxDecoration(
-        color: Colors.amber,
+        color: Colors.grey.shade600,
         boxShadow: isShadows == true
             ? [
                 const BoxShadow(

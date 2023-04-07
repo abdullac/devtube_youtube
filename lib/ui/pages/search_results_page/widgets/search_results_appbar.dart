@@ -14,10 +14,7 @@ class SearchResultsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // BlocProvider.of<SearchBloc>(context).add(
-      //     Search(searchWord: SearchResultsAppBar.searchEditingController.text));
-    });
+    
     return AppBar(
       title: TextField(
         controller: searchEditingController,

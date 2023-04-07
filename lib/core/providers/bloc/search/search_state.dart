@@ -7,6 +7,7 @@ class SearchState with _$SearchState {
     required bool isError,
     // required SearchResultData? searchResultData,
     required List<SearchResultData?> searchResultDataList,
+    required List<SearchResultData?> searchShortsListResults,
     required String? searchedWord,
   }) = _SearchState;
   factory SearchState.initial() {
@@ -15,6 +16,7 @@ class SearchState with _$SearchState {
       isError: false,
       // searchResultData: null,
       searchResultDataList: [],
+      searchShortsListResults: [],
       searchedWord: null,
     );
   }
