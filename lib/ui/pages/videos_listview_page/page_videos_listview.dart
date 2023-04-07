@@ -2,6 +2,8 @@ import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
 import 'package:devtube_sample/ui/pages/videos_listview_page/widget/videos_iconbuttons_bar.dart';
 import 'package:devtube_sample/ui/pages/videos_listview_page/widget/videos_thumbnail_widget.dart';
 import 'package:devtube_sample/ui/shared/widgets/iconbuttons_bar.dart';
+import 'package:devtube_sample/ui/shared/widgets/video_card.dart';
+import 'package:devtube_sample/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,6 +49,10 @@ class PageVideosListview extends StatelessWidget {
                           height: screenSize.height,
                           blocState: state,
                           index: index,
+                          thumbnailUrl: state.videosDataList![index]
+                              ?.videoDetails?.thumbnails!["high"]["url"],
+                          videoId: state.videosDataList![index]!.videoId!,
+                          videoTitle: state.videosDataList![index]!.videoDetails!.title!,
                         ),
                       );
                     },
@@ -58,40 +64,9 @@ class PageVideosListview extends StatelessWidget {
   }
 }
 
-class VideoCard extends StatelessWidget {
-  final double width;
-  final double height;
-  final dynamic blocState;
-  final int index;
-  const VideoCard({
-    super.key,
-    required this.width,
-    required this.height,
-    this.blocState,
-    required this.index,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        VideosThumbnailWidget(
-            width: width, height: height, blocState: blocState, index: index),
-        VideosTitleWidget(blocState: blocState, index: index),
-        const VideosIconButtonsBar(),
-      ],
-    );
-
-    // VideoThumbnailContainer( 
-    //   width: width,
-    //   height: height,
-    //   blocState: blocState,
-    //   thumbnailUrl: thumbnailUrl,
-    // );
-  }
-}
 
 
+          
 
 
 

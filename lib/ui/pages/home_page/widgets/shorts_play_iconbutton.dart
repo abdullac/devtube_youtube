@@ -12,6 +12,7 @@ class ShortsPlayIconButton extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: VideoPlayIconButton(
+        iconSize: 50,
         iconButtonPressed: () {
           // short play button
           print("play button pressed");

@@ -7,14 +7,18 @@ class VideosThumbnailWidget extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
+    required this.thumbnailUrl,
     required this.blocState,
-    required this.index,
+    required this.videoId,
+    // required this.index,
   });
 
   final double width;
   final double height;
+  final String thumbnailUrl;
   final dynamic blocState;
-  final int index;
+  final String videoId;
+  // final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +30,14 @@ class VideosThumbnailWidget extends StatelessWidget {
           width: width,
           height: height,
           blocState: blocState,
-          thumbnailUrl: blocState
-              .videosDataList![index]?.videoDetails?.thumbnails!["high"]["url"],
-          iconButtonPressed: () {
+          thumbnailUrl: thumbnailUrl,
+          playButtonPressed: () {
             // play button pressed
             print("play button pressed");
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => PageVideoPlayer(
-                  videoId:
-                      blocState.videosDataList![index]?.videoId),
+                videoId: videoId,
+              ),
             ));
           },
         ),

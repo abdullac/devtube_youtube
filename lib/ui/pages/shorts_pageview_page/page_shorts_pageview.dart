@@ -1,5 +1,5 @@
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
-import 'package:devtube_sample/ui/pages/home_page/widgets/shorts_thumbnail_container.dart';
+import 'package:devtube_sample/ui/pages/home_page/widgets/shorts_thumbnail_home.dart';
 import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
 import 'package:devtube_sample/ui/shared/widgets/iconbuttons_bar.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_play_iconbutton.dart';
@@ -11,8 +11,8 @@ import 'widgets/shorts_title_widget.dart';
 import 'widgets/shorts_play_button.dart';
 import 'widgets/shorts_thumbnail_widget.dart';
 
-class PageShortPageview extends StatelessWidget {
-  const PageShortPageview({Key? key}) : super(key: key);
+class PageShortsPageview extends StatelessWidget {
+  const PageShortsPageview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

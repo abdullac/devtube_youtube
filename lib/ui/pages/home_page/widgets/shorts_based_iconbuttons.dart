@@ -2,8 +2,16 @@ import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class ShortsBasedIconbuttons extends StatelessWidget {
+  final void Function()? voleumButtonPressed;
+  final void Function()? addlistButtonPressed;
+  final void Function()? watchedcountButtonPressed;
+  final void Function()? commentButtonPressed;
   const ShortsBasedIconbuttons({
     super.key,
+    this.voleumButtonPressed,
+    this.addlistButtonPressed,
+    this.watchedcountButtonPressed,
+    this.commentButtonPressed,
   });
 
   @override
@@ -13,30 +21,25 @@ class ShortsBasedIconbuttons extends StatelessWidget {
       children: [
         IconButtonWidget(
           icon: Icons.volume_off,
-          iconButtonPressed: () {
-            // voleum icon button
-          },
+          // voleum icon button
+          iconButtonPressed: voleumButtonPressed,
         ),
         IconButtonWidget(
           icon: Icons.playlist_add_rounded,
-          iconButtonPressed: () {
-            // addToLibrary icon button
-          },
+          // addToLibrary icon button
+          iconButtonPressed: watchedcountButtonPressed,
         ),
         IconButtonWidget(
           icon: Icons.favorite,
-          iconButtonPressed: () {
-            // favorite icon button
-          },
+          // favorite icon button
+          iconButtonPressed: addlistButtonPressed,
         ),
         IconButtonWidget(
           icon: Icons.comment,
-          iconButtonPressed: () {
-            // coment icon button
-          },
+          // coment icon button
+          iconButtonPressed: voleumButtonPressed,
         ),
       ],
     );
   }
 }
-

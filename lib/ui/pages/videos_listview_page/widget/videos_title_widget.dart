@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class VideosTitleWidget extends StatelessWidget {
   const VideosTitleWidget({
     super.key,
-    required this.blocState,
+    // required this.blocState,
     required this.index,
+    required this.videoTitle,
   });
 
-  final dynamic blocState;
+  // final dynamic blocState;
   final int index;
+  final String videoTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,8 @@ class VideosTitleWidget extends StatelessWidget {
         width: double.infinity,
         color: Colors.tealAccent,
         child: Text(
-          blocState.videosDataList![index]!.videoDetails!.title,
+          videoTitle,
+          // blocState.videosDataList![index]!.videoDetails!.title,
           // "gdfgd g fdgdd ffgf fhfghfghfghhfhfhfghh gfh hfghffhhfh hgfh",
           overflow: TextOverflow.fade,
         ),
@@ -27,3 +30,8 @@ class VideosTitleWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+//
+          // blocState.videosDataList![index]!.videoDetails!.title,

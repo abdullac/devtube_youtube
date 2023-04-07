@@ -8,10 +8,10 @@ class Url {
   static const String videosEndPoint =
       "videos?part=snippet&chart=mostPopular&key=$apiKey";
   static String serchQuery = "";
-  static String searchEndPoint =
-      "search?part=snippet&q=$serchQuery&key=$apiKey";
+  // static String searchEndPoint =
+  //     "search?part=snippet&q=$serchQuery&key=$apiKey";
   static String techScienceCategoryId = "28";
-  static String educationCategoryId = "28";
+  static String educationCategoryId = "27";
   static String videosByCategoryEndPoint =
       "videos?part=snippet&chart=mostPopular&videoCategoryId=$techScienceCategoryId&key=$apiKey";
   static String searchByCategoryIdEntPoint =
