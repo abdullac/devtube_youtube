@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 /// SearchVideosResultItem
 class SearchVideosResultItem extends StatelessWidget {
   final int index;
+  final Size size;
   final dynamic blocState;
   const SearchVideosResultItem({
     super.key,
     required this.index,
     this.blocState,
+    required this.size,
   });
 
   @override
@@ -20,12 +22,13 @@ class SearchVideosResultItem extends StatelessWidget {
     // print(index-(index/3).toInt());
     print("serchedWord ${blocState.searchedWord}");
     return Container(
-      height: null,
-      width: null,
+      height: size.height * 40 / 100,
+      margin: const EdgeInsets.symmetric(vertical: 5),
       color: Colors.green,
       child: VideoCard(
         width: double.infinity,
-        height: 300,
+        height: double.infinity,
+        isShadows: true,
         index: modifidIndex,
         blocState: blocState,
         // thumbnailUrl: blocState.searchResultDataList[index].resultDetails

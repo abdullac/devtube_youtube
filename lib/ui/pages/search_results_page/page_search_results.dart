@@ -10,6 +10,7 @@ class PageSearchResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: const PreferredSize(
@@ -22,6 +23,7 @@ class PageSearchResults extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) => SearchResultItem(
                 index: index,
+                size: screenSize,
                 blocState: state,
               ),
             );
@@ -35,32 +37,25 @@ class PageSearchResults extends StatelessWidget {
 /// SearchResultItem
 class SearchResultItem extends StatelessWidget {
   final int index;
+  final Size size;
   final dynamic blocState;
   const SearchResultItem({
     super.key,
     required this.index,
-    this.blocState,
+    required this.blocState,
+    required this.size,
   });
 
   @override
   Widget build(BuildContext context) {
     return (index + 1) % 3 != 0
-        ? Container(
-            height: 200,
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            child: SearchVideosResultItem(
-              index: index,
-              blocState: blocState,
-            ))
-        : Container(
-            height: 300,
-            margin: const EdgeInsets.all(5),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, shortsListviewIndex) =>
-                  SearchShortsResultItem(
-                      shortsListviewIndex: shortsListviewIndex),
-            ),
+        ? SearchVideosResultItem(
+            index: index,
+            size: size,
+            blocState: blocState,
+          )
+        : SearchShortsResultsListView(
+            size: size,
           );
   }
 }

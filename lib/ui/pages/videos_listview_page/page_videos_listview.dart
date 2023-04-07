@@ -1,13 +1,15 @@
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
+import 'package:devtube_sample/main.dart';
 import 'package:devtube_sample/ui/pages/videos_listview_page/widget/videos_iconbuttons_bar.dart';
 import 'package:devtube_sample/ui/pages/videos_listview_page/widget/videos_thumbnail_widget.dart';
 import 'package:devtube_sample/ui/shared/widgets/iconbuttons_bar.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_card.dart';
 import 'package:devtube_sample/utils/constants/enums.dart';
+import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'widget/videos_title_widget.dart';
+import '../../shared/widgets/videos_title_widget.dart';
 
 class PageVideosListview extends StatelessWidget {
   const PageVideosListview({Key? key}) : super(key: key);
@@ -23,10 +25,14 @@ class PageVideosListview extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
           preferredSize: Size(screenSize.width, screenSize.height * 10 / 100),
-          child: const IconButtonsBar(
-            height: 0,
+          child: IconButtonsBar(
+            height: 40,
             width: double.infinity,
             iconButtonsBarType: IconButtonsBarType.utilButtons,
+            searchButtonPressed: () =>
+                printing("search Button pressed videoListView"),
+            filterButtonPressed: () =>
+                printing("filter Button pressed videoListView"),
           ),
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
@@ -37,22 +43,24 @@ class PageVideosListview extends StatelessWidget {
                   )
                 : ListView.builder(
                     padding: const EdgeInsets.only(top: 0),
-                    itemCount: state.videosDataList!.length,
+                    // itemCount: state.videosDataList!.length,
+                    itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Container(
-                        height: 250,
-                        width: 100,
-                        margin: const EdgeInsets.all(5),
-                        color: Colors.amber,
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
                         child: VideoCard(
                           width: screenSize.width,
                           height: screenSize.height,
+                          isShadows: true,
                           blocState: state,
                           index: index,
-                          thumbnailUrl: state.videosDataList![index]
-                              ?.videoDetails?.thumbnails!["high"]["url"],
-                          videoId: state.videosDataList![index]!.videoId!,
-                          videoTitle: state.videosDataList![index]!.videoDetails!.title!,
+                          // thumbnailUrl: state.videosDataList![index]
+                          //     ?.videoDetails?.thumbnails!["high"]["url"],
+                          thumbnailUrl: imageHorizontal,
+                          // videoId: state.videosDataList![index]!.videoId!,
+                          videoId: "fgdfgdgdg",
+                          // videoTitle: state.videosDataList![index]!.videoDetails!.title!,
+                          videoTitle: imageTitle,
                         ),
                       );
                     },

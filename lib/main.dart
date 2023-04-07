@@ -16,7 +16,7 @@ import 'ui/pages/shorts_pageview_page/page_shorts_pageview.dart';
 import 'ui/pages/video_player_page/page_vieo_player.dart';
 import 'ui/pages/videos_listview_page/page_videos_listview.dart';
 
-String imageTitle = "tuturtu utureut uurt uu errter";
+String imageTitle = "tuturtu utureut uurt ututurtu utureut uurt uu errteru errter";
 String imageHorizontal = "https://newtaipei.travel/content/images/attractions/25814/480x360_attractions-image-i6v-hs0zjeejmuwgb6os1w.jpg";
 String imageVertical = "https://cdn.wallpapersafari.com/54/64/BJv2UZ.jpg";
 
@@ -65,11 +65,11 @@ class MainPage extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
     });
-    return const PageHome();
+    // return const PageHome();
     // return const PageVideosListview();
     // return const PageShortsPageview();
     // return PageVideoPlayer(videoId: "Tp_YZNqNBhw",);
-    // return PageSearchResults();
+    return PageSearchResults();
   }
 }
 
