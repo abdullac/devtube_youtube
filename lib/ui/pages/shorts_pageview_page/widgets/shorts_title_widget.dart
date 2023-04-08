@@ -1,13 +1,15 @@
 
+import 'package:devtube_sample/ui/shared/widgets/videos_title_widget.dart';
 import 'package:flutter/material.dart';
 
 class ShortsTitleWidget extends StatelessWidget {
   const ShortsTitleWidget({
     super.key,
     required this.blocState,
-    required this.index,
+    required this.index, required this.size,
   });
 
+  final Size size;
   final dynamic blocState;
   final int index;
 
@@ -15,12 +17,16 @@ class ShortsTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Container(
-        height: 100,
-        width: double.infinity,
-        color: Colors.indigoAccent,
-        child: Text(blocState.shortsDataList[index].title),
+      child: VideosTitleWidget(
+        size: size,
+        videoTitle: blocState.shortsDataList[index]!.title,
       ),
+      // child: Container(
+      //   height: 100,
+      //   width: double.infinity,
+      //   color: Colors.indigoAccent,
+      //   child: Text(blocState.shortsDataList[index].title),
+      // ),
     );
   }
 }

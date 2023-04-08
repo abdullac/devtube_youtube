@@ -1,4 +1,4 @@
-
+import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
 import 'package:devtube_sample/ui/pages/shorts_pageview_page/widgets/shorts_thumbnail_widget.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_play_iconbutton.dart';
 import 'package:flutter/material.dart';
@@ -13,15 +13,21 @@ class ShortsPlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.center,
-      child: VideoPlayIconButton(
-        iconSize: 70,
-        iconButtonPressed: () {
-          // play button pressed
-          print("play button pressed");
-          // BlocProvider.of<ShortsVideoPlayerBloc>(context).add(PlayShortsVideo(
-          //     shortsVideoId: ShortsThumbnailWidget.shortVideoId));
-        },
-      ),
+      child: Builder(builder: (context) {
+        return BlocProvider(
+          create: (context) => ShortsVideoPlayerBloc(),
+          child: VideoPlayIconButton(
+            iconSize: 70,
+            iconButtonPressed: () {
+              // play button pressed
+              print("play button pressed");
+              BlocProvider.of<ShortsVideoPlayerBloc>(context).add(
+                  PlayShortsVideo(
+                      shortsVideoId: ShortsThumbnailWidget.shortVideoId));
+            },
+          ),
+        );
+      }),
     );
   }
 }

@@ -10,7 +10,7 @@ class ShortsIconButtonsBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Align(
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.topCenter,
       child: IconButtonsBar(
           height: 60,
           width: double.infinity,

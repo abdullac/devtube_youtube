@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => getIt<HomeBloc>()),
         // BlocProvider(create: (context) => ShortsVideoPlayerBloc()),
         BlocProvider(create: (context) => getIt<SearchBloc>()),
+        BlocProvider(create: (context) => ShortsVideoPlayerBloc(),)
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -64,7 +65,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
+      BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
     });
     // return const PageHome();
     // return const PageVideosListview();

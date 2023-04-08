@@ -8,8 +8,8 @@ class HomeState with _$HomeState {
     required String? thumbnailUrl,
     required ShortsData? shortsData,
     required VideosData? videosData,
-    required List<ShortsData?>? shortsDataList,
-    required List<VideosData?>? videosDataList,
+    required List<ShortsData?> shortsDataList,
+    required List<VideosData?> videosDataList,
   }) = _HomeState;
 
   factory HomeState.initial() {

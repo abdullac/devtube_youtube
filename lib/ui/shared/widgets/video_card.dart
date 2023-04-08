@@ -74,7 +74,8 @@ class VideoCard extends StatelessWidget {
           ),
           VideosTitleWidget(
             // blocState: blocState,
-            index: index,
+            // index: index,
+            size: Size(width, height),
             videoTitle: videoTitle,
           ),
           // const VideosIconButtonsBar(),

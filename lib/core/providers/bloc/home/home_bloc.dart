@@ -19,6 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         isLoading: true,
         isError: false,
         shortsData: null,
+        shortsDataList: [],
       ));
 
       final getShortsDataList = await homeFacade.getShortsDataList();

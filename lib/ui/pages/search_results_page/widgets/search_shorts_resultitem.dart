@@ -135,8 +135,9 @@ class SearchShortsResultItem extends StatelessWidget {
                       height: 5,
                     ),
                     VideosTitleWidget(
-                      index: shortsListviewIndex,
+                      // index: shortsListviewIndex,
                       // videoTitle: imageTitle,
+                      size: size,
                       videoTitle: shortsBlocState
                           .searchShortsListResults[shortsListviewIndex]!
                           .resultDetails!

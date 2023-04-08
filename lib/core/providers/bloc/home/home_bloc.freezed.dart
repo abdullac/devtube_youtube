@@ -284,8 +284,8 @@ mixin _$HomeState {
   String? get thumbnailUrl => throw _privateConstructorUsedError;
   ShortsData? get shortsData => throw _privateConstructorUsedError;
   VideosData? get videosData => throw _privateConstructorUsedError;
-  List<ShortsData?>? get shortsDataList => throw _privateConstructorUsedError;
-  List<VideosData?>? get videosDataList => throw _privateConstructorUsedError;
+  List<ShortsData?> get shortsDataList => throw _privateConstructorUsedError;
+  List<VideosData?> get videosDataList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -303,8 +303,8 @@ abstract class $HomeStateCopyWith<$Res> {
       String? thumbnailUrl,
       ShortsData? shortsData,
       VideosData? videosData,
-      List<ShortsData?>? shortsDataList,
-      List<VideosData?>? videosDataList});
+      List<ShortsData?> shortsDataList,
+      List<VideosData?> videosDataList});
 
   $ShortsDataCopyWith<$Res>? get shortsData;
   $VideosDataCopyWith<$Res>? get videosData;
@@ -328,8 +328,8 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? thumbnailUrl = freezed,
     Object? shortsData = freezed,
     Object? videosData = freezed,
-    Object? shortsDataList = freezed,
-    Object? videosDataList = freezed,
+    Object? shortsDataList = null,
+    Object? videosDataList = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -352,14 +352,14 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.videosData
           : videosData // ignore: cast_nullable_to_non_nullable
               as VideosData?,
-      shortsDataList: freezed == shortsDataList
+      shortsDataList: null == shortsDataList
           ? _value.shortsDataList
           : shortsDataList // ignore: cast_nullable_to_non_nullable
-              as List<ShortsData?>?,
-      videosDataList: freezed == videosDataList
+              as List<ShortsData?>,
+      videosDataList: null == videosDataList
           ? _value.videosDataList
           : videosDataList // ignore: cast_nullable_to_non_nullable
-              as List<VideosData?>?,
+              as List<VideosData?>,
     ) as $Val);
   }
 
@@ -401,8 +401,8 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       String? thumbnailUrl,
       ShortsData? shortsData,
       VideosData? videosData,
-      List<ShortsData?>? shortsDataList,
-      List<VideosData?>? videosDataList});
+      List<ShortsData?> shortsDataList,
+      List<VideosData?> videosDataList});
 
   @override
   $ShortsDataCopyWith<$Res>? get shortsData;
@@ -426,8 +426,8 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? thumbnailUrl = freezed,
     Object? shortsData = freezed,
     Object? videosData = freezed,
-    Object? shortsDataList = freezed,
-    Object? videosDataList = freezed,
+    Object? shortsDataList = null,
+    Object? videosDataList = null,
   }) {
     return _then(_$_HomeState(
       isLoading: null == isLoading
@@ -450,14 +450,14 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.videosData
           : videosData // ignore: cast_nullable_to_non_nullable
               as VideosData?,
-      shortsDataList: freezed == shortsDataList
+      shortsDataList: null == shortsDataList
           ? _value._shortsDataList
           : shortsDataList // ignore: cast_nullable_to_non_nullable
-              as List<ShortsData?>?,
-      videosDataList: freezed == videosDataList
+              as List<ShortsData?>,
+      videosDataList: null == videosDataList
           ? _value._videosDataList
           : videosDataList // ignore: cast_nullable_to_non_nullable
-              as List<VideosData?>?,
+              as List<VideosData?>,
     ));
   }
 }
@@ -471,8 +471,8 @@ class _$_HomeState implements _HomeState {
       required this.thumbnailUrl,
       required this.shortsData,
       required this.videosData,
-      required final List<ShortsData?>? shortsDataList,
-      required final List<VideosData?>? videosDataList})
+      required final List<ShortsData?> shortsDataList,
+      required final List<VideosData?> videosDataList})
       : _shortsDataList = shortsDataList,
         _videosDataList = videosDataList;
 
@@ -486,24 +486,20 @@ class _$_HomeState implements _HomeState {
   final ShortsData? shortsData;
   @override
   final VideosData? videosData;
-  final List<ShortsData?>? _shortsDataList;
+  final List<ShortsData?> _shortsDataList;
   @override
-  List<ShortsData?>? get shortsDataList {
-    final value = _shortsDataList;
-    if (value == null) return null;
+  List<ShortsData?> get shortsDataList {
     if (_shortsDataList is EqualUnmodifiableListView) return _shortsDataList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_shortsDataList);
   }
 
-  final List<VideosData?>? _videosDataList;
+  final List<VideosData?> _videosDataList;
   @override
-  List<VideosData?>? get videosDataList {
-    final value = _videosDataList;
-    if (value == null) return null;
+  List<VideosData?> get videosDataList {
     if (_videosDataList is EqualUnmodifiableListView) return _videosDataList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_videosDataList);
   }
 
   @override
@@ -556,8 +552,8 @@ abstract class _HomeState implements HomeState {
       required final String? thumbnailUrl,
       required final ShortsData? shortsData,
       required final VideosData? videosData,
-      required final List<ShortsData?>? shortsDataList,
-      required final List<VideosData?>? videosDataList}) = _$_HomeState;
+      required final List<ShortsData?> shortsDataList,
+      required final List<VideosData?> videosDataList}) = _$_HomeState;
 
   @override
   bool get isLoading;
@@ -570,9 +566,9 @@ abstract class _HomeState implements HomeState {
   @override
   VideosData? get videosData;
   @override
-  List<ShortsData?>? get shortsDataList;
+  List<ShortsData?> get shortsDataList;
   @override
-  List<VideosData?>? get videosDataList;
+  List<VideosData?> get videosDataList;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
