@@ -1,8 +1,7 @@
-import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
-import 'package:devtube_sample/ui/pages/home_page/widgets/search_filter_buttons.dart';
+import 'package:devtube_sample/main.dart';
+import 'package:devtube_sample/ui/shared/widgets/util_buttons.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchResultsAppBar extends StatelessWidget {
   const SearchResultsAppBar({
@@ -14,8 +13,9 @@ class SearchResultsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return AppBar(
+      shadowColor: Colors.transparent,
+      backgroundColor: Colors.grey,
       title: TextField(
         controller: searchEditingController,
         decoration: const InputDecoration(
@@ -23,7 +23,7 @@ class SearchResultsAppBar extends StatelessWidget {
         ),
       ),
       actions: [
-        SearchAndFilterButtons(
+        UtilIconButtons(
           searhButtonPressed: () {
             // searhButtonPressed
             searhButtonPressed(context);
@@ -38,16 +38,11 @@ class SearchResultsAppBar extends StatelessWidget {
   }
 }
 
-// searhButtonPressed() {
-//   printing("search button bressed");
-//   BlocProvider.of<SearchBloc>(context).add(
-//       Search(searchWord: SearchResultsAppBar.searchEditingController.text));
-// }
-
 void searhButtonPressed(BuildContext context) {
   printing("search button bressed");
   // BlocProvider.of<SearchBloc>(context).add(
   //     Search(searchWord: SearchResultsAppBar.searchEditingController.text));
+  callSearch(context);
 }
 
 filterButtonPressed() {

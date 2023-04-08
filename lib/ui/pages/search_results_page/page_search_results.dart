@@ -1,4 +1,5 @@
 import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
+import 'package:devtube_sample/main.dart';
 import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_results_appbar.dart';
 import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_shorts_resultitem.dart';
 import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_videos_resultitem.dart';
@@ -11,14 +12,13 @@ class PageSearchResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // BlocProvider.of<SearchBloc>(context).add(
-      //     Search(searchWord: SearchResultsAppBar.searchEditingController.text));
+      callSearch(context);
     });
     Size screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 70),
+            preferredSize: Size(double.infinity, 60),
             child: SearchResultsAppBar()),
         body: BlocBuilder<SearchBloc, SearchState>(
           builder: (context, state) {

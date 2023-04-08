@@ -28,7 +28,7 @@ class VideoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      height: height * 40 / 100,
+      height: height * 42.5 / 100,
       decoration: BoxDecoration(
         color: Colors.grey.shade600,
         boxShadow: isShadows == true
@@ -52,7 +52,7 @@ class VideoCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            height: height*32/100,
+            height: height * 32 / 100,
             child: Stack(
               children: [
                 VideosThumbnailWidget(
@@ -61,7 +61,6 @@ class VideoCard extends StatelessWidget {
                   blocState: blocState,
                   thumbnailUrl: thumbnailUrl,
                   videoId: videoId,
-                  // index: index,
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
@@ -73,54 +72,11 @@ class VideoCard extends StatelessWidget {
             ),
           ),
           VideosTitleWidget(
-            // blocState: blocState,
-            // index: index,
             size: Size(width, height),
             videoTitle: videoTitle,
           ),
-          // const VideosIconButtonsBar(),
         ],
       ),
     );
-
-    // VideoThumbnailContainer(
-    //   width: width,
-    //   height: height,
-    //   blocState: blocState,
-    //   thumbnailUrl: thumbnailUrl,
-    // );
   }
 }
-
-
-
-
-
-          // thumbnailUrl: blocState
-          //     .videosDataList![index]?.videoDetails?.thumbnails!["high"]["url"],
-          // videoId: blocState.videosDataList![index]?.videoId,
-
-
-
-
-    //////
-    ///
-    /// child: Column(
-      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //   children: [
-      //     VideosThumbnailWidget(
-      //       width: width,
-      //       height: height,
-      //       blocState: blocState,
-      //       thumbnailUrl: thumbnailUrl,
-      //       videoId: videoId,
-      //       // index: index,
-      //     ),
-      //     VideosTitleWidget(
-      //       // blocState: blocState,
-      //       index: index,
-      //       videoTitle: videoTitle,
-      //     ),
-      //     const VideosIconButtonsBar(),
-      //   ],
-      // ),

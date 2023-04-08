@@ -1,12 +1,12 @@
 import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
 import 'package:flutter/material.dart';
 
-class ShortsBasedIconbuttons extends StatelessWidget {
+class ActionIconbuttons extends StatelessWidget {
   final void Function()? voleumButtonPressed;
   final void Function()? addlistButtonPressed;
   final void Function()? watchedcountButtonPressed;
   final void Function()? commentButtonPressed;
-  const ShortsBasedIconbuttons({
+  const ActionIconbuttons({
     super.key,
     this.voleumButtonPressed,
     this.addlistButtonPressed,

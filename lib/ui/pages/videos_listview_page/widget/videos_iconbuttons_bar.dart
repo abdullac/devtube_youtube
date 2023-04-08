@@ -15,7 +15,6 @@ class VideosIconButtonsBar extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       width: size.width,
       height: 60,
-      // color: Colors.grey.shade700,
       child: const IconButtonsBar(
         height: 0,
         width: double.infinity,
@@ -24,20 +23,3 @@ class VideosIconButtonsBar extends StatelessWidget {
     );
   }
 }
-
-
-
-// Flexible(
-//       flex: 1,
-//       child: Container(
-//         padding: const EdgeInsets.all(5),
-//         width: double.infinity,
-//         height: 60,
-//         color: Colors.grey.shade700,
-//         child: const IconButtonsBar(
-//           height: 0,
-//           width: double.infinity,
-//           iconButtonsBarType: IconButtonsBarType.actionButtons,
-//         ),
-//       ),
-//     );

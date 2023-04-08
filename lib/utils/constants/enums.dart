@@ -1,4 +1,11 @@
 
+
+enum ScreenPage {
+  home,
+  videoListView,
+}
+
+
 enum IconButtonsBarType {
   actionButtons,
   utilButtons,

@@ -1,7 +1,5 @@
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
 import 'package:devtube_sample/main.dart';
-import 'package:devtube_sample/ui/pages/videos_listview_page/widget/videos_iconbuttons_bar.dart';
-import 'package:devtube_sample/ui/pages/videos_listview_page/widget/videos_thumbnail_widget.dart';
 import 'package:devtube_sample/ui/shared/widgets/iconbuttons_bar.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_card.dart';
 import 'package:devtube_sample/utils/constants/enums.dart';
@@ -9,15 +7,13 @@ import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../shared/widgets/videos_title_widget.dart';
-
 class PageVideosListview extends StatelessWidget {
   const PageVideosListview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
+      callVideosDataList(context);
     });
     Size screenSize = MediaQuery.of(context).size;
     return SafeArea(
@@ -25,15 +21,7 @@ class PageVideosListview extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
           preferredSize: Size(screenSize.width, screenSize.height * 10 / 100),
-          child: IconButtonsBar(
-            height: 40,
-            width: double.infinity,
-            iconButtonsBarType: IconButtonsBarType.utilButtons,
-            searchButtonPressed: () =>
-                printing("search Button pressed videoListView"),
-            filterButtonPressed: () =>
-                printing("filter Button pressed videoListView"),
-          ),
+          child: const VideoListPageAppBar(),
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
@@ -41,20 +29,20 @@ class PageVideosListview extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : state.videosDataList == null
+                : state.videosDataList.isEmpty
                     ? const Center(
                         child: Text("Not available Video Items"),
                       )
                     : ListView.builder(
                         padding: const EdgeInsets.only(top: 0),
-                        itemCount: state.videosDataList!.length,
+                        itemCount: state.videosDataList.length,
                         // itemCount: 10,
                         itemBuilder: (context, index) {
-                          return state.videosDataList![index] == null
+                          return state.videosDataList[index] == null
                               ? const Center(
                                   child: Text("Not available this Video Data"),
                                 )
-                              : state.videosDataList![index]!.videoDetails ==
+                              : state.videosDataList[index]!.videoDetails ==
                                       null
                                   ? const Center(
                                       child: Text(
@@ -69,17 +57,15 @@ class PageVideosListview extends StatelessWidget {
                                         blocState: state,
                                         index: index,
                                         thumbnailUrl: state
-                                            .videosDataList![index]
+                                            .videosDataList[index]
                                             ?.videoDetails
                                             ?.thumbnails!["high"]["url"],
                                         // thumbnailUrl: imageHorizontal,
                                         videoId: state
-                                            .videosDataList![index]!.videoId!,
+                                            .videosDataList[index]!.videoId!,
                                         // videoId: "fgdfgdgdg",
-                                        videoTitle: state
-                                            .videosDataList![index]!
-                                            .videoDetails!
-                                            .title!,
+                                        videoTitle: state.videosDataList[index]!
+                                            .videoDetails!.title!,
                                         // videoTitle: imageTitle,
                                       ),
                                     );
@@ -92,47 +78,41 @@ class PageVideosListview extends StatelessWidget {
   }
 }
 
+class VideoListPageAppBar extends StatelessWidget {
+  const VideoListPageAppBar({
+    super.key,
+  });
 
-
-          
-
-
-
-///////////////////////
-// class VideoCard extends StatelessWidget {
-//   final double width;
-//   final double height;
-//   const VideoCard({
-//     super.key,
-//     required this.width,
-//     required this.height,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return VideoThumbnailContainer(
-//       width: width,
-//       height: height,
-//       screenPage: ScreenPage.videoListView,
-//       bloc: (widget) {
-//         return BlocBuilder<HomeBloc, HomeState>(
-//           builder: (context, state) {
-//             return widget(
-//               blocState: state,
-//               width: width,
-//               height: height,
-//               thumbnailUrl: state.videosData == null
-//                   ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
-//                   : state.videosData!.videoDetails == null
-//                       ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
-//                       : state.videosData!.videoDetails!.thumbnails!.isEmpty
-//                           ? "https://i.ytimg.com/vi/Tp_YZNqNBhw/hqdefault.jpg"
-//                           : state.videosData!.videoDetails!.thumbnails!["high"]
-//                               ["url"],
-//             );
-//           },
-//         );
-//       },
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      titleSpacing: 5,
+      foregroundColor: Colors.black45,
+      backgroundColor: Colors.transparent,
+      shadowColor: Colors.transparent,
+      leadingWidth: 30,
+      title: const Text(
+        "Videos",
+        style: TextStyle(
+          shadows: [
+            Shadow(
+              color: Colors.white,
+              blurRadius: 9,
+            )
+          ],
+        ),
+      ),
+      actions: [
+        IconButtonsBar(
+          height: 40,
+          width: 100,
+          iconButtonsBarType: IconButtonsBarType.utilButtons,
+          searchButtonPressed: () =>
+              printing("search Button pressed videoListView"),
+          filterButtonPressed: () =>
+              printing("filter Button pressed videoListView"),
+        ),
+      ],
+    );
+  }
+}

@@ -1,51 +1,14 @@
-import 'package:devtube_sample/ui/pages/home_page/widgets/search_filter_buttons.dart';
-import 'package:devtube_sample/ui/pages/home_page/widgets/shorts_based_iconbuttons.dart';
+import 'package:devtube_sample/ui/shared/widgets/util_buttons.dart';
+import 'package:devtube_sample/ui/shared/widgets/action_iconbuttons.dart';
 import 'package:devtube_sample/utils/constants/enums.dart';
-import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
-
-// class IconButtonsBar extends StatelessWidget {
-//   const IconButtonsBar({
-//     super.key,
-//     required this.height,
-//     required this.width,
-//   });
-
-//   final double height;
-//   final double width;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Align(
-//       alignment: Alignment.topCenter,
-//       child: Padding(
-//         padding: EdgeInsets.only(top: height * 26 / 100),
-//         child: Container(
-//           height: height * 10 / 100,
-//           width: width,
-//           decoration: BoxDecoration(
-//             color: Colors.cyan.withOpacity(0.5),
-//             borderRadius:
-//                 const BorderRadius.all(Radius.circular(5)),
-//           ),
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: const [
-//               SearchAndFilterButtons(),
-//               ShortsBasedIconbuttons()
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class IconButtonsBar extends StatelessWidget {
   final IconButtonsBarType? iconButtonsBarType;
   final double height;
   final double width;
   final Color? backgroundColor;
+  final bool? spaceMin;
   final void Function()? searchButtonPressed;
   final void Function()? filterButtonPressed;
   final void Function()? voleumButtonPressed;
@@ -64,6 +27,7 @@ class IconButtonsBar extends StatelessWidget {
     this.watchedcountButtonPressed,
     this.commentButtonPressed,
     this.backgroundColor,
+    this.spaceMin,
   });
 
   @override
@@ -72,18 +36,19 @@ class IconButtonsBar extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        color: backgroundColor?? Colors.transparent,
+        color: backgroundColor ?? Colors.transparent,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: spaceMin == true ? MainAxisSize.min : MainAxisSize.max,
         children: iconButtonsBarType == null ||
                 iconButtonsBarType == IconButtonsBarType.actionAndIconButtons
             ? [
-                SearchAndFilterButtons(
+                UtilIconButtons(
                     searhButtonPressed: searchButtonPressed,
                     filterButtonPressed: filterButtonPressed),
-                ShortsBasedIconbuttons(
+                ActionIconbuttons(
                   voleumButtonPressed: voleumButtonPressed,
                   addlistButtonPressed: addlistButtonPressed,
                   watchedcountButtonPressed: watchedcountButtonPressed,
@@ -93,7 +58,7 @@ class IconButtonsBar extends StatelessWidget {
             : iconButtonsBarType == IconButtonsBarType.actionButtons
                 ? [
                     const SizedBox(),
-                    ShortsBasedIconbuttons(
+                    ActionIconbuttons(
                       voleumButtonPressed: voleumButtonPressed,
                       addlistButtonPressed: addlistButtonPressed,
                       watchedcountButtonPressed: watchedcountButtonPressed,
@@ -102,7 +67,7 @@ class IconButtonsBar extends StatelessWidget {
                   ]
                 : iconButtonsBarType == IconButtonsBarType.utilButtons
                     ? [
-                        SearchAndFilterButtons(
+                        UtilIconButtons(
                             searhButtonPressed: searchButtonPressed,
                             filterButtonPressed: filterButtonPressed),
                         const SizedBox(),
@@ -112,11 +77,3 @@ class IconButtonsBar extends StatelessWidget {
     );
   }
 }
-
-// searchButtonPressed() {
-//   printing("search button bressed");
-// }
-
-// filterButtonPressed() {
-//   printing("filter button bressed");
-// }

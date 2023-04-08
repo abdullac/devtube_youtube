@@ -20,7 +20,7 @@ class ShortsTitleContainer extends StatelessWidget {
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             return Padding(
-              padding: const EdgeInsets.all(5.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 state.shortsData?.title ?? "No shorts title provided",
                 // "ffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsfffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsf ",

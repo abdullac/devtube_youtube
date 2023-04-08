@@ -1,10 +1,11 @@
+import 'package:devtube_sample/ui/pages/home_page/widgets/icon_buttonsbar_home.dart';
 import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
 import 'package:flutter/material.dart';
 
-class SearchAndFilterButtons extends StatelessWidget {
+class UtilIconButtons extends StatelessWidget {
   final void Function()? searhButtonPressed;
   final void Function()? filterButtonPressed;
-  const SearchAndFilterButtons({
+  const UtilIconButtons({
     super.key,
     required this.searhButtonPressed,
     required this.filterButtonPressed,
@@ -18,7 +19,12 @@ class SearchAndFilterButtons extends StatelessWidget {
         IconButtonWidget(
           icon: Icons.search,
           // searh icon button
-          iconButtonPressed: searhButtonPressed,
+          iconButtonPressed: () {
+            if(searhButtonPressed != null ){
+            searhButtonPressed!();
+            }
+            searchButtonPressedHome(context);
+          },
         ),
         IconButtonWidget(
           icon: Icons.dashboard_customize_rounded,

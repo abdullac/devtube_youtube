@@ -10,14 +10,12 @@ import 'package:injectable/injectable.dart';
 class SearchRepository implements SearchFacade {
   @override
   Future<List<SearchResultData?>> searchListResult(String searchQuery) async {
-    String searchEndPoint = "search?part=snippet&maxResults=30&q=$searchQuery&key=$apiKey";
-    // Url.serchQuery = searchQuery;
+    String searchEndPoint =
+        "search?part=snippet&maxResults=30&q=$searchQuery&key=$apiKey";
     List<SearchResultData> listOfSearchReasultData = [];
     try {
       Response response =
           await Dio(BaseOptions()).get(Url.baseUrl + searchEndPoint);
-      printing("search-1 ${Url.baseUrl + searchEndPoint}");
-
       if (response.statusCode == 200 || response.statusCode == 201) {
         List searchResultdataList = response.data["items"] as List;
         for (var element in searchResultdataList) {
@@ -40,19 +38,13 @@ class SearchRepository implements SearchFacade {
   @override
   Future<List<SearchResultData?>> searchShortsListResult(
       String searchQuery) async {
-    // searchQuery = "$searchQuery #Shorts";
-    // searchQuery = "$searchQuery Shorts";
     searchQuery = "$searchQuery%20%23shorts";
-    // String searchEndPoint = "search?part=snippet&q=$searchQuery&key=$apiKey";
     String searchEndPoint =
         "search?part=snippet&maxResults=30&q=$searchQuery&key=$apiKey";
-    // Url.serchQuery = searchQuery;
     List<SearchResultData> listOfSearchReasultData = [];
     try {
       Response response =
           await Dio(BaseOptions()).get(Url.baseUrl + searchEndPoint);
-      printing("search-1 ${Url.baseUrl + searchEndPoint}");
-
       if (response.statusCode == 200 || response.statusCode == 201) {
         List searchResultdataList = response.data["items"] as List;
         for (var element in searchResultdataList) {

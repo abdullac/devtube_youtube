@@ -38,25 +38,3 @@ class SearchResultDetails with _$SearchResultDetails {
   factory SearchResultDetails.fromJson(Map<String, dynamic> json) =>
       _$SearchResultDetailsFromJson(json);
 }
-
-
-
-
-
-
-// @freezed
-// class SearchResultData with _$SearchResultData {
-//   const factory SearchResultData({
-//     @JsonKey(name: "id") required Map<String, dynamic>? resultDataId,
-//     @JsonKey(name: "snippet") required Map<String, dynamic>? resultDetails,
-//   }) = _SearchResultData;
-
-//   factory SearchResultData.fromJson(Map<String, dynamic> json) =>
-//       _$SearchResultDataFromJson(json);
-// }
-
-
-
-
-
-//"https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=sun&regionCode=IN&key=AIzaSyAMEAEaYB8CrpthosDoZ_Uv7OQ-9pUReH4"

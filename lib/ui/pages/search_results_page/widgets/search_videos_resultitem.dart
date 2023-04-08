@@ -1,5 +1,5 @@
-import 'package:devtube_sample/main.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_card.dart';
+import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 
 /// SearchVideosResultItem
@@ -16,12 +16,8 @@ class SearchVideosResultItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // index = (index + 1) % 3 == 0 ?
-    // int modifidIndex = (index - (index / 3).toInt());
     int modifidIndex = (index - index ~/ 3);
-    // print("index $index, modifiedIndex $modifidIndex");
-    // print(index-(index/3).toInt());
-    print("serchedWord ${blocState.searchedWord}");
+    printing("serchedWord ${blocState.searchedWord}");
     return blocState.searchResultDataList[modifidIndex] == null
         ? const Center(
             child: Text("Not available this video data"),
@@ -46,7 +42,6 @@ class SearchVideosResultItem extends StatelessWidget {
                   padding: const EdgeInsets.all(7.0),
                   child: VideoCard(
                     width: double.infinity,
-                    // height: double.infinity,
                     height: size.height,
                     isShadows: true,
                     index: modifidIndex,

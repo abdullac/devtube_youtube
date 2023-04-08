@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
-import 'package:devtube_sample/main.dart';
 import 'package:devtube_sample/ui/shared/widgets/iconbuttons_bar.dart';
 import 'package:devtube_sample/ui/shared/widgets/shorts_thumbnail_container.dart';
 import 'package:devtube_sample/ui/shared/widgets/videos_title_widget.dart';
@@ -28,8 +26,7 @@ class SearchShortsResultsListView extends StatelessWidget {
       builder: (context, shortsListviewState) {
         int shortsLength = shortsListviewState.searchShortsListResults.length;
         return SizedBox(
-          height: size.height * 60 / 100,
-          // margin: const EdgeInsets.all(5),
+          height: size.height * 62.5 / 100,
           child: shortsListviewState.searchShortsListResults.isEmpty
               ? Center(
                   child: Text(
@@ -72,7 +69,6 @@ class SearchShortsResultItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // shortsBlocState.searchShortsListResults[shortsListviewIndex]!.resultDetails!.thumbnailMap!["url"],
     int getShortsPosition = modifeidIndex - shortsListviewIndex;
     shortsListviewIndex = modifeidIndex - 2;
     shortsListviewIndex += getShortsPosition;
@@ -80,8 +76,6 @@ class SearchShortsResultItem extends StatelessWidget {
       shortsListviewIndex =
           Random().nextInt(shortsBlocState.searchShortsListResults.length - 1);
     }
-    print(shortsBlocState.searchShortsListResults[shortsListviewIndex]!
-        .resultDetails!.thumbnailMap!["high"]["url"]);
     return shortsBlocState.searchShortsListResults[shortsListviewIndex] == null
         ? const Center(
             child: Text("Not Available this shorts Data"),
@@ -92,16 +86,17 @@ class SearchShortsResultItem extends StatelessWidget {
             ? const Center(
                 child: Text("Not Available this shorts Deatails"),
               )
-            // : shortsBlocState.searchShortsListResults[shortsListviewIndex]!.resultDetails!.thumbnailMap == null
-            // ? Center(child: Text("Not Available this shorts thumbnail"),)
-
             : Container(
                 width: size.width * 60 / 100,
+                /////////
+                height: size.height,
                 margin: const EdgeInsets.symmetric(horizontal: 5),
                 decoration: const BoxDecoration(
-                    // color: Colors.red,
                     borderRadius: BorderRadius.all(Radius.circular(8))),
                 child: Column(
+                  ////////
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
                     const SizedBox(
                       height: 5,
@@ -111,8 +106,6 @@ class SearchShortsResultItem extends StatelessWidget {
                         ShortsThumbnailContainer(
                           width: size.width,
                           height: size.height * 50 / 100,
-                          // blocState: "blocState",
-                          // blocState: shortsBlocState,
                           // thumbnailUrl: imageVertical,
                           thumbnailUrl: shortsBlocState
                               .searchShortsListResults[shortsListviewIndex]!
@@ -135,7 +128,6 @@ class SearchShortsResultItem extends StatelessWidget {
                       height: 5,
                     ),
                     VideosTitleWidget(
-                      // index: shortsListviewIndex,
                       // videoTitle: imageTitle,
                       size: size,
                       videoTitle: shortsBlocState

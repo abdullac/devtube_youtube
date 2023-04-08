@@ -8,14 +8,6 @@ class PageVideoPlayer extends StatelessWidget {
     required this.videoId,
   }) : super(key: key);
 
-  // final _controller = YoutubePlayerController(
-  //   params: const YoutubePlayerParams(
-  //     mute: false,
-  //     showControls: true,
-  //     showFullscreenButton: true,
-  //   ),
-  // );
-
   YoutubePlayerController controller = YoutubePlayerController.fromVideoId(
     videoId: 'vS3_72Gb-bI',
     autoPlay: false,
@@ -28,8 +20,6 @@ class PageVideoPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    // controller.cueVideoById(videoId: "Tp_YZNqNBhw");
-    // controller.cueVideoById(videoId: videoId);
     controller = YoutubePlayerController.fromVideoId(
       videoId: videoId,
       autoPlay: true,
@@ -41,14 +31,13 @@ class PageVideoPlayer extends StatelessWidget {
     return YoutubePlayerScaffold(
       controller: controller,
       // aspectRatio: 9 / 16,
-      aspectRatio: screenSize.width / (screenSize.height-100),
+      aspectRatio: screenSize.width / (screenSize.height - 100),
       builder: (context, player) {
         return Scaffold(
           body: SafeArea(
             child: Column(
               children: [
                 player,
-                // const Text('Youtube Player'),
               ],
             ),
           ),

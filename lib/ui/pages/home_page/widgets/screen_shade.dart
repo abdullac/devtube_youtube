@@ -33,7 +33,6 @@ class ScreenShade extends StatelessWidget {
               gradient: LinearGradient(
                 colors: [
                   Colors.black,
-                  // Colors.black87,
                   Colors.black.withOpacity(0.0),
                 ],
                 begin: Alignment.topCenter,

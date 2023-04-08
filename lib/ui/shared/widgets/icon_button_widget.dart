@@ -14,7 +14,7 @@ class IconButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      // color: Colors.black.withOpacity(0.75),
+      padding: EdgeInsets.zero,
       onPressed: () {
         // search icon button
         if (iconButtonPressed != null) {
@@ -25,7 +25,7 @@ class IconButtonWidget extends StatelessWidget {
       },
       icon: Icon(
         icon,
-        size: iconSize,
+        size: iconSize??25,
         color: Colors.black.withOpacity(0.85),
         shadows: const [
           Shadow(color: Colors.white, offset: Offset(0, 0), blurRadius: 5)
