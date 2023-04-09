@@ -10,6 +10,7 @@ class HomeState with _$HomeState {
     required VideosData? videosData,
     required List<ShortsData?> shortsDataList,
     required List<VideosData?> videosDataList,
+    required String? pageToken,
   }) = _HomeState;
 
   factory HomeState.initial() {
@@ -21,6 +22,7 @@ class HomeState with _$HomeState {
       videosData: null,
       shortsDataList: [],
       videosDataList: [],
+      pageToken: null,
     );
   }
 }

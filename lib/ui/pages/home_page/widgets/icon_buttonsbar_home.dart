@@ -23,8 +23,9 @@ class IconButtonsBarHome extends StatelessWidget {
           height: 60,
           width: size.width,
           iconButtonsBarType: IconButtonsBarType.utilButtons,
-          searchButtonPressed: () => searchButtonPressedHome(context),
-          filterButtonPressed: () => filterButtonPresedHome("filter"),
+          searchButtonPressed: null,
+          // earchButtonPressedHome(context),
+          filterButtonPressed: () => filterButtonPressedHome("filter"),
           // voleumButtonPressed: () => iconButtonPresedHome("voleum"),
           // addlistButtonPressed: () => iconButtonPresedHome("addlist"),
           // watchedcountButtonPressed: () => iconButtonPresedHome("watchedcount"),
@@ -35,11 +36,8 @@ class IconButtonsBarHome extends StatelessWidget {
   }
 }
 
-searchButtonPressedHome(BuildContext context) {
-  Navigator.of(context).push(
-      MaterialPageRoute(builder: ((context) => const PageSearchResults())));
-}
 
-filterButtonPresedHome(String printWord) {
+
+filterButtonPressedHome(String printWord) {
   printing(printWord);
 }

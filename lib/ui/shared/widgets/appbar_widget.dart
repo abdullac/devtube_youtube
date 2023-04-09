@@ -18,14 +18,25 @@ class AppBarWidget extends StatelessWidget {
       title: const Text("DevTube"),
       actions: [
         IconButtonsBarHome(size: Size(100, size.height)),
-        IconButtonWidget(
-          icon: Icons.settings,
-          iconButtonPressed: () {
-            // voleum icon button
-            printing("settings button presed");
-          },
-        ),
+        const SettingsIconButton(),
       ],
+    );
+  }
+}
+
+class SettingsIconButton extends StatelessWidget {
+  const SettingsIconButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButtonWidget(
+      icon: Icons.settings,
+      iconButtonPressed: () {
+        // voleum icon button
+        printing("settings button presed");
+      },
     );
   }
 }

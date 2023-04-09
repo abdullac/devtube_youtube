@@ -3,7 +3,6 @@ import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
 import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
 import 'package:devtube_sample/core/providers/di/injectable.dart';
 import 'package:devtube_sample/ui/pages/home_page/page_home.dart';
-import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_results_appbar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,18 +15,22 @@ String imageHorizontal =
 String imageVertical = "https://cdn.wallpapersafari.com/54/64/BJv2UZ.jpg";
 
 List<String> channelIdList = [];
+String? nextPageToken;
+String? prevPageToken;
+String? firstPageToken;
+
 
 callVideosDataList(BuildContext context) {
-  BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList());
+  // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList(pageToken: null));
 }
 
 callShortsDataList(BuildContext context) {
-  BlocProvider.of<HomeBloc>(context).add(const GetShortsDataList());
+  // BlocProvider.of<HomeBloc>(context).add(const GetShortsDataList());
 }
 
 callSearch(BuildContext context) {
-  BlocProvider.of<SearchBloc>(context).add(
-      Search(searchWord: SearchResultsAppBar.searchEditingController.text));
+  // BlocProvider.of<SearchBloc>(context).add(
+      // Search(searchWord: SearchResultsAppBar.searchEditingController.text));
 }
 
 Future<void> main() async {

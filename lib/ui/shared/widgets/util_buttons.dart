@@ -1,5 +1,6 @@
 import 'package:devtube_sample/ui/pages/home_page/widgets/icon_buttonsbar_home.dart';
 import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
+import 'package:devtube_sample/utils/functions/goto_search_page.dart';
 import 'package:flutter/material.dart';
 
 class UtilIconButtons extends StatelessWidget {
@@ -20,10 +21,11 @@ class UtilIconButtons extends StatelessWidget {
           icon: Icons.search,
           // searh icon button
           iconButtonPressed: () {
-            if(searhButtonPressed != null ){
-            searhButtonPressed!();
+            if (searhButtonPressed != null) {
+              searhButtonPressed!();
+            } else {
+              searchButtonPressed(context);
             }
-            searchButtonPressedHome(context);
           },
         ),
         IconButtonWidget(

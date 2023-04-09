@@ -95,5 +95,5 @@ class VideoTitleHome extends StatelessWidget {
 
 gotoVideosListView(BuildContext context) {
   Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const PageVideosListview()));
+      MaterialPageRoute(builder: (context) => PageVideosListview()));
 }

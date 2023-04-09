@@ -7,8 +7,12 @@ import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+bool isScrolled = false;
+
 class PageVideosListview extends StatelessWidget {
-  const PageVideosListview({Key? key}) : super(key: key);
+  PageVideosListview({Key? key}) : super(key: key);
+
+  ScrollController scrollController = ScrollController(initialScrollOffset: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -33,43 +37,80 @@ class PageVideosListview extends StatelessWidget {
                     ? const Center(
                         child: Text("Not available Video Items"),
                       )
-                    : ListView.builder(
-                        padding: const EdgeInsets.only(top: 0),
-                        itemCount: state.videosDataList.length,
-                        // itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return state.videosDataList[index] == null
-                              ? const Center(
-                                  child: Text("Not available this Video Data"),
-                                )
-                              : state.videosDataList[index]!.videoDetails ==
-                                      null
-                                  ? const Center(
-                                      child: Text(
-                                          "Not available this Video Details"),
-                                    )
-                                  : Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: VideoCard(
-                                        width: screenSize.width,
-                                        height: screenSize.height,
-                                        isShadows: true,
-                                        blocState: state,
-                                        index: index,
-                                        thumbnailUrl: state
-                                            .videosDataList[index]
-                                            ?.videoDetails
-                                            ?.thumbnails!["high"]["url"],
-                                        // thumbnailUrl: imageHorizontal,
-                                        videoId: state
-                                            .videosDataList[index]!.videoId!,
-                                        // videoId: "fgdfgdgdg",
-                                        videoTitle: state.videosDataList[index]!
-                                            .videoDetails!.title!,
-                                        // videoTitle: imageTitle,
-                                      ),
-                                    );
+                    : NotificationListener<UserScrollNotification>(
+                        onNotification: (notification) {
+                          // print(notification.metrics.atEdge);
+
+                          // print(scrollTopEnd);
+                          if (notification.metrics.extentAfter < 10 &&
+                              isScrolled == true) {
+                            // reech to bottom
+                            BlocProvider.of<HomeBloc>(context).add(
+                                GetVideosDataList(pageToken: nextPageToken));
+                            isScrolled = false;
+                            firstPageToken ??= nextPageToken;
+                            scrollController = ScrollController(
+                                initialScrollOffset:
+                                    notification.metrics.minScrollExtent);
+                          } else if (notification.metrics.extentBefore < 10 &&
+                              isScrolled == true && firstPageToken != null) {
+                            // reech to top
+                            BlocProvider.of<HomeBloc>(context).add(
+                                GetVideosDataList(pageToken: prevPageToken));
+                            isScrolled = false;
+                            if (prevPageToken == firstPageToken) {
+                              firstPageToken = null;
+                            }
+                            scrollController = ScrollController(
+                                initialScrollOffset:
+                                    notification.metrics.maxScrollExtent);
+                          } else {
+                            isScrolled = true;
+                          }
+                          return true;
                         },
+                        child: ListView.builder(
+                          controller: scrollController,
+                          padding: const EdgeInsets.only(top: 0),
+                          itemCount: state.videosDataList.length,
+                          // itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return state.videosDataList[index] == null
+                                ? const Center(
+                                    child:
+                                        Text("Not available this Video Data"),
+                                  )
+                                : state.videosDataList[index]!.videoDetails ==
+                                        null
+                                    ? const Center(
+                                        child: Text(
+                                            "Not available this Video Details"),
+                                      )
+                                    : Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: VideoCard(
+                                          width: screenSize.width,
+                                          height: screenSize.height,
+                                          isShadows: true,
+                                          blocState: state,
+                                          index: index,
+                                          thumbnailUrl: state
+                                              .videosDataList[index]
+                                              ?.videoDetails
+                                              ?.thumbnails!["high"]["url"],
+                                          // thumbnailUrl: imageHorizontal,
+                                          videoId: state
+                                              .videosDataList[index]!.videoId!,
+                                          // videoId: "fgdfgdgdg",
+                                          videoTitle: state
+                                              .videosDataList[index]!
+                                              .videoDetails!
+                                              .title!,
+                                          // videoTitle: imageTitle,
+                                        ),
+                                      );
+                          },
+                        ),
                       );
           },
         ),
@@ -107,8 +148,7 @@ class VideoListPageAppBar extends StatelessWidget {
           height: 40,
           width: 100,
           iconButtonsBarType: IconButtonsBarType.utilButtons,
-          searchButtonPressed: () =>
-              printing("search Button pressed videoListView"),
+          searchButtonPressed: null,
           filterButtonPressed: () =>
               printing("filter Button pressed videoListView"),
         ),

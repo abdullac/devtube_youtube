@@ -20,7 +20,6 @@ VideoDetails _$VideoDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VideoDetails {
-// @JsonKey(name: "id") required String? videoId,
   @JsonKey(name: "title")
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: "description")
@@ -206,7 +205,6 @@ class _$_VideoDetails implements _VideoDetails {
   factory _$_VideoDetails.fromJson(Map<String, dynamic> json) =>
       _$$_VideoDetailsFromJson(json);
 
-// @JsonKey(name: "id") required String? videoId,
   @override
   @JsonKey(name: "title")
   final String? title;
@@ -315,7 +313,7 @@ abstract class _VideoDetails implements VideoDetails {
   factory _VideoDetails.fromJson(Map<String, dynamic> json) =
       _$_VideoDetails.fromJson;
 
-  @override // @JsonKey(name: "id") required String? videoId,
+  @override
   @JsonKey(name: "title")
   String? get title;
   @override

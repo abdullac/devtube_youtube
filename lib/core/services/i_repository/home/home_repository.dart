@@ -5,9 +5,13 @@ import 'package:devtube_sample/core/providers/logics/make_channel_id_list.dart';
 import 'package:devtube_sample/core/providers/logics/set_url_channel_id.dart';
 import 'package:devtube_sample/core/services/i_facades/home/home_facade.dart';
 import 'package:devtube_sample/core/services/links/uri.dart';
+import 'package:devtube_sample/main.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+
+List<VideosData?> VideosDataCollectionList = [];
+List<VideosData?> ShortsDataCollectionList = [];
 
 @LazySingleton(as: HomeFacade)
 class HomeRepository implements HomeFacade {
@@ -37,20 +41,48 @@ class HomeRepository implements HomeFacade {
   Future<List<ShortsData?>> getShortsDataList() async {
     List<ShortsData?>? listOfShortsData = [];
     try {
-      await setUrlChannelId();
-      final response =
-          await Dio(BaseOptions()).get(Url.shortsBaseUrl + Url.channelId);
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final shortsDataList = (response.data["items"][0]["shorts"]);
-        shortsDataList as List;
-        for (var element in shortsDataList) {
-          listOfShortsData.add(ShortsData.fromJson(element));
+      // await setUrlChannelId();
+      /////////////////
+      List<Response<dynamic>> responsesList = [];
+
+      for (int index = 0; index < channelIdList.length; index++) {
+        try {
+          responsesList.add(await Dio(BaseOptions())
+              .get(Url.shortsBaseUrl + channelIdList[index]));
+
+          if (responsesList[index].statusCode == 200 ||
+              responsesList[index].statusCode == 201) {
+            final shortsDataList =
+                (responsesList[index].data["items"][0]["shorts"]);
+            shortsDataList as List;
+            for (var element in shortsDataList) {
+              listOfShortsData.add(ShortsData.fromJson(element));
+            }
+            return listOfShortsData;
+          } else {
+            printing(
+                "getShortsDataList statusCode is not 200/201, while add to responsesList (getShortsDataList)");
+            return [];
+          }
+        } catch (e) {
+          printing("while add to responsesList (getShortsDataList) $e");
         }
-        return listOfShortsData;
-      } else {
-        printing("getShortsDataList statusCode is not 200/201");
-        return [];
       }
+      return listOfShortsData;
+      /////////////////
+      // final response =
+      //     await Dio(BaseOptions()).get(Url.shortsBaseUrl + Url.channelId);
+      // if (response.statusCode == 200 || response.statusCode == 201) {
+      //   final shortsDataList = (response.data["items"][0]["shorts"]);
+      //   shortsDataList as List;
+      //   for (var element in shortsDataList) {
+      //     listOfShortsData.add(ShortsData.fromJson(element));
+      //   }
+      //   return listOfShortsData;
+      // } else {
+      //   printing("getShortsDataList statusCode is not 200/201");
+      //   return [];
+      // }
     } catch (e) {
       printing("getShortsDatalist cache e $e");
       return [];
@@ -61,7 +93,8 @@ class HomeRepository implements HomeFacade {
   @override
   Future<VideosData?> getVideosData() async {
     try {
-      final videosDataList = await getVideosDataList();
+      // final videosDataList = await getVideosDataList();
+      final videosDataList = VideosDataCollectionList;
       if (videosDataList.isNotEmpty) {
         final int videosDataListLength = videosDataList.length;
         final int randomNumber = Random().nextInt(videosDataListLength);
@@ -84,18 +117,23 @@ class HomeRepository implements HomeFacade {
 
   /// getVideosDataList
   @override
-  Future<List<VideosData?>> getVideosDataList() async {
+  Future<List<VideosData?>> getVideosDataList(String? pageToken) async {
     List<VideosData> listOfVidesDataList = [];
+    pageToken = pageToken != null ? "&pageToken=$pageToken" : "";
     try {
-      final response =
-          await Dio(BaseOptions()).get(Url.baseUrl + Url.videosEndPoint);
+      final response = await Dio(BaseOptions())
+          .get(Url.baseUrl + Url.videosEndPoint + pageToken);
       if (response.statusCode == 200 || response.statusCode == 201) {
         final videosDataList = (response.data["items"]);
         makeChannelIdList(videosDataList);
+        nextPageToken = response.data["nextPageToken"] as String?;
+        prevPageToken = response.data["prevPageToken"] as String?;
         videosDataList as List;
         for (var element in videosDataList) {
           listOfVidesDataList.add(VideosData.fromJson(element));
         }
+        VideosDataCollectionList.clear();
+        VideosDataCollectionList = listOfVidesDataList;
         return listOfVidesDataList;
       } else {
         printing("getVideosDataList statusCode is not 200/201");
@@ -107,3 +145,4 @@ class HomeRepository implements HomeFacade {
     }
   }
 }
+

@@ -19,19 +19,19 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getShortsDataList,
-    required TResult Function() getVideosDataList,
+    required TResult Function(String? pageToken) getVideosDataList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getShortsDataList,
-    TResult? Function()? getVideosDataList,
+    TResult? Function(String? pageToken)? getVideosDataList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getShortsDataList,
-    TResult Function()? getVideosDataList,
+    TResult Function(String? pageToken)? getVideosDataList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,7 +112,7 @@ class _$GetShortsDataList implements GetShortsDataList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getShortsDataList,
-    required TResult Function() getVideosDataList,
+    required TResult Function(String? pageToken) getVideosDataList,
   }) {
     return getShortsDataList();
   }
@@ -121,7 +121,7 @@ class _$GetShortsDataList implements GetShortsDataList {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getShortsDataList,
-    TResult? Function()? getVideosDataList,
+    TResult? Function(String? pageToken)? getVideosDataList,
   }) {
     return getShortsDataList?.call();
   }
@@ -130,7 +130,7 @@ class _$GetShortsDataList implements GetShortsDataList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getShortsDataList,
-    TResult Function()? getVideosDataList,
+    TResult Function(String? pageToken)? getVideosDataList,
     required TResult orElse(),
   }) {
     if (getShortsDataList != null) {
@@ -180,6 +180,8 @@ abstract class _$$GetVideosDataListCopyWith<$Res> {
   factory _$$GetVideosDataListCopyWith(
           _$GetVideosDataList value, $Res Function(_$GetVideosDataList) then) =
       __$$GetVideosDataListCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? pageToken});
 }
 
 /// @nodoc
@@ -189,54 +191,79 @@ class __$$GetVideosDataListCopyWithImpl<$Res>
   __$$GetVideosDataListCopyWithImpl(
       _$GetVideosDataList _value, $Res Function(_$GetVideosDataList) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pageToken = freezed,
+  }) {
+    return _then(_$GetVideosDataList(
+      pageToken: freezed == pageToken
+          ? _value.pageToken
+          : pageToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetVideosDataList implements GetVideosDataList {
-  const _$GetVideosDataList();
+  const _$GetVideosDataList({required this.pageToken});
+
+  @override
+  final String? pageToken;
 
   @override
   String toString() {
-    return 'HomeEvent.getVideosDataList()';
+    return 'HomeEvent.getVideosDataList(pageToken: $pageToken)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetVideosDataList);
+        (other.runtimeType == runtimeType &&
+            other is _$GetVideosDataList &&
+            (identical(other.pageToken, pageToken) ||
+                other.pageToken == pageToken));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, pageToken);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetVideosDataListCopyWith<_$GetVideosDataList> get copyWith =>
+      __$$GetVideosDataListCopyWithImpl<_$GetVideosDataList>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getShortsDataList,
-    required TResult Function() getVideosDataList,
+    required TResult Function(String? pageToken) getVideosDataList,
   }) {
-    return getVideosDataList();
+    return getVideosDataList(pageToken);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getShortsDataList,
-    TResult? Function()? getVideosDataList,
+    TResult? Function(String? pageToken)? getVideosDataList,
   }) {
-    return getVideosDataList?.call();
+    return getVideosDataList?.call(pageToken);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getShortsDataList,
-    TResult Function()? getVideosDataList,
+    TResult Function(String? pageToken)? getVideosDataList,
     required TResult orElse(),
   }) {
     if (getVideosDataList != null) {
-      return getVideosDataList();
+      return getVideosDataList(pageToken);
     }
     return orElse();
   }
@@ -274,7 +301,13 @@ class _$GetVideosDataList implements GetVideosDataList {
 }
 
 abstract class GetVideosDataList implements HomeEvent {
-  const factory GetVideosDataList() = _$GetVideosDataList;
+  const factory GetVideosDataList({required final String? pageToken}) =
+      _$GetVideosDataList;
+
+  String? get pageToken;
+  @JsonKey(ignore: true)
+  _$$GetVideosDataListCopyWith<_$GetVideosDataList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -286,6 +319,7 @@ mixin _$HomeState {
   VideosData? get videosData => throw _privateConstructorUsedError;
   List<ShortsData?> get shortsDataList => throw _privateConstructorUsedError;
   List<VideosData?> get videosDataList => throw _privateConstructorUsedError;
+  String? get pageToken => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -304,7 +338,8 @@ abstract class $HomeStateCopyWith<$Res> {
       ShortsData? shortsData,
       VideosData? videosData,
       List<ShortsData?> shortsDataList,
-      List<VideosData?> videosDataList});
+      List<VideosData?> videosDataList,
+      String? pageToken});
 
   $ShortsDataCopyWith<$Res>? get shortsData;
   $VideosDataCopyWith<$Res>? get videosData;
@@ -330,6 +365,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? videosData = freezed,
     Object? shortsDataList = null,
     Object? videosDataList = null,
+    Object? pageToken = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -360,6 +396,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.videosDataList
           : videosDataList // ignore: cast_nullable_to_non_nullable
               as List<VideosData?>,
+      pageToken: freezed == pageToken
+          ? _value.pageToken
+          : pageToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -402,7 +442,8 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       ShortsData? shortsData,
       VideosData? videosData,
       List<ShortsData?> shortsDataList,
-      List<VideosData?> videosDataList});
+      List<VideosData?> videosDataList,
+      String? pageToken});
 
   @override
   $ShortsDataCopyWith<$Res>? get shortsData;
@@ -428,6 +469,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? videosData = freezed,
     Object? shortsDataList = null,
     Object? videosDataList = null,
+    Object? pageToken = freezed,
   }) {
     return _then(_$_HomeState(
       isLoading: null == isLoading
@@ -458,6 +500,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value._videosDataList
           : videosDataList // ignore: cast_nullable_to_non_nullable
               as List<VideosData?>,
+      pageToken: freezed == pageToken
+          ? _value.pageToken
+          : pageToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -472,7 +518,8 @@ class _$_HomeState implements _HomeState {
       required this.shortsData,
       required this.videosData,
       required final List<ShortsData?> shortsDataList,
-      required final List<VideosData?> videosDataList})
+      required final List<VideosData?> videosDataList,
+      required this.pageToken})
       : _shortsDataList = shortsDataList,
         _videosDataList = videosDataList;
 
@@ -503,8 +550,11 @@ class _$_HomeState implements _HomeState {
   }
 
   @override
+  final String? pageToken;
+
+  @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, isError: $isError, thumbnailUrl: $thumbnailUrl, shortsData: $shortsData, videosData: $videosData, shortsDataList: $shortsDataList, videosDataList: $videosDataList)';
+    return 'HomeState(isLoading: $isLoading, isError: $isError, thumbnailUrl: $thumbnailUrl, shortsData: $shortsData, videosData: $videosData, shortsDataList: $shortsDataList, videosDataList: $videosDataList, pageToken: $pageToken)';
   }
 
   @override
@@ -524,7 +574,9 @@ class _$_HomeState implements _HomeState {
             const DeepCollectionEquality()
                 .equals(other._shortsDataList, _shortsDataList) &&
             const DeepCollectionEquality()
-                .equals(other._videosDataList, _videosDataList));
+                .equals(other._videosDataList, _videosDataList) &&
+            (identical(other.pageToken, pageToken) ||
+                other.pageToken == pageToken));
   }
 
   @override
@@ -536,7 +588,8 @@ class _$_HomeState implements _HomeState {
       shortsData,
       videosData,
       const DeepCollectionEquality().hash(_shortsDataList),
-      const DeepCollectionEquality().hash(_videosDataList));
+      const DeepCollectionEquality().hash(_videosDataList),
+      pageToken);
 
   @JsonKey(ignore: true)
   @override
@@ -553,7 +606,8 @@ abstract class _HomeState implements HomeState {
       required final ShortsData? shortsData,
       required final VideosData? videosData,
       required final List<ShortsData?> shortsDataList,
-      required final List<VideosData?> videosDataList}) = _$_HomeState;
+      required final List<VideosData?> videosDataList,
+      required final String? pageToken}) = _$_HomeState;
 
   @override
   bool get isLoading;
@@ -569,6 +623,8 @@ abstract class _HomeState implements HomeState {
   List<ShortsData?> get shortsDataList;
   @override
   List<VideosData?> get videosDataList;
+  @override
+  String? get pageToken;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>

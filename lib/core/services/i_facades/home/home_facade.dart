@@ -4,6 +4,6 @@ import 'package:devtube_sample/core/models/home/videos/videos_data.dart';
 abstract class HomeFacade {
   Future<ShortsData?> getShortsData();
   Future<VideosData?> getVideosData();
-  Future<List<VideosData?>> getVideosDataList();
+  Future<List<VideosData?>> getVideosDataList(String? pageToken);
   Future<List<ShortsData?>> getShortsDataList();
 }
