@@ -3,6 +3,7 @@ import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
 import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
 import 'package:devtube_sample/core/providers/di/injectable.dart';
 import 'package:devtube_sample/ui/pages/home_page/page_home.dart';
+import 'package:devtube_sample/ui/pages/settings_page/page_settings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +18,6 @@ String imageVertical = "https://cdn.wallpapersafari.com/54/64/BJv2UZ.jpg";
 List<String> channelIdList = [];
 String? nextPageToken;
 String? prevPageToken;
-String? firstPageToken;
 
 
 callVideosDataList(BuildContext context) {
@@ -76,6 +76,7 @@ class MainPage extends StatelessWidget {
       callVideosDataList(context);
     });
     return const PageHome();
+    // return PageSettings();
   }
 }
 

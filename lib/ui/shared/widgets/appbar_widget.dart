@@ -1,4 +1,5 @@
 import 'package:devtube_sample/ui/pages/home_page/widgets/icon_buttonsbar_home.dart';
+import 'package:devtube_sample/ui/pages/settings_page/page_settings.dart';
 import 'package:devtube_sample/ui/shared/widgets/icon_button_widget.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,9 @@ class SettingsIconButton extends StatelessWidget {
     return IconButtonWidget(
       icon: Icons.settings,
       iconButtonPressed: () {
-        // voleum icon button
+        // settins icon button
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const PageSettings()));
         printing("settings button presed");
       },
     );

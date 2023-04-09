@@ -39,31 +39,30 @@ class PageVideosListview extends StatelessWidget {
                       )
                     : NotificationListener<UserScrollNotification>(
                         onNotification: (notification) {
-                          // print(notification.metrics.atEdge);
-
-                          // print(scrollTopEnd);
                           if (notification.metrics.extentAfter < 10 &&
                               isScrolled == true) {
-                            // reech to bottom
+                            // reeched the bottom
                             BlocProvider.of<HomeBloc>(context).add(
                                 GetVideosDataList(pageToken: nextPageToken));
                             isScrolled = false;
-                            firstPageToken ??= nextPageToken;
                             scrollController = ScrollController(
                                 initialScrollOffset:
                                     notification.metrics.minScrollExtent);
                           } else if (notification.metrics.extentBefore < 10 &&
-                              isScrolled == true && firstPageToken != null) {
-                            // reech to top
+                              isScrolled == true) {
+                            // reeched the top
                             BlocProvider.of<HomeBloc>(context).add(
                                 GetVideosDataList(pageToken: prevPageToken));
                             isScrolled = false;
-                            if (prevPageToken == firstPageToken) {
-                              firstPageToken = null;
+                            if (prevPageToken != null) {
+                              scrollController = ScrollController(
+                                  initialScrollOffset:
+                                      notification.metrics.maxScrollExtent);
+                            } else {
+                              scrollController = ScrollController(
+                                  initialScrollOffset:
+                                      notification.metrics.minScrollExtent);
                             }
-                            scrollController = ScrollController(
-                                initialScrollOffset:
-                                    notification.metrics.maxScrollExtent);
                           } else {
                             isScrolled = true;
                           }
