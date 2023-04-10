@@ -1,3 +1,4 @@
+import 'package:devtube_sample/ui/pages/settings_page/widgets/preferences_item.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 
@@ -6,145 +7,36 @@ class Preferences extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ExpansionTile(
-      title: Text("Preferences"),
-      children: [
-        Tools(),
-        Products(),
-      ],
-    );
-  }
-}
-
-////////////////////////////////
-///
-class Tools extends StatelessWidget {
-  const Tools({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
     return ExpansionTile(
-      title: const Text("Tools", textAlign: TextAlign.center),
+      title: const Text("Preferences"),
       children: [
-        AddToolOrProduct(toolOrProduct: ToolOrProduct.tool),
-        const ToolsList(),
+        PreferencesItem(
+          expansionTitle: "Tools",
+          toolOrProduct: ToolOrProduct.tool,
+          namesListNotifier: PreferencesItemListView.toolsListViewNotifier,
+        ),
+        PreferencesItem(
+          expansionTitle: "Products",
+          toolOrProduct: ToolOrProduct.product,
+          namesListNotifier: PreferencesItemListView.productListviewNotifier,
+        ),
       ],
     );
   }
 }
 
-class ToolsList extends StatelessWidget {
-  const ToolsList({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: toolsNames.length,
-      itemBuilder: (context, index) => ToolsListTile(index: index),
-    );
-  }
-}
-
-class ToolsListTile extends StatelessWidget {
-  final int index;
-  const ToolsListTile({
-    super.key,
-    required this.index,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(toolsNames[index]),
-      trailing: IconButton(
-          onPressed: () {
-            // delete tool button
-          },
-          icon: const Icon(Icons.delete)),
-    );
-  }
-}
-
-List<String> toolsNames = [
-  "tools1",
-  "tools2",
-];
-
-///////////////////////////////////////////////////////////
-
-class Products extends StatelessWidget {
-  const Products({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: const Text("Products", textAlign: TextAlign.center),
-      children: [
-        AddToolOrProduct(toolOrProduct: ToolOrProduct.product),
-        const ProductsList(),
-      ],
-    );
-  }
-}
-
-class ProductsList extends StatelessWidget {
-  const ProductsList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: productsNames.length,
-      itemBuilder: (context, index) => ProductsListTile(index: index),
-    );
-  }
-}
-
-class ProductsListTile extends StatelessWidget {
-  final int index;
-  const ProductsListTile({
-    super.key,
-    required this.index,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(productsNames[index]),
-      trailing: IconButton(
-          onPressed: () {
-            // delete products button
-          },
-          icon: const Icon(Icons.delete)),
-    );
-  }
-}
-
-List<String> productsNames = [
-  "products1",
-  "products2",
-];
-
-////////////////////////////////////////////////////////
-
-enum ToolOrProduct {
-  tool,
-  product,
-}
 
 class AddToolOrProduct extends StatelessWidget {
   final ToolOrProduct toolOrProduct;
+  final ValueNotifier<List<String>> namesListNotifier;
   AddToolOrProduct({
     super.key,
     required this.toolOrProduct,
+    required this.namesListNotifier,
   });
 
-  final TextEditingController addNameEditingController =
+  final TextEditingController addToolOrProductEditingController =
       TextEditingController();
 
   @override
@@ -155,15 +47,18 @@ class AddToolOrProduct extends StatelessWidget {
       width: double.infinity,
       child: ListTile(
         title: TextField(
-          controller: addNameEditingController,
+          controller: addToolOrProductEditingController,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
           ),
         ),
         trailing: ElevatedButton(
           onPressed: () {
-            // add priority
-            if (addNameEditingController.text.isNotEmpty) {
+            // AddToolOrProduct button
+            if (addToolOrProductEditingController.text.isNotEmpty) {
+              namesListNotifier.value
+                  .add(addToolOrProductEditingController.text);
+              namesListNotifier.notifyListeners();
             } else {
               printing("please fill");
             }

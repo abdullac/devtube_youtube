@@ -1,5 +1,6 @@
 import 'package:devtube_sample/ui/pages/settings_page/utils/priority.dart';
 import 'package:devtube_sample/ui/pages/settings_page/widgets/add_priority.dart';
+import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
 import 'package:devtube_sample/ui/pages/settings_page/widgets/priority_item.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class Priority extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      textColor: darkAreaColor(selectedThemeColor),
       initiallyExpanded: true,
       title: const Text("Priority"),
       children: [

@@ -1,4 +1,5 @@
 import 'package:devtube_sample/main.dart';
+import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
 import 'package:devtube_sample/ui/shared/widgets/util_buttons.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class SearchResultsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       shadowColor: Colors.transparent,
-      backgroundColor: Colors.grey,
+      backgroundColor: normalAreaColor(selectedThemeColor),
       title: TextField(
         controller: searchEditingController,
         decoration: const InputDecoration(

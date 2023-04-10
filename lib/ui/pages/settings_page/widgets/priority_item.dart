@@ -1,4 +1,5 @@
 import 'package:devtube_sample/ui/pages/settings_page/utils/priority.dart';
+import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
 import 'package:flutter/material.dart';
 
 class PriorityItem extends StatelessWidget {
@@ -43,8 +44,8 @@ class PriorityItem extends StatelessWidget {
               padding: const EdgeInsets.all(3),
               decoration: BoxDecoration(
                   color: priorityModel.priorityBool == true
-                      ? Colors.teal
-                      : Colors.deepOrange.shade100,
+                      ? normalAreaColor(selectedThemeColor)
+                      : maxLightAreaColor(selectedThemeColor),
                   borderRadius: const BorderRadius.all(Radius.circular(5))),
               child: Text(priorityModel.priorityTitle),
             ),

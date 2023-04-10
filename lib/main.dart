@@ -4,6 +4,7 @@ import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_vi
 import 'package:devtube_sample/core/providers/di/injectable.dart';
 import 'package:devtube_sample/ui/pages/home_page/page_home.dart';
 import 'package:devtube_sample/ui/pages/settings_page/page_settings.dart';
+import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +20,6 @@ List<String> channelIdList = [];
 String? nextPageToken;
 String? prevPageToken;
 
-
 callVideosDataList(BuildContext context) {
   // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList(pageToken: null));
 }
@@ -30,7 +30,7 @@ callShortsDataList(BuildContext context) {
 
 callSearch(BuildContext context) {
   // BlocProvider.of<SearchBloc>(context).add(
-      // Search(searchWord: SearchResultsAppBar.searchEditingController.text));
+  // Search(searchWord: SearchResultsAppBar.searchEditingController.text));
 }
 
 Future<void> main() async {
@@ -53,6 +53,25 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        theme: ThemeData(
+            colorScheme: ColorScheme(
+              brightness: Brightness.light,
+              primary: darkAreaColor(selectedThemeColor),
+              onPrimary: Colors.white,
+              secondary: normalAreaColor(selectedThemeColor),
+              onSecondary: maxLightAreaColor(selectedThemeColor),
+              error: normalAreaColor(selectedThemeColor),
+              onError: maxLightAreaColor(selectedThemeColor),
+              background: lightAreaColor(selectedThemeColor),
+              onBackground: darkAreaColor(selectedThemeColor),
+              surface: normalAreaColor(selectedThemeColor),
+              onSurface: darkAreaColor(selectedThemeColor),
+            ),
+            textTheme: TextTheme(
+              bodyLarge: TextStyle(color: darkAreaColor(selectedThemeColor)),
+              bodyMedium: TextStyle(color: darkAreaColor(selectedThemeColor)),
+              bodySmall: TextStyle(color: normalAreaColor(selectedThemeColor)),
+            )),
         scrollBehavior: MyCustomScrollBehavior(),
         debugShowCheckedModeBanner: false,
         home: const Scaffold(

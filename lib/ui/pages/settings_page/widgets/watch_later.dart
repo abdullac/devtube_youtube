@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class WatchLater extends StatelessWidget {
@@ -8,7 +7,10 @@ class WatchLater extends StatelessWidget {
   Widget build(BuildContext context) {
     return const ExpansionTile(
       title: Text("Watch later"),
-      children: [WatchLaterDeleteAll(), WatchLaterDelete()],
+      children: [
+        WatchLaterDeleteAll(),
+        WatchLaterListView(),
+      ],
     );
   }
 }
@@ -18,53 +20,91 @@ class WatchLaterDeleteAll extends StatelessWidget {
     super.key,
   });
 
+  static var watchLaterDeleteAllTileNotifier = ValueNotifier(true);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          title: const Text("Delet all "),
-          trailing: IconButton(
-              onPressed: () {
-                // delete all watch later button
-              },
-              icon: const Icon(Icons.delete)),
-        )
+        ValueListenableBuilder(
+            valueListenable: watchLaterDeleteAllTileNotifier,
+            builder: (context, newValue, _) {
+              return Opacity(
+                opacity: newValue == true ? 1.0 : 0.5,
+                child: ListTile(
+                  title: const Text("Delet all "),
+                  trailing: IconButton(
+                      onPressed: () {
+                        // delete all watch later button
+                        WatchLaterListView.watchLaterListViewNotifier.value
+                            .clear();
+                        WatchLaterListView.watchLaterListViewNotifier
+                            .notifyListeners();
+                        watchLaterDeleteAllTileNotifier.value =
+                            WatchLaterListView
+                                    .watchLaterListViewNotifier.value.isEmpty
+                                ? false
+                                : true;
+                        watchLaterDeleteAllTileNotifier.notifyListeners();
+                      },
+                      icon: const Icon(Icons.delete)),
+                ),
+              );
+            })
       ],
     );
   }
 }
 
-class WatchLaterDelete extends StatelessWidget {
-  const WatchLaterDelete({super.key});
+class WatchLaterListView extends StatelessWidget {
+  const WatchLaterListView({super.key});
+
+  static var watchLaterListViewNotifier = ValueNotifier(watchLaterItems);
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: watchLaterItem.length,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) =>  WatchLaterDeleteItem(index: index),
-    );
+    return ValueListenableBuilder(
+        valueListenable: watchLaterListViewNotifier,
+        builder: (context, newValue, _) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: newValue.length,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) => WatchLaterDeleteItem(
+              index: index,
+              watchLaterList: newValue,
+            ),
+          );
+        });
   }
 }
 
 class WatchLaterDeleteItem extends StatelessWidget {
   final int index;
-  const WatchLaterDeleteItem({super.key, required this.index});
+  final List<String> watchLaterList;
+  const WatchLaterDeleteItem({
+    super.key,
+    required this.index,
+    required this.watchLaterList,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(watchLaterItem[index]),
-      trailing: IconButton(onPressed: (){
-        // delete watch later item button
-      }, icon: const Icon(Icons.delete_forever_sharp),),
+      title: Text(watchLaterList[index]),
+      trailing: IconButton(
+        onPressed: () {
+          // delete watch later item button
+          watchLaterList.removeAt(index);
+          WatchLaterListView.watchLaterListViewNotifier.notifyListeners();
+        },
+        icon: const Icon(Icons.delete_forever_sharp),
+      ),
     );
   }
 }
 
-List<String> watchLaterItem = [
+List<String> watchLaterItems = [
   "dasdsadsaa",
   "dadadadada",
 ];

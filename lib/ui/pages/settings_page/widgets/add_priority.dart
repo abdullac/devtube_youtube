@@ -1,4 +1,5 @@
 import 'package:devtube_sample/ui/pages/settings_page/utils/priority.dart';
+import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
 import 'package:devtube_sample/ui/pages/settings_page/widgets/priority_item.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class AddPriority extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue.shade100,
+      color: lightAreaColor(selectedThemeColor),
       height: 60,
       width: double.infinity,
       child: ListTile(
