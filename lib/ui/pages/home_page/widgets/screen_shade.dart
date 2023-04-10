@@ -6,11 +6,12 @@ class ScreenShade extends StatelessWidget {
   final Size size;
   final ScreenShadeRotate screenShadeRotate;
   final AlignmentGeometry alignment;
+  final void Function()? shadeOnTap;
   const ScreenShade({
     super.key,
     required this.size,
     required this.screenShadeRotate,
-    required this.alignment,
+    required this.alignment, this.shadeOnTap,
   });
 
   @override
@@ -25,19 +26,26 @@ class ScreenShade extends StatelessWidget {
                 : screenShadeRotate == ScreenShadeRotate.bottom
                     ? 180 * math.pi / 180
                     : 270 * math.pi / 180,
-        child: Container(
-          width: size.width,
-          height: size.height,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              gradient: LinearGradient(
-                colors: [
-                  Colors.black,
-                  Colors.black.withOpacity(0.0),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              )),
+        child: InkWell(
+          onTap: () {
+            if(shadeOnTap != null){
+              shadeOnTap!();
+            }
+          },
+          child: Container(
+            width: size.width,
+            height: size.height,
+            decoration: BoxDecoration(
+                color: Colors.black,
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.black,
+                    Colors.black.withOpacity(0.0),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                )),
+          ),
         ),
       ),
     );

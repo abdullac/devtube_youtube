@@ -1,3 +1,4 @@
+import 'package:devtube_sample/ui/pages/home_page/widgets/video_thumbnail_home.dart';
 import 'package:flutter/material.dart';
 
 class VideosTitleWidget extends StatelessWidget {
@@ -16,15 +17,20 @@ class VideosTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      width: double.infinity,
-      height: size.height * 10 / 100,
-      color: backgroundColor,
-      child: Text(
-        videoTitle ?? "title not availabe",
-        overflow: TextOverflow.fade,
-        style: TextStyle(color: textColor ?? Colors.white70),
+    return InkWell(
+      onTap: () {
+        gotoVideosListView(context);
+      },
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        width: double.infinity,
+        height: size.height * 10 / 100,
+        color: backgroundColor,
+        child: Text(
+          videoTitle ?? "title not availabe",
+          overflow: TextOverflow.fade,
+          style: TextStyle(color: textColor ?? Colors.white70),
+        ),
       ),
     );
   }

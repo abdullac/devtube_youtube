@@ -5,7 +5,7 @@ class Url {
   // static const String videosEndPoint =
   //     "videos?part=snippet&chart=mostPopular&maxResults=30&key=$apiKey";
   static const String videosEndPoint =
-      "videos?part=snippet&chart=mostPopular&key=$apiKey&maxResults=30&videoCategoryId=28";
+      "videos?part=snippet&chart=mostPopular&key=$apiKey&maxResults=50&videoCategoryId=28";
   static String serchQuery = "";
   static String techScienceCategoryId = "28";
   static String educationCategoryId = "27";
@@ -20,3 +20,6 @@ class Url {
 
 
 //  https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=[ApiKey]&maxResults=30&videoCategoryId=28&pageToken=CAUQAA
+
+
+//  https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=30&pageToken=CAUQAA&videoCategoryId=28&key=[YOUR_API_KEY]

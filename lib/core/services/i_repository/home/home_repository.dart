@@ -1,11 +1,13 @@
 import 'dart:math';
 import 'package:devtube_sample/core/models/home/shorts/shorts_data.dart';
+import 'package:devtube_sample/core/models/home/videos/video_details.dart';
 import 'package:devtube_sample/core/models/home/videos/videos_data.dart';
 import 'package:devtube_sample/core/providers/logics/make_channel_id_list.dart';
 import 'package:devtube_sample/core/providers/logics/set_url_channel_id.dart';
 import 'package:devtube_sample/core/services/i_facades/home/home_facade.dart';
 import 'package:devtube_sample/core/services/links/uri.dart';
 import 'package:devtube_sample/main.dart';
+import 'package:devtube_sample/ui/pages/settings_page/utils/constants.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -40,6 +42,7 @@ class HomeRepository implements HomeFacade {
   @override
   Future<List<ShortsData?>> getShortsDataList() async {
     List<ShortsData?>? listOfShortsData = [];
+    List<ShortsData?>? listOfShortsDataWithoutPriority = [];
     try {
       // await setUrlChannelId();
       /////////////////
@@ -56,7 +59,11 @@ class HomeRepository implements HomeFacade {
                 (responsesList[index].data["items"][0]["shorts"]);
             shortsDataList as List;
             for (var element in shortsDataList) {
-              listOfShortsData.add(ShortsData.fromJson(element));
+              ShortsData shortsData = ShortsData.fromJson(element);
+              //////////////////////////
+              shortsListWithPriority(shortsData, listOfShortsData,
+                  listOfShortsDataWithoutPriority);
+              ///////////////////////////
             }
             return listOfShortsData;
           } else {
@@ -89,6 +96,28 @@ class HomeRepository implements HomeFacade {
     }
   }
 
+  void shortsListWithPriority(
+      ShortsData shortsData,
+      List<ShortsData?> listOfShortsData,
+      List<ShortsData?> listOfShortsDataWithoutPriority) {
+    String? shortsTitle = shortsData.title;
+    if (shortsTitle != null) {
+      for (var priorityOrNames in priorityAndNamesLst()) {
+        if (shortsTitle.contains(priorityOrNames) ||
+            shortsTitle.contains(priorityOrNames.toUpperCase()) ||
+            shortsTitle.contains(priorityOrNames.toLowerCase())) {
+          listOfShortsData.add(shortsData);
+        } else {
+          listOfShortsDataWithoutPriority.add(shortsData);
+        }
+      }
+    }
+    if (priorityAndNamesLst().isEmpty) {
+      listOfShortsData.add(shortsData);
+    }
+    listOfShortsData.addAll(listOfShortsDataWithoutPriority);
+  }
+
   /// getVideosData
   @override
   Future<VideosData?> getVideosData() async {
@@ -119,6 +148,7 @@ class HomeRepository implements HomeFacade {
   @override
   Future<List<VideosData?>> getVideosDataList(String? pageToken) async {
     List<VideosData> listOfVidesDataList = [];
+    List<VideosData> listOfVidesDataListNoPriority = [];
     pageToken = pageToken != null ? "&pageToken=$pageToken" : "";
     try {
       final response = await Dio(BaseOptions())
@@ -130,10 +160,16 @@ class HomeRepository implements HomeFacade {
         prevPageToken = response.data["prevPageToken"] as String?;
         videosDataList as List;
         for (var element in videosDataList) {
-          listOfVidesDataList.add(VideosData.fromJson(element));
+          ////////////////////////
+          VideosData videoData = VideosData.fromJson(element);
+          createVideoListWithPriority(
+              videoData, listOfVidesDataList, listOfVidesDataListNoPriority);
+          ////////////////////////
+          // listOfVidesDataList.add(VideosData.fromJson(element));
         }
         VideosDataCollectionList.clear();
         VideosDataCollectionList = listOfVidesDataList;
+        VideosDataCollectionList.addAll(listOfVidesDataListNoPriority);
         return listOfVidesDataList;
       } else {
         printing("getVideosDataList statusCode is not 200/201");
@@ -144,5 +180,30 @@ class HomeRepository implements HomeFacade {
       return [];
     }
   }
-}
 
+  void createVideoListWithPriority(
+      VideosData videoData,
+      List<VideosData> listOfVidesDataList,
+      List<VideosData> listOfVidesDataListNoPriority) {
+    VideoDetails? videoDetails = videoData.videoDetails;
+    String? channelTitle = videoDetails!.channelTitle;
+    String? description = videoDetails!.description;
+    if (videoDetails != null && channelTitle != null || description != null) {
+      for (var priorityOrNames in priorityAndNamesLst()) {
+        if (channelTitle!.contains(priorityOrNames) ||
+            description!.contains(priorityOrNames) ||
+            channelTitle.contains(priorityOrNames.toLowerCase()) ||
+            description.contains(priorityOrNames.toLowerCase()) ||
+            channelTitle.contains(priorityOrNames.toUpperCase()) ||
+            description.contains(priorityOrNames.toUpperCase())) {
+          listOfVidesDataList.add(videoData);
+        } else {
+          listOfVidesDataListNoPriority.add(videoData);
+        }
+      }
+      if (priorityAndNamesLst().isEmpty) {
+        listOfVidesDataList.add(videoData);
+      }
+    }
+  }
+}

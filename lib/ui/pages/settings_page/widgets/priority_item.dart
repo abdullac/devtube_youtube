@@ -1,4 +1,4 @@
-import 'package:devtube_sample/ui/pages/settings_page/utils/priority.dart';
+import 'package:devtube_sample/ui/pages/settings_page/utils/constants.dart';
 import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
 import 'package:flutter/material.dart';
 
