@@ -5,6 +5,7 @@ import 'package:devtube_sample/ui/pages/home_page/widgets/shorts_title_container
 import 'package:devtube_sample/ui/shared/widgets/appbar_widget.dart';
 import 'package:devtube_sample/ui/pages/home_page/widgets/video_thumbnail_home.dart';
 import 'package:devtube_sample/utils/constants/enums.dart';
+import 'package:devtube_sample/utils/constants/navigators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +22,7 @@ class PageHome extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
           preferredSize: Size(width, height * 10 / 100),
+          /// appBar
           child: AppBarWidget(size: screenSize),
         ),
         body: Stack(
@@ -33,11 +35,14 @@ class PageHome extends StatelessWidget {
                   padding: const EdgeInsets.all(0),
                   child: Stack(
                     children: [
+                      /// shorts title
                       const ShortsThumbnailHome(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          /// shorts title
                           ShortsTitleContainer(size: Size(width, height)),
+                          /// video thumbnail
                           VideoThumbnailHome(
                             width: width,
                             height: height,
@@ -51,6 +56,7 @@ class PageHome extends StatelessWidget {
                 );
               },
             ),
+            /// top, bottom black shades
             ScreenShade(
               size: Size(width, 70),
               alignment: Alignment.topCenter,

@@ -1,4 +1,5 @@
 import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
+import 'package:devtube_sample/ui/pages/shorts_pageview_page/widgets/shorts_video_player.dart';
 import 'package:devtube_sample/ui/shared/widgets/shorts_thumbnail_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,50 +25,17 @@ class ShortsThumbnailWidget extends StatelessWidget {
     return BlocBuilder<ShortsVideoPlayerBloc, ShortsVideoPlayerState>(
       builder: (context, state) {
         return state.shortsVideoId != null
+              /// shorts videoPlayer
             ? ShortsVideoPlayer(
                 shortsVideoId: blocState.shortsDataList[index]!.videoId,
               )
-            ////////////
+                /// shorts thumbnail container
             : ShortsThumbnailContainer(
                 height: size.height,
                 width: size.width,
                 thumbnailUrl: blocState
                     .shortsDataList[index]!.thumbnailUrlList[0]["url"]);
       },
-    );
-  }
-}
-
-class ShortsVideoPlayer extends StatelessWidget {
-  final String shortsVideoId;
-  ShortsVideoPlayer({
-    super.key,
-    required this.shortsVideoId,
-  });
-
-  YoutubePlayerController controller = YoutubePlayerController.fromVideoId(
-    videoId: 'vS3_72Gb-bI',
-    autoPlay: false,
-    params: const YoutubePlayerParams(
-      showFullscreenButton: true,
-      strictRelatedVideos: true,
-    ),
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    controller = YoutubePlayerController.fromVideoId(
-      videoId: shortsVideoId,
-      autoPlay: true,
-      params: const YoutubePlayerParams(
-        showFullscreenButton: true,
-        strictRelatedVideos: true,
-      ),
-    );
-    return YoutubePlayer(
-      controller: controller,
-      aspectRatio: screenSize.width / (screenSize.height - 120),
     );
   }
 }

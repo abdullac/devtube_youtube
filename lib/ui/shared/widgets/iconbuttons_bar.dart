@@ -15,6 +15,7 @@ class IconButtonsBar extends StatelessWidget {
   final void Function()? addlistButtonPressed;
   final void Function()? watchedcountButtonPressed;
   final void Function()? commentButtonPressed;
+  final bool? isWatchLaterAdded;
   const IconButtonsBar({
     super.key,
     required this.height,
@@ -28,10 +29,12 @@ class IconButtonsBar extends StatelessWidget {
     this.commentButtonPressed,
     this.backgroundColor,
     this.spaceMin,
+    this.isWatchLaterAdded,
   });
 
   @override
   Widget build(BuildContext context) {
+    /// icon buttons bar conatainer
     return Container(
       height: height,
       width: width,
@@ -44,6 +47,7 @@ class IconButtonsBar extends StatelessWidget {
         mainAxisSize: spaceMin == true ? MainAxisSize.min : MainAxisSize.max,
         children: iconButtonsBarType == null ||
                 iconButtonsBarType == IconButtonsBarType.actionAndIconButtons
+                ///  shows util and ation buttons
             ? [
                 UtilIconButtons(
                     searhButtonPressed: searchButtonPressed,
@@ -53,9 +57,11 @@ class IconButtonsBar extends StatelessWidget {
                   addlistButtonPressed: addlistButtonPressed,
                   watchedcountButtonPressed: watchedcountButtonPressed,
                   commentButtonPressed: commentButtonPressed,
+                  isWatchLaterAdded: isWatchLaterAdded,
                 ),
               ]
             : iconButtonsBarType == IconButtonsBarType.actionButtons
+                    /// shows action butons only
                 ? [
                     const SizedBox(),
                     ActionIconbuttons(
@@ -63,9 +69,11 @@ class IconButtonsBar extends StatelessWidget {
                       addlistButtonPressed: addlistButtonPressed,
                       watchedcountButtonPressed: watchedcountButtonPressed,
                       commentButtonPressed: commentButtonPressed,
+                      isWatchLaterAdded: isWatchLaterAdded,
                     ),
                   ]
                 : iconButtonsBarType == IconButtonsBarType.utilButtons
+                        /// shows util buttons
                     ? [
                         UtilIconButtons(
                             searhButtonPressed: searchButtonPressed,

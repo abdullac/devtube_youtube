@@ -2,6 +2,7 @@ import 'package:devtube_sample/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+/// bottom and top black shade widget
 class ScreenShade extends StatelessWidget {
   final Size size;
   final ScreenShadeRotate screenShadeRotate;

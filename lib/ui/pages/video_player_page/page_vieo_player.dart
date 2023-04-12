@@ -7,7 +7,7 @@ class PageVideoPlayer extends StatelessWidget {
     Key? key,
     required this.videoId,
   }) : super(key: key);
-
+    /// youtube player controller
   YoutubePlayerController controller = YoutubePlayerController.fromVideoId(
     videoId: 'vS3_72Gb-bI',
     autoPlay: false,
@@ -19,6 +19,7 @@ class PageVideoPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// screen size
     Size screenSize = MediaQuery.of(context).size;
     controller = YoutubePlayerController.fromVideoId(
       videoId: videoId,
@@ -28,6 +29,7 @@ class PageVideoPlayer extends StatelessWidget {
         strictRelatedVideos: true,
       ),
     );
+    ///  youtube player scaffold
     return YoutubePlayerScaffold(
       controller: controller,
       // aspectRatio: 9 / 16,

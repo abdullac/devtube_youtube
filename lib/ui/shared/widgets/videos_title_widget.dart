@@ -1,4 +1,4 @@
-import 'package:devtube_sample/ui/pages/home_page/widgets/video_thumbnail_home.dart';
+import 'package:devtube_sample/utils/constants/navigators.dart';
 import 'package:flutter/material.dart';
 
 class VideosTitleWidget extends StatelessWidget {
@@ -19,6 +19,7 @@ class VideosTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        /// navigate to vieoListview page
         gotoVideosListView(context);
       },
       child: Container(
@@ -27,6 +28,7 @@ class VideosTitleWidget extends StatelessWidget {
         height: size.height * 10 / 100,
         color: backgroundColor,
         child: Text(
+          /// video title
           videoTitle ?? "title not availabe",
           overflow: TextOverflow.fade,
           style: TextStyle(color: textColor ?? Colors.white70),

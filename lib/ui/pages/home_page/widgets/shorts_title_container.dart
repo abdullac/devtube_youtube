@@ -1,6 +1,5 @@
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
-import 'package:devtube_sample/ui/pages/home_page/widgets/shorts_thumbnail_home.dart';
-import 'package:devtube_sample/ui/pages/shorts_pageview_page/page_shorts_pageview.dart';
+import 'package:devtube_sample/utils/constants/navigators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,17 +22,17 @@ class ShortsTitleContainer extends StatelessWidget {
           builder: (context, state) {
             return InkWell(
               onTap: () {
-                print("lsksjhdg");
+                /// on shorts title pressed
                 gotoShortsPageView(context);
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       state.shortsData?.title ?? "No shorts title provided",
-                      // "ffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsfffds fsf sfsd sdfsdfsdf ffwer fsdfsdf sfsdffewf fsf ",
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.85),
                         shadows: const [

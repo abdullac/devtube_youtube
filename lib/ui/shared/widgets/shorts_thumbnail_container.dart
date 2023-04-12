@@ -20,6 +20,7 @@ class ShortsThumbnailContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        /// shorts thumbnail ontainer
         Container(
           width: width,
           height: height,
@@ -29,6 +30,7 @@ class ShortsThumbnailContainer extends StatelessWidget {
                 : null,
             boxShadow: isShadowsRadius == true
                 ? [
+                    /// conteiner shadows
                     const BoxShadow(
                       color: Colors.black87,
                       offset: Offset(0, 1),
@@ -44,6 +46,7 @@ class ShortsThumbnailContainer extends StatelessWidget {
                   ]
                 : null,
             color: Colors.blue,
+            /// network image
             image: thumbnailUrl == null
                 ? null
                 : DecorationImage(
@@ -53,6 +56,7 @@ class ShortsThumbnailContainer extends StatelessWidget {
                     fit: BoxFit.cover),
           ),
         ),
+        /// shorts play button
         Positioned(
           right: 0,
           left: 0,
@@ -64,14 +68,6 @@ class ShortsThumbnailContainer extends StatelessWidget {
             iconButtonPressed: iconButtonPressed,
           ),
         ),
-        // Align(
-        //   alignment: Alignment.bottomLeft,
-        //   child: IconButtonWidget(
-        //     icon: Icons.play_circle_outline_sharp,
-        //     iconSize: 50,
-        //     iconButtonPressed: iconButtonPressed,
-        //   ),
-        // ),
       ],
     );
   }

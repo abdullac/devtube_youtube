@@ -21,8 +21,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         searchShortsListResults: [],
         searchedWord: event.searchWord,
       ));
-      List<SearchResultData?> searchListResults =
-          await searchFacade.searchListResult(event.searchWord);
+      List<SearchResultData?> searchListResults = await searchFacade
+          .searchListResult(event.searchWord, event.filterPriorityList);
       List<SearchResultData?> searchShortsListResults =
           await searchFacade.searchShortsListResult(event.searchWord);
       emit(state.copyWith(

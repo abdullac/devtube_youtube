@@ -1,7 +1,9 @@
-import 'package:devtube_sample/ui/pages/settings_page/utils/constants.dart';
-import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
+import 'package:devtube_sample/ui/pages/settings_page/utils/settings_constants.dart';
+import 'package:devtube_sample/ui/pages/settings_page/widgets/priority.dart';
 import 'package:devtube_sample/ui/pages/settings_page/widgets/priority_item.dart';
+import 'package:devtube_sample/utils/constants/lists.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
+import 'package:devtube_sample/utils/functions/set_app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddPriority extends StatelessWidget {
@@ -13,7 +15,7 @@ class AddPriority extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: lightAreaColor(selectedThemeColor),
+      color: lightAreaColor(),
       height: 60,
       width: double.infinity,
       child: ListTile(
@@ -40,7 +42,7 @@ class AddPriority extends StatelessWidget {
             } else {
               printing("please fill");
             }
-
+            PriorityWidget.priorityListViewNotifier.notifyListeners();
             PriorityItem.priorityNotifier.notifyListeners();
           },
           child: const Text("Add"),

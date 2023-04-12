@@ -3,38 +3,21 @@ import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
 import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
 import 'package:devtube_sample/core/providers/di/injectable.dart';
 import 'package:devtube_sample/ui/pages/home_page/page_home.dart';
-import 'package:devtube_sample/ui/pages/settings_page/page_settings.dart';
-import 'package:devtube_sample/ui/pages/settings_page/widgets/color_theme_selection.dart';
+import 'package:devtube_sample/utils/constants/proiders.dart';
+import 'package:devtube_sample/utils/functions/set_app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-String imageTitle =
-    "tuturtu utureut uurt ututurtu utureut uurt uu errteru errter";
-String imageHorizontal =
-    "https://newtaipei.travel/content/images/attractions/25814/480x360_attractions-image-i6v-hs0zjeejmuwgb6os1w.jpg";
-String imageVertical = "https://cdn.wallpapersafari.com/54/64/BJv2UZ.jpg";
+import 'ui/pages/settings_page/widgets/color_theme_selection.dart';
 
-List<String> channelIdList = [];
-String? nextPageToken;
-String? prevPageToken;
-
-callVideosDataList(BuildContext context) {
-  // BlocProvider.of<HomeBloc>(context).add(const GetVideosDataList(pageToken: null));
-}
-
-callShortsDataList(BuildContext context) {
-  // BlocProvider.of<HomeBloc>(context).add(const GetShortsDataList());
-}
-
-callSearch(BuildContext context) {
-  // BlocProvider.of<SearchBloc>(context).add(
-  // Search(searchWord: SearchResultsAppBar.searchEditingController.text));
-}
 
 Future<void> main() async {
+  /// app start after configuretion
   WidgetsFlutterBinding.ensureInitialized();
+  // await Hive.initFlutter();
   await configureInjection();
   runApp(const MyApp());
 }
@@ -44,47 +27,57 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => getIt<HomeBloc>()),
-        BlocProvider(create: (context) => getIt<SearchBloc>()),
-        BlocProvider(
-          create: (context) => ShortsVideoPlayerBloc(),
-        )
-      ],
-      child: MaterialApp(
-        theme: ThemeData(
-            colorScheme: ColorScheme(
-              brightness: Brightness.light,
-              primary: darkAreaColor(selectedThemeColor),
-              onPrimary: Colors.white,
-              secondary: normalAreaColor(selectedThemeColor),
-              onSecondary: maxLightAreaColor(selectedThemeColor),
-              error: normalAreaColor(selectedThemeColor),
-              onError: maxLightAreaColor(selectedThemeColor),
-              background: lightAreaColor(selectedThemeColor),
-              onBackground: darkAreaColor(selectedThemeColor),
-              surface: normalAreaColor(selectedThemeColor),
-              onSurface: darkAreaColor(selectedThemeColor),
+    return ValueListenableBuilder(
+      valueListenable: ColorThemeSeletion.selectColorThemeNotifier,
+      builder: (context,newValue,_) {
+        return MultiBlocProvider(
+          /// create bloc providers
+          providers: [
+            BlocProvider(create: (context) => getIt<HomeBloc>()),
+            BlocProvider(create: (context) => getIt<SearchBloc>()),
+            BlocProvider(
+              create: (context) => ShortsVideoPlayerBloc(),
+            )
+          ],
+          child: MaterialApp(
+            theme: ThemeData(
+              /// theme colors
+                scaffoldBackgroundColor: lightAreaColor(),
+                colorScheme: ColorScheme(
+                  brightness: Brightness.light,
+                  primary: darkAreaColor(),
+                  onPrimary: Colors.white,
+                  secondary: normalAreaColor(),
+                  onSecondary: maxLightAreaColor(),
+                  error: normalAreaColor(),
+                  onError: maxLightAreaColor(),
+                  background: lightAreaColor(),
+                  onBackground: darkAreaColor(),
+                  surface: normalAreaColor(),
+                  onSurface: darkAreaColor(),
+                ),
+                textTheme: TextTheme(
+                  bodyLarge: TextStyle(color: darkAreaColor()),
+                  bodyMedium: TextStyle(color: darkAreaColor()),
+                  bodySmall: TextStyle(color: normalAreaColor()),
+                )),
+            scrollBehavior: MyCustomScrollBehavior(),
+            debugShowCheckedModeBanner: false,
+            home: const Scaffold(
+              extendBodyBehindAppBar: true,
+              body: SafeArea(
+                /// mainPage
+                child: MainPage(),
+              ),
             ),
-            textTheme: TextTheme(
-              bodyLarge: TextStyle(color: darkAreaColor(selectedThemeColor)),
-              bodyMedium: TextStyle(color: darkAreaColor(selectedThemeColor)),
-              bodySmall: TextStyle(color: normalAreaColor(selectedThemeColor)),
-            )),
-        scrollBehavior: MyCustomScrollBehavior(),
-        debugShowCheckedModeBanner: false,
-        home: const Scaffold(
-          extendBodyBehindAppBar: true,
-          body: SafeArea(
-            child: MainPage(),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 }
 
+/// main page widget
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
@@ -94,19 +87,23 @@ class MainPage extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       callVideosDataList(context);
     });
+    /// page home
     return const PageHome();
-    // return PageSettings();
   }
 }
 
+/// system navigator black color
 var mySystemTheme =
     SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Colors.black);
 
+/// desktop scrolling
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
-  // Override behavior methods and getters like dragDevices
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
       };
 }
+
+
+

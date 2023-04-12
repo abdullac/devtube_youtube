@@ -13,21 +13,29 @@ class PageSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /// appBar
       appBar: AppBar(
         title: const Text("Settings"),
       ),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Priority(),
-            const Preferences(),
-            YoutubeRedirect(),
-            const ColorThemeSeletion(),
-            const WatchLater(),
-          ],
+        child: ValueListenableBuilder(
+      valueListenable: ColorThemeSeletion.selectColorThemeNotifier,
+      builder: (context,newValue,_) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  /// settings page sections
+                  const Priority(),
+                  const Preferences(),
+                  YoutubeRedirect(),
+                  const ColorThemeSeletion(),
+                  const WatchLater(),
+                ],
+              ),
+            );
+          }
         ),
-      )),
+      ),
     );
   }
 }

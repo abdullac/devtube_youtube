@@ -22,8 +22,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ));
 
       final getShortsDataList = await homeFacade.getShortsDataList();
+        Set<ShortsData?> getShortsDataSet = {};
+      getShortsDataList.forEach((element) {
+        getShortsDataSet.add(element);
+      });
+      getShortsDataList.clear();
+      getShortsDataSet.forEach((element) {
+        getShortsDataList.add(element);
+      });
       getShortsDataList.shuffle();
-      print("getShortsDataList : ${getShortsDataList.length}");
       final getShortsData = await homeFacade.getShortsData();
       emit(state.copyWith(
         isLoading: false,
@@ -44,6 +51,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final getVideosDataList =
           await homeFacade.getVideosDataList(event.pageToken);
+          Set<VideosData?> getVideosDataSet = {};
+      getVideosDataList.forEach((element) {
+        getVideosDataSet.add(element);
+      });
+      getVideosDataList.clear();
+      getVideosDataSet.forEach((element) {
+        getVideosDataList.add(element);
+      });
+
       final getVideosData = await homeFacade.getVideosData();
       emit(state.copyWith(
         isLoading: false,

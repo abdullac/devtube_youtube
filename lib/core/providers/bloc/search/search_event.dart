@@ -4,5 +4,6 @@ part of 'search_bloc.dart';
 class SearchEvent with _$SearchEvent {
   const factory SearchEvent.search({
     required String searchWord,
+    required List<String> filterPriorityList,
   }) = Search;
 }

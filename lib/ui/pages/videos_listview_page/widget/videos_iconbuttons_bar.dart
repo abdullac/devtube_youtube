@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 
 class VideosIconButtonsBar extends StatelessWidget {
   final Size size;
+  final bool isWatchLaterAdded;
+  final void Function() addlistButtonPressed;
   const VideosIconButtonsBar({
     super.key,
     required this.size,
+    required this.isWatchLaterAdded,
+    required this.addlistButtonPressed,
   });
 
   @override
@@ -15,11 +19,17 @@ class VideosIconButtonsBar extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       width: size.width,
       height: 60,
-      child: const IconButtonsBar(
+      child: IconButtonsBar(
         height: 0,
         width: double.infinity,
         iconButtonsBarType: IconButtonsBarType.actionButtons,
+        isWatchLaterAdded: isWatchLaterAdded,
+        addlistButtonPressed: () {
+          //  add wacth later button pressed
+          addlistButtonPressed();
+        },
       ),
     );
   }
 }
+

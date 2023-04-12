@@ -1,6 +1,11 @@
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
 import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
 import 'package:devtube_sample/main.dart';
+import 'package:devtube_sample/ui/pages/shorts_pageview_page/widgets/shorts_pageview_appbar.dart';
+import 'package:devtube_sample/ui/pages/shorts_pageview_page/widgets/shortspageview_item.dart';
+import 'package:devtube_sample/utils/constants/lists.dart';
+import 'package:devtube_sample/utils/constants/proiders.dart';
+import 'package:devtube_sample/utils/functions/make_iswatchlaterlist_shortspaeview.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,35 +16,23 @@ import 'widgets/shorts_thumbnail_widget.dart';
 class PageShortsPageview extends StatelessWidget {
   const PageShortsPageview({Key? key}) : super(key: key);
 
+  static ValueNotifier<List<bool?>> isWatchLaterListNotifier = ValueNotifier([]);
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      /// before, must call videosDataListBloc for ollect hannelId
-      // BlocProvider.of<HomeBloc>(context).add(const GetShortsDataList());
+      /// before, must call videosDataListBloc for collect hannelId
       callShortsDataList(context);
     });
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          titleSpacing: 1,
-          foregroundColor: Colors.black45,
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          title: const Text(
-            "Shorts",
-            style: TextStyle(
-              shadows: [
-                Shadow(
-                  color: Colors.white,
-                  blurRadius: 9,
-                )
-              ],
-            ),
-          ),
-        ),
-        body: BlocBuilder<HomeBloc, HomeState>(
+        ///  appBar
+        appBar: PreferredSize(preferredSize: Size(screenSize.width, 60),
+          child: const ShortsPageviewAppbar()),
+        body: 
+        BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             return state.isLoading
                 ? const Center(
@@ -49,54 +42,39 @@ class PageShortsPageview extends StatelessWidget {
                     ? const Center(
                         child: Text("Not available Shorts Data"),
                       )
-                    : Container(
-                        color: Colors.purpleAccent,
-                        child: GestureDetector(
-                          onVerticalDragEnd: (details) {
-                            BlocProvider.of<ShortsVideoPlayerBloc>(context).add(
-                                const PlayShortsVideo(shortsVideoId: null));
-                            printing("scrolled");
-                          },
-                          child: PageView.builder(
+                      /// gesture, scroll, shorts videoPlayer
+                    : GestureDetector(
+                      onVerticalDragEnd: (details) {
+                        BlocProvider.of<ShortsVideoPlayerBloc>(context).add(
+                            const PlayShortsVideo(shortsVideoId: null));
+                        printing("scrolled");
+                      },
+                      child: ValueListenableBuilder(
+                        valueListenable: isWatchLaterListNotifier,
+                        builder: (context,newValue,_) {
+                          newValue = makeIsWatchLaterListShortsPageview(newValue, state);
+                          /// shorts pageView
+                          return PageView.builder(
                             itemCount: state.shortsDataList.length,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) => PageViewItem(
                               size: screenSize,
                               blocState: state,
                               index: index,
+                              isWatchLaterList: newValue,
                             ),
-                          ),
-                        ),
-                      );
+                          );
+                        }
+                      ),
+                    );
           },
         ),
       ),
     );
   }
+
+ 
 }
 
-class PageViewItem extends StatelessWidget {
-  final Size size;
-  final dynamic blocState;
-  final int index;
-  const PageViewItem({
-    super.key,
-    this.blocState,
-    required this.index,
-    required this.size,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return blocState.shortsDataList[index] == null
-        ? const Center(child: Text("Not availabe this Shorts Details"))
-        : Stack(
-            children: [
-              ShortsThumbnailWidget(
-                  blocState: blocState, index: index, size: size),
-              ShortsTitleWidget(blocState: blocState, index: index, size: size),
-              const ShortsIconButtonsBar(),
-            ],
-          );
-  }
-}
+

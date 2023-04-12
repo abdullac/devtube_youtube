@@ -16,7 +16,7 @@ class ShortsTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.topCenter,
       child: VideosTitleWidget(
         size: size,
         videoTitle: blocState.shortsDataList[index]!.title,

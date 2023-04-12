@@ -1,5 +1,5 @@
-import 'package:devtube_sample/ui/pages/video_player_page/page_vieo_player.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_thumbnail_container.dart';
+import 'package:devtube_sample/utils/constants/navigators.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +24,8 @@ class VideosThumbnailWidget extends StatelessWidget {
     return Container(
       height: height * 30 / 100,
       color: Colors.grey.shade800,
+
+      ///  video thumbnail container
       child: VideoThumbnailContainer(
         width: width,
         height: height,
@@ -33,11 +35,7 @@ class VideosThumbnailWidget extends StatelessWidget {
           // play button pressed
           printing("play button pressed");
           if (videoId != null) {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => PageVideoPlayer(
-                videoId: videoId!,
-              ),
-            ));
+            navigateToVideopalyerPage(context, videoId);
           } else {
             printing("Video id is null");
           }
@@ -46,3 +44,4 @@ class VideosThumbnailWidget extends StatelessWidget {
     );
   }
 }
+

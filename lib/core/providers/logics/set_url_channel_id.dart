@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:devtube_sample/core/services/links/uri.dart';
-import 'package:devtube_sample/main.dart';
+import 'package:devtube_sample/utils/constants/lists.dart';
 
 Future<void> setUrlChannelId() async {
   for (int index = 0; index < 4; index++) {

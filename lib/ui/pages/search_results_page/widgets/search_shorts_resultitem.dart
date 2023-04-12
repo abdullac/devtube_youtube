@@ -1,9 +1,5 @@
-import 'dart:math';
 import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
-import 'package:devtube_sample/ui/shared/widgets/iconbuttons_bar.dart';
-import 'package:devtube_sample/ui/shared/widgets/shorts_thumbnail_container.dart';
-import 'package:devtube_sample/ui/shared/widgets/videos_title_widget.dart';
-import 'package:devtube_sample/utils/constants/enums.dart';
+import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_shorts_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,11 +8,13 @@ class SearchShortsResultsListView extends StatelessWidget {
   final int index;
   final Size size;
   final dynamic blocState;
+  final List<bool?> isWatchLaterListShorts;
   const SearchShortsResultsListView({
     super.key,
     required this.size,
     required this.index,
     this.blocState,
+    required this.isWatchLaterListShorts,
   });
 
   @override
@@ -45,6 +43,7 @@ class SearchShortsResultsListView extends StatelessWidget {
                     size: size,
                     modifeidIndex: modifidIndex,
                     shortsBlocState: shortsListviewState,
+                    isWatchLaterListShorts: isWatchLaterListShorts,
                   ),
                 ),
         );
@@ -53,91 +52,3 @@ class SearchShortsResultsListView extends StatelessWidget {
   }
 }
 
-/// SearchShortsResultItem
-class SearchShortsResultItem extends StatelessWidget {
-  final Size size;
-  final int modifeidIndex;
-  int shortsListviewIndex;
-  final dynamic shortsBlocState;
-  SearchShortsResultItem({
-    super.key,
-    required this.shortsListviewIndex,
-    required this.size,
-    required this.shortsBlocState,
-    required this.modifeidIndex,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    int getShortsPosition = modifeidIndex - shortsListviewIndex;
-    shortsListviewIndex = modifeidIndex - 2;
-    shortsListviewIndex += getShortsPosition;
-    if (shortsListviewIndex >= shortsBlocState.searchShortsListResults.length) {
-      shortsListviewIndex =
-          Random().nextInt(shortsBlocState.searchShortsListResults.length - 1);
-    }
-    return shortsBlocState.searchShortsListResults[shortsListviewIndex] == null
-        ? const Center(
-            child: Text("Not Available this shorts Data"),
-          )
-        : shortsBlocState.searchShortsListResults[shortsListviewIndex]!
-                    .resultDetails ==
-                null
-            ? const Center(
-                child: Text("Not Available this shorts Deatails"),
-              )
-            : Container(
-                width: size.width * 60 / 100,
-                /////////
-                height: size.height,
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                child: Column(
-                  ////////
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Stack(
-                      children: [
-                        ShortsThumbnailContainer(
-                          width: size.width,
-                          height: size.height * 50 / 100,
-                          // thumbnailUrl: imageVertical,
-                          thumbnailUrl: shortsBlocState
-                              .searchShortsListResults[shortsListviewIndex]!
-                              .resultDetails!
-                              .thumbnailMap!["high"]["url"],
-                          isShadowsRadius: true,
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          child: IconButtonsBar(
-                            height: 40,
-                            width: size.width * 60 / 100,
-                            iconButtonsBarType:
-                                IconButtonsBarType.actionButtons,
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    VideosTitleWidget(
-                      // videoTitle: imageTitle,
-                      size: size,
-                      videoTitle: shortsBlocState
-                          .searchShortsListResults[shortsListviewIndex]!
-                          .resultDetails!
-                          .title,
-                      textColor: Colors.black87,
-                    ),
-                  ],
-                ),
-              );
-  }
-}

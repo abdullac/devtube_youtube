@@ -1,4 +1,4 @@
-import 'package:devtube_sample/main.dart';
+import 'package:devtube_sample/utils/constants/lists.dart';
 
 void makeChannelIdList(videosDataList) {
   if (channelIdList.length > 1) {

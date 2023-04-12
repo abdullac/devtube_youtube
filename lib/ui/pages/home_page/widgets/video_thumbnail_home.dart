@@ -1,8 +1,7 @@
 import 'package:devtube_sample/core/providers/bloc/home/home_bloc.dart';
-import 'package:devtube_sample/main.dart';
-import 'package:devtube_sample/ui/pages/videos_listview_page/page_videos_listview.dart';
+import 'package:devtube_sample/ui/pages/home_page/widgets/video_title_home.dart';
 import 'package:devtube_sample/ui/shared/widgets/video_thumbnail_container.dart';
-import 'package:devtube_sample/ui/shared/widgets/videos_title_widget.dart';
+import 'package:devtube_sample/utils/constants/navigators.dart';
 import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,32 +67,5 @@ class VideoThumbnailHome extends StatelessWidget {
   }
 }
 
-class VideoTitleHome extends StatelessWidget {
-  const VideoTitleHome({
-    super.key,
-    required this.width,
-    required this.height,
-  });
-
-  final double width;
-  final double height;
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 3),
-        child: VideosTitleWidget(
-            videoTitle: imageTitle, size: Size(width, height)),
-      ),
-    );
-  }
-}
 
 
-
-gotoVideosListView(BuildContext context) {
-  Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => PageVideosListview()));
-}

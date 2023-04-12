@@ -12,6 +12,8 @@ class VideoCard extends StatelessWidget {
   final String? videoId;
   final String? videoTitle;
   final bool? isShadows;
+  final bool isWatchLaterAdded;
+  final void Function() addlistButtonPressed;
   const VideoCard({
     super.key,
     required this.width,
@@ -22,6 +24,8 @@ class VideoCard extends StatelessWidget {
     required this.videoId,
     required this.videoTitle,
     this.isShadows,
+    required this.isWatchLaterAdded,
+    required this.addlistButtonPressed,
   });
 
   @override
@@ -33,6 +37,7 @@ class VideoCard extends StatelessWidget {
         color: Colors.grey.shade600,
         boxShadow: isShadows == true
             ? [
+                /// video card shadows
                 const BoxShadow(
                   color: Colors.black87,
                   offset: Offset(0, 1),
@@ -48,6 +53,7 @@ class VideoCard extends StatelessWidget {
               ]
             : null,
       ),
+      /// video card
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -55,6 +61,7 @@ class VideoCard extends StatelessWidget {
             height: height * 32 / 100,
             child: Stack(
               children: [
+                /// video thumbnail widget
                 VideosThumbnailWidget(
                   width: width,
                   height: height,
@@ -62,15 +69,21 @@ class VideoCard extends StatelessWidget {
                   thumbnailUrl: thumbnailUrl,
                   videoId: videoId,
                 ),
+                /// video icon buttons bar
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: VideosIconButtonsBar(
                     size: Size(width, height),
+                    addlistButtonPressed: () {
+                      addlistButtonPressed();
+                    },
+                    isWatchLaterAdded: isWatchLaterAdded,
                   ),
                 ),
               ],
             ),
           ),
+          /// video title widget
           VideosTitleWidget(
             size: Size(width, height),
             videoTitle: videoTitle,

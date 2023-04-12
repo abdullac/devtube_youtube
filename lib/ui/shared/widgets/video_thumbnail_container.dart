@@ -24,11 +24,13 @@ class VideoThumbnailContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return blocState.isLoading
+          /// isLoding prograss intivator
         ? const Center(
             child: CircularProgressIndicator(
               strokeWidth: 2,
             ),
           )
+          /// video thumbnail container
         : Container(
             width: width,
             height: height * 26 / 100,
@@ -38,6 +40,7 @@ class VideoThumbnailContainer extends StatelessWidget {
                   : null,
               boxShadow: isShadowsRadius == true
                   ? [
+                      /// container shadows
                       const BoxShadow(
                         color: Colors.black87,
                         offset: Offset(0, 1),
@@ -52,6 +55,7 @@ class VideoThumbnailContainer extends StatelessWidget {
                       ),
                     ]
                   : null,
+              /// Network image
               image: thumbnailUrl == null
                   ? null
                   : DecorationImage(
@@ -61,6 +65,7 @@ class VideoThumbnailContainer extends StatelessWidget {
                       ),
                       fit: BoxFit.cover),
             ),
+            /// video play button
             child: thumbnailUrl == null
                 ? const Text("Not available this Video Thumbnail")
                 : VideoPlayIconButton(

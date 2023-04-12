@@ -17,19 +17,24 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchEvent {
   String get searchWord => throw _privateConstructorUsedError;
+  List<String> get filterPriorityList => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String searchWord) search,
+    required TResult Function(
+            String searchWord, List<String> filterPriorityList)
+        search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String searchWord)? search,
+    TResult? Function(String searchWord, List<String> filterPriorityList)?
+        search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String searchWord)? search,
+    TResult Function(String searchWord, List<String> filterPriorityList)?
+        search,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +66,7 @@ abstract class $SearchEventCopyWith<$Res> {
           SearchEvent value, $Res Function(SearchEvent) then) =
       _$SearchEventCopyWithImpl<$Res, SearchEvent>;
   @useResult
-  $Res call({String searchWord});
+  $Res call({String searchWord, List<String> filterPriorityList});
 }
 
 /// @nodoc
@@ -78,12 +83,17 @@ class _$SearchEventCopyWithImpl<$Res, $Val extends SearchEvent>
   @override
   $Res call({
     Object? searchWord = null,
+    Object? filterPriorityList = null,
   }) {
     return _then(_value.copyWith(
       searchWord: null == searchWord
           ? _value.searchWord
           : searchWord // ignore: cast_nullable_to_non_nullable
               as String,
+      filterPriorityList: null == filterPriorityList
+          ? _value.filterPriorityList
+          : filterPriorityList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -94,7 +104,7 @@ abstract class _$$SearchCopyWith<$Res> implements $SearchEventCopyWith<$Res> {
       __$$SearchCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String searchWord});
+  $Res call({String searchWord, List<String> filterPriorityList});
 }
 
 /// @nodoc
@@ -108,12 +118,17 @@ class __$$SearchCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchWord = null,
+    Object? filterPriorityList = null,
   }) {
     return _then(_$Search(
       searchWord: null == searchWord
           ? _value.searchWord
           : searchWord // ignore: cast_nullable_to_non_nullable
               as String,
+      filterPriorityList: null == filterPriorityList
+          ? _value._filterPriorityList
+          : filterPriorityList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -121,14 +136,25 @@ class __$$SearchCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Search implements Search {
-  const _$Search({required this.searchWord});
+  const _$Search(
+      {required this.searchWord,
+      required final List<String> filterPriorityList})
+      : _filterPriorityList = filterPriorityList;
 
   @override
   final String searchWord;
+  final List<String> _filterPriorityList;
+  @override
+  List<String> get filterPriorityList {
+    if (_filterPriorityList is EqualUnmodifiableListView)
+      return _filterPriorityList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filterPriorityList);
+  }
 
   @override
   String toString() {
-    return 'SearchEvent.search(searchWord: $searchWord)';
+    return 'SearchEvent.search(searchWord: $searchWord, filterPriorityList: $filterPriorityList)';
   }
 
   @override
@@ -137,11 +163,14 @@ class _$Search implements Search {
         (other.runtimeType == runtimeType &&
             other is _$Search &&
             (identical(other.searchWord, searchWord) ||
-                other.searchWord == searchWord));
+                other.searchWord == searchWord) &&
+            const DeepCollectionEquality()
+                .equals(other._filterPriorityList, _filterPriorityList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchWord);
+  int get hashCode => Object.hash(runtimeType, searchWord,
+      const DeepCollectionEquality().hash(_filterPriorityList));
 
   @JsonKey(ignore: true)
   @override
@@ -152,27 +181,31 @@ class _$Search implements Search {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String searchWord) search,
+    required TResult Function(
+            String searchWord, List<String> filterPriorityList)
+        search,
   }) {
-    return search(searchWord);
+    return search(searchWord, filterPriorityList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String searchWord)? search,
+    TResult? Function(String searchWord, List<String> filterPriorityList)?
+        search,
   }) {
-    return search?.call(searchWord);
+    return search?.call(searchWord, filterPriorityList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String searchWord)? search,
+    TResult Function(String searchWord, List<String> filterPriorityList)?
+        search,
     required TResult orElse(),
   }) {
     if (search != null) {
-      return search(searchWord);
+      return search(searchWord, filterPriorityList);
     }
     return orElse();
   }
@@ -207,10 +240,14 @@ class _$Search implements Search {
 }
 
 abstract class Search implements SearchEvent {
-  const factory Search({required final String searchWord}) = _$Search;
+  const factory Search(
+      {required final String searchWord,
+      required final List<String> filterPriorityList}) = _$Search;
 
   @override
   String get searchWord;
+  @override
+  List<String> get filterPriorityList;
   @override
   @JsonKey(ignore: true)
   _$$SearchCopyWith<_$Search> get copyWith =>

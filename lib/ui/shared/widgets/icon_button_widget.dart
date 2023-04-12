@@ -1,3 +1,4 @@
+import 'package:devtube_sample/utils/functions/printing.dart';
 import 'package:flutter/material.dart';
 
 class IconButtonWidget extends StatelessWidget {
@@ -13,16 +14,18 @@ class IconButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// icon button
     return IconButton(
       padding: EdgeInsets.zero,
       onPressed: () {
-        // search icon button
+        // search icon button pressed
         if (iconButtonPressed != null) {
           iconButtonPressed!();
         } else {
-          print("iconButton pressed (iconButtonPressed == null)");
+          printing("iconButton pressed (iconButtonPressed == null)");
         }
       },
+      /// icon
       icon: Icon(
         icon,
         size: iconSize??25,

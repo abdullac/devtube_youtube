@@ -1,13 +1,23 @@
 import 'package:devtube_sample/core/providers/bloc/search/search_bloc.dart';
-import 'package:devtube_sample/main.dart';
+import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_filter_widget.dart';
+import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_result_item.dart';
 import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_results_appbar.dart';
-import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_shorts_resultitem.dart';
-import 'package:devtube_sample/ui/pages/search_results_page/widgets/search_videos_resultitem.dart';
+import 'package:devtube_sample/utils/constants/lists.dart';
+import 'package:devtube_sample/utils/constants/proiders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+ValueNotifier<List<String>> filterItemSelectNotifier =
+    ValueNotifier(filterItemSelectedList);
+
 class PageSearchResults extends StatelessWidget {
   const PageSearchResults({Key? key}) : super(key: key);
+
+  static var filterWidgetNotifier = ValueNotifier(true);
+  static ValueNotifier<List<bool?>> isWatchLaterListNotifierSearchVideos =
+      ValueNotifier([]);
+  static ValueNotifier<List<bool?>> isWatchLaterListNotifierSearchShorts =
+      ValueNotifier([]);
 
   @override
   Widget build(BuildContext context) {
@@ -22,24 +32,68 @@ class PageSearchResults extends StatelessWidget {
             child: SearchResultsAppBar()),
         body: BlocBuilder<SearchBloc, SearchState>(
           builder: (context, state) {
-            return state.isLoading == true
-                ? const Center(
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : state.searchResultDataList.isEmpty
-                    ? Center(
-                        child: Text(
-                            "Not availabe results for '${state.searchedWord}'"),
-                      )
-                    : ListView.builder(
-                        itemCount: state.searchResultDataList.length,
-                        // itemCount: 10,
-                        itemBuilder: (context, index) => SearchResultItem(
-                          index: index,
-                          size: screenSize,
-                          blocState: state,
-                        ),
-                      );
+            return ValueListenableBuilder(
+                valueListenable: filterWidgetNotifier,
+                builder: (context, newFilterWidgetValue, _) {
+                  return newFilterWidgetValue == false
+                      ? const FilterWidget()
+                      : state.isLoading == true
+                          ? const Center(
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : state.searchResultDataList.isEmpty
+                              ? Center(
+                                  child: Text(state.searchedWord == null
+                                      ? "Not availabe search results"
+                                      : "Not availabe results for '${state.searchedWord}'"),
+                                )
+                              : ValueListenableBuilder(
+                                  valueListenable:
+                                      isWatchLaterListNotifierSearchVideos,
+                                  builder: (context, newValueVideos, _) {
+                                    newValueVideos =
+                                        state.searchResultDataList.map((e) {
+                                      if (e != null ||
+                                          e!.resultDataId != null) {
+                                        return watchLatervideoIdList
+                                            .contains(e.resultDataId);
+                                      } else {
+                                        return null;
+                                      }
+                                    }).toList();
+                                    return ValueListenableBuilder(
+                                        valueListenable:
+                                            isWatchLaterListNotifierSearchShorts,
+                                        builder: (context, newValueShorts, _) {
+                                          newValueShorts = state
+                                              .searchShortsListResults
+                                              .map((e) {
+                                            if (e != null ||
+                                                e!.resultDataId != null) {
+                                              return watchLatervideoIdList
+                                                  .contains(e.resultDataId);
+                                            } else {
+                                              return null;
+                                            }
+                                          }).toList();
+                                          return ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: state
+                                                .searchResultDataList.length,
+                                            itemBuilder: (context, index) =>
+                                                SearchResultItem(
+                                              index: index,
+                                              size: screenSize,
+                                              blocState: state,
+                                              isWatchLaterListVideos:
+                                                  newValueVideos,
+                                              isWatchLaterListShorts:
+                                                  newValueShorts,
+                                            ),
+                                          );
+                                        });
+                                  });
+                });
           },
         ),
       ),
@@ -47,30 +101,15 @@ class PageSearchResults extends StatelessWidget {
   }
 }
 
-/// SearchResultItem
-class SearchResultItem extends StatelessWidget {
-  final int index;
-  final Size size;
-  final dynamic blocState;
-  const SearchResultItem({
-    super.key,
-    required this.index,
-    required this.blocState,
-    required this.size,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return (index + 1) % 3 != 0
-        ? SearchVideosResultItem(
-            index: index,
-            size: size,
-            blocState: blocState,
-          )
-        : SearchShortsResultsListView(
-            index: index,
-            size: size,
-            blocState: blocState,
-          );
-  }
-}
+
+
+
+
+// List<String> priorityList() {
+//   List<String> priorityListTemp = [];
+//   for (var element in newPriorityModelList) {
+//     priorityListTemp.add(element.priorityTitle);
+//   }
+//   return priorityListTemp;
+// }

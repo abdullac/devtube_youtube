@@ -1,14 +1,15 @@
-import 'package:devtube_sample/ui/pages/settings_page/utils/constants.dart';
-import 'package:devtube_sample/ui/pages/settings_page/widgets/preferences.dart';
+import 'package:devtube_sample/ui/pages/settings_page/widgets/add_tool_or_product.dart';
+import 'package:devtube_sample/utils/constants/enums.dart';
+import 'package:devtube_sample/utils/constants/lists.dart';
 import 'package:flutter/material.dart';
 
 
 
-class PreferencesItem extends StatelessWidget {
+class PreferencesItems extends StatelessWidget {
   final String expansionTitle;
   final ToolOrProduct toolOrProduct;
   final ValueNotifier<List<String>> namesListNotifier;
-  const PreferencesItem({
+  const PreferencesItems({
     super.key,
     required this.expansionTitle,
     required this.toolOrProduct,
