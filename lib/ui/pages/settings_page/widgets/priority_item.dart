@@ -57,20 +57,20 @@ class PriorityItemTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: ColorThemeSeletion.selectColorThemeNotifier,
-      builder: (context,newValue,_) {
-        return Container(
-          margin: const EdgeInsets.all(3),
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-              color: priorityModel.priorityBool == true
-                  ? normalAreaColor()
-                  : maxLightAreaColor(),
-              borderRadius: const BorderRadius.all(Radius.circular(5))),
-              /// title
-          child: Text(priorityModel.priorityTitle),
-        );
-      }
-    );
+        valueListenable: ColorThemeSeletion.selectColorThemeNotifier,
+        builder: (context, newValue, _) {
+          return Container(
+            margin: const EdgeInsets.all(3),
+            padding: const EdgeInsets.all(3),
+            decoration: BoxDecoration(
+                color: priorityModel.priorityBool == true
+                    ? normalAreaColor()
+                    : maxLightAreaColor(),
+                borderRadius: const BorderRadius.all(Radius.circular(5))),
+
+            /// title
+            child: Text(priorityModel.priorityTitle),
+          );
+        });
   }
 }

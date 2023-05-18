@@ -1,5 +1,7 @@
 import 'dart:math';
+import 'package:devtube_sample/core/providers/bloc/shorts_video_player/shorts_video_player_bloc.dart';
 import 'package:devtube_sample/ui/pages/search_results_page/page_search_results.dart';
+import 'package:devtube_sample/ui/pages/shorts_pageview_page/widgets/shorts_video_player.dart';
 import 'package:devtube_sample/ui/shared/widgets/iconbuttons_bar.dart';
 import 'package:devtube_sample/ui/shared/widgets/shorts_thumbnail_container.dart';
 import 'package:devtube_sample/ui/shared/widgets/videos_title_widget.dart';
@@ -7,6 +9,7 @@ import 'package:devtube_sample/utils/constants/enums.dart';
 import 'package:devtube_sample/utils/functions/add_to_watch_later.dart';
 import 'package:devtube_sample/utils/functions/get_video_id_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// SearchShortsResultItem
 class SearchShortsResultItem extends StatelessWidget {
@@ -41,7 +44,7 @@ class SearchShortsResultItem extends StatelessWidget {
                     .resultDetails ==
                 null
             ? const Center(
-                child: Text("Not Available this shorts Deatails"),
+                child: Text("Not Available this shorts Details"),
               )
             : Container(
                 width: size.width * 60 / 100,
@@ -67,6 +70,17 @@ class SearchShortsResultItem extends StatelessWidget {
                               .resultDetails!
                               .thumbnailMap!["high"]["url"],
                           isShadowsRadius: true,
+                          iconButtonPressed: () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return ShortsVideoPlayer(
+                                  shortsVideoId: shortsBlocState
+                                      .searchShortsListResults[ 
+                                          shortsListviewIndex]!
+                                      .resultDataId!
+                                      .videoId!);
+                            }));
+                          },
                         ),
                         Positioned(
                           bottom: 0,
@@ -112,4 +126,3 @@ class SearchShortsResultItem extends StatelessWidget {
               );
   }
 }
-
